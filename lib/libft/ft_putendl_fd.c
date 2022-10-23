@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/11 14:06:03 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*line;
-
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
+	if (s)
 	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
+		ft_putstr_fd(s, fd);
+		ft_putchar_fd('\n', fd);
 	}
 }

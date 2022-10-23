@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/06 21:00:44 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/22 00:02:39 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*line;
+	void	*result;
 
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
+	if (count == 0 || size == 0)
 	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
+		count = 1;
+		size = 1;
 	}
+	result = malloc(count * size);
+	if (!result)
+		return (NULL);
+	ft_bzero(result, count * size);
+	return (result);
 }

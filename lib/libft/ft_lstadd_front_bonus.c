@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/12 14:45:47 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	char	*line;
-
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
-	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
-	}
+	if (!alst || !new)
+		return ;
+	new->next = *alst;
+	*alst = new;
 }

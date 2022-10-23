@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/03 13:50:20 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*line;
+	char		*dest_tmp;
+	const char	*src_tmp;
 
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
-	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
-	}
+	if (dst == src || n == 0)
+		return (dst);
+	if (!dst && !src)
+		return (0);
+	dest_tmp = (char *)dst;
+	src_tmp = (const char *)src;
+	while (n--)
+		dest_tmp[n] = src_tmp[n];
+	return (dst);
 }

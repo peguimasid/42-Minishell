@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/04/29 17:18:16 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/18 15:02:32 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+size_t	ft_strlen(const char *str)
 {
-	char	*line;
+	size_t	i;
 
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
-	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
-	}
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
