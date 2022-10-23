@@ -2,20 +2,25 @@ NAME=minishell
 
 SRCS	= src/main.c		\
 
+LIBFT = lib/libft/libft.a
+
 OBJ	= $(SRCS:.c=.o)
 
 %.o: %.c
 	cc -Wall -Wextra -Werror -c $< -o $@
 
 $(NAME): $(OBJ)
-	cc $(OBJ) -lreadline -o $(NAME)
+	make -s -C lib/libft
+	cc $(OBJ) -lreadline -o $(NAME) $(LIBFT)
 
 all: $(NAME)
 
 clean:
+	make clean -s -C lib/libft
 	rm -f $(OBJ)
 
 fclean: clean
+	make fclean -s -C lib/libft
 	rm -rf $(NAME)
 
 re:	fclean all

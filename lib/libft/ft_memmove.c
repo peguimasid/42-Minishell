@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:02:38 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/03 13:50:20 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*line;
+	char	*dest_tmp;
+	char	*src_tmp;
 
-	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
+	dest_tmp = (char *)dst;
+	src_tmp = (char *)src;
+	if (dst == src)
+		return (dst);
+	if (src_tmp < dest_tmp)
 	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
+		while (len--)
+			*(dest_tmp + len) = *(src_tmp + len);
+		return (dst);
 	}
+	while (len--)
+		*dest_tmp++ = *src_tmp++;
+	return (dst);
 }
