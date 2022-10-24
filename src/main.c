@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/24 14:48:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/24 14:55:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,20 @@ char	*find_path(char *cmd, char **envp)
 	return (cmd);
 }
 
+void	run_cmd(char *path, char **cmd, char **env)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(path, cmd, env);
+		perror("Error");
+		exit(127);
+	}
+	waitpid(pid, NULL, 0);
+}
+
 void	execute(char *command, char **envp)
 {
 	char	**cmd;
@@ -72,25 +86,19 @@ void	execute(char *command, char **envp)
 		path = cmd[0];
 	else
 		path = find_path(cmd[0], envp);
-	execve(path, cmd, envp);
-	perror("Error");
-	exit(127);
+	run_cmd(path, cmd, envp);
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	pid_t	pid;
 	char	*command;
 
 	(void)argc;
 	(void)argv;
-	pid = fork();
-	if (pid == 0)
+	while (1)
 	{
 		command = readline("Minishell ▸ ");
 		execute(command, env);
 	}
-	waitpid(pid, NULL, 0);
-	sleep(1);
-	printf("I've continue running even after execve");
+	return (0);
 }
