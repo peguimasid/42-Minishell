@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/23 13:17:19 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/24 13:59:30 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*line;
+	pid_t	pid;
 
 	(void)argc;
-	(void)argv;
-	printf("%s\n", *env);
-	printf("%d\n", ft_atoi("41") + 1);
-	while (1)
-	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
-		execve("/bin/ls", ft_split(line, ' '), env);
-	}
+	(void)env;
+	pid = fork();
+	if (pid == 0)
+		execve("/bin/ls", argv, NULL);
+	waitpid(pid, NULL, 0);
+	sleep(1);
+	printf("I've continue running even after execve");
 }
