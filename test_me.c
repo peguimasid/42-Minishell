@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_me.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/22 19:05:10 by lucafern         ###   ########.fr       */
+/*   Created: 2022/10/22 18:40:31 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/22 19:06:28 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include <stdio.h>
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	char	*line;
-
-	while (1 || argc)
-	{
-		line = readline("Minishell ▸ ");
-		printf("command was: %s\n", line);
-		if (strcmp(line, "test") == 0)
-		{
-			if (fork() == 0)
-			{
-				execve("a.out", argv, NULL);
-			}
-			else
-			{
-				wait(0);
-			}
-		}
-	}
+	printf("Eu sou uma string que veio de outro executável\n");
 }
