@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/24 14:55:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/25 13:39:29 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	run_cmd(char *path, char **cmd, char **env)
 	waitpid(pid, NULL, 0);
 }
 
-void	execute(char *command, char **envp)
+void	dispatch_command(t_data *data, char **envp)
 {
 	char	**cmd;
 	char	*path;
 
-	cmd = ft_split(command, ' ');
+	cmd = ft_split(data->command, ' ');
 	if (str_ichr(cmd[0], '/') > -1)
 		path = cmd[0];
 	else
@@ -89,16 +89,23 @@ void	execute(char *command, char **envp)
 	run_cmd(path, cmd, envp);
 }
 
+void	init_data(t_data *data)
+{
+	data->running = 1;
+	data->command = NULL;
+}
+
 int	main(int argc, char **argv, char **env)
 {
-	char	*command;
+	t_data	data;
 
 	(void)argc;
 	(void)argv;
-	while (1)
+	init_data(&data);
+	while (data.running)
 	{
-		command = readline("Minishell ▸ ");
-		execute(command, env);
+		data.command = readline("Minishell ▸ ");
+		dispatch_command(&data, env);
 	}
 	return (0);
 }
