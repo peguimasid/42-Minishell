@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 13:56:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/25 19:47:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ char	*find_path(char *cmd, char **envp)
 	return (cmd);
 }
 
-char	**parse_command(t_data *data)
-{
-	return (ft_split(data->command, ' '));
-}
-
 void	run_cmd(char *path, char **cmd, char **env)
 {
 	pid_t	pid;
@@ -69,15 +64,13 @@ void	run_cmd(char *path, char **cmd, char **env)
 	waitpid(pid, NULL, 0);
 }
 
-void	execute(t_data *data, char **envp)
+void	execute_bin(char **args, char **envp)
 {
-	char	**cmd;
 	char	*path;
 
-	cmd = parse_command(data);
-	if (str_ichr(cmd[0], '/') > -1)
-		path = cmd[0];
+	if (str_ichr(args[0], '/') > -1)
+		path = args[0];
 	else
-		path = find_path(cmd[0], envp);
-	run_cmd(path, cmd, envp);
+		path = find_path(args[0], envp);
+	run_cmd(path, args, envp);
 }

@@ -5,24 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 19:33:42 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 19:52:34 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/25 19:56:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	execute_builtin(char **args, char **envp)
 {
-	t_data	data;
-
-	(void)argc;
-	(void)argv;
-	init_data(&data);
-	while (data.running)
-	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
-	}
-	return (0);
+	(void)args;
+	(void)envp;
+	printf("Execute builtin\n");
 }

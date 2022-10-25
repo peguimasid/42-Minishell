@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:48:47 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 13:49:23 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/25 19:41:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	init_data(t_data *data)
 {
-	data->running = 1;
+	data->running = true;
 	data->command = NULL;
 }

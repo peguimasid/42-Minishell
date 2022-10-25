@@ -3,7 +3,11 @@ NAME=minishell
 SRCS	= src/main.c		\
 				src/init.c 	\
 				src/utils.c 	\
+				src/parse.c 	\
+				src/handle_prompt.c 	\
 				src/run_cmd.c 	\
+				src/builtins/main.c 	\
+				src/builtins/utils.c 	\
 
 LIBFT = lib/libft/libft.a
 
