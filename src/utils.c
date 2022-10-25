@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 13:36:06 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 13:50:11 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/25 13:50:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../includes/minishell.h"
 
-# include "../lib/libft/libft.h"
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdio.h>
-
-typedef struct s_data
+int	str_ichr(char *str, char c)
 {
-	int		running;
-	char	*command;
-}			t_data;
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		return (i);
+	return (-1);
+}

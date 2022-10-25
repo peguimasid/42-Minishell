@@ -1,6 +1,9 @@
 NAME=minishell
 
 SRCS	= src/main.c		\
+				src/init.c 	\
+				src/utils.c 	\
+				src/run_cmd.c 	\
 
 LIBFT = lib/libft/libft.a
 

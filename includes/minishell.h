@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 13:54:14 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/25 13:54:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(int argc, char **argv, char **env)
+# include "../lib/libft/libft.h"
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <stdio.h>
+
+typedef struct s_data
 {
-	t_data	data;
+	int		running;
+	char	*command;
+}			t_data;
 
-	(void)argc;
-	(void)argv;
-	init_data(&data);
-	while (data.running)
-	{
-		data.command = readline("Minishell ▸ ");
-		execute(&data, env);
-	}
-	return (0);
-}
+// init.c
+void		init_data(t_data *data);
+
+// utils.c
+int			str_ichr(char *str, char c);
+
+// run_cmd.c
+void		execute(t_data *data, char **envp);
+
+#endif

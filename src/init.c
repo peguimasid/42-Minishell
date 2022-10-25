@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 13:54:14 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 13:48:47 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/25 13:49:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	init_data(t_data *data)
 {
-	t_data	data;
-
-	(void)argc;
-	(void)argv;
-	init_data(&data);
-	while (data.running)
-	{
-		data.command = readline("Minishell ▸ ");
-		execute(&data, env);
-	}
-	return (0);
+	data->running = 1;
+	data->command = NULL;
 }
