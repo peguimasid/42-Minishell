@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/22 19:05:10 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:38:51 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,8 @@ int	main(int argc, char *argv[])
 		if (strcmp(line, "test") == 0)
 		{
 			if (fork() == 0)
-			{
 				execve("a.out", argv, NULL);
-			}
-			else
-			{
-				wait(0);
-			}
+			wait(0);
 		}
 	}
 }
