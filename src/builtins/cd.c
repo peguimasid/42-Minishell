@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 16:50:35 by lucafern         ###   ########.fr       */
+/*   Created: 2022/10/25 15:45:54 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/25 16:56:52 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../include/minishell.h"
 
-# include "../lib/libft/libft.h"
-# include <limits.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
-
-void	builtin_handler(char *command, char *argv[]);
-void	pwd(void);
-void	cd(char **command);
-
-#endif
+void	cd(char **command)
+{
+	if (!command[1])
+		printf("Error: CD needs a path\n");
+	else if (!command[2])
+		chdir(command[1]);
+	else
+		printf("Error: Too many arguments\n");
+}

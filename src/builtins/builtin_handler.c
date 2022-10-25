@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   builtin_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 16:50:35 by lucafern         ###   ########.fr       */
+/*   Created: 2022/10/25 15:54:10 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/25 16:47:02 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../include/minishell.h"
 
-# include "../lib/libft/libft.h"
-# include <limits.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+void	builtin_handler(char *line, char *argv[])
+{
+	char	**command;
 
-void	builtin_handler(char *command, char *argv[]);
-void	pwd(void);
-void	cd(char **command);
-
-#endif
+	command = ft_split(line, ' ');
+	if (strcmp(command[0], "test") == 0)
+	{
+		if (fork() == 0)
+			execve("a.out", argv, NULL);
+		wait(0);
+	}
+	else if (strcmp(command[0], "pwd") == 0)
+		pwd();
+	else if (strcmp(command[0], "cd") == 0)
+		cd(command);
+	else
+		printf("Command not found\n");
+}
