@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 20:00:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/26 11:58:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 # define MINISHELL_H
 
 # include "../lib/libft/libft.h"
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdbool.h>
 # include <stdio.h>
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_data
 {
@@ -33,7 +36,10 @@ void		init_data(t_data *data);
 void		execute_bin(char **args, char **envp);
 
 // builtins/main.c
-int			execute_builtin(char **args, char **envp);
+void		execute_builtin(char **args, char **envp);
+
+// builtins/env.c
+char		*get_env(char **env, const char *var);
 
 // handle_prompt.c
 void		handle_prompt(t_data *data, char **envp);
@@ -46,6 +52,6 @@ int			str_ichr(char *str, char c);
 int			ft_strcmp(const char *s1, const char *s2);
 
 // builtins/utils.c
-bool		is_builtin(char **args);
+int			is_builtin(char **args);
 
 #endif

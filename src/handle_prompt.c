@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 19:55:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/26 11:48:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	handle_prompt(t_data *data, char **envp)
 	args = parse_command(data);
 	if (ft_strcmp(args[0], "exit") == 0)
 	{
-		data->running = false;
+		data->running = FALSE;
 		return ;
 	}
 	if (is_builtin(args))

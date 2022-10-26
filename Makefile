@@ -8,6 +8,7 @@ SRCS	= src/main.c		\
 				src/run_cmd.c 	\
 				src/builtins/main.c 	\
 				src/builtins/utils.c 	\
+				src/builtins/env.c 	\
 
 LIBFT = lib/libft/libft.a
 
