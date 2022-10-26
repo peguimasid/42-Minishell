@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:52:34 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 11:59:56 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/26 12:07:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	change_directory(char **args, char **env)
 		return ;
 	}
 	if (chdir(args[1]) != 0)
-		perror("Error");
+		printf("%s: %s\n", strerror(errno), args[1]);
 }
 
 void	execute_builtin(char **args, char **envp)

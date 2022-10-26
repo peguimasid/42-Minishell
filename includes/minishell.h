@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 11:58:21 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/26 12:05:20 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
+# include <string.h>
+# include <sys/errno.h>
 
 # define TRUE 1
 # define FALSE 0
