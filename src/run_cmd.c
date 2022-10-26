@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 19:47:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:18:31 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ void	free_pointer_and_contents(char **ptr)
 	free(ptr);
 }
 
-char	*find_path(char *cmd, char **envp)
+char	*find_cmd_path(char *cmd, char **envp)
 {
-	int		i;
 	char	**paths;
 	char	*part_path;
 	char	*cmd_path;
+	int		i;
 
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH", 4) == 0)
-		i++;
-	paths = ft_split(envp[i] + 5, ':');
+	paths = ft_split(get_env(envp, "PATH"), ':');
 	i = 0;
 	while (paths[i])
 	{
@@ -71,6 +68,6 @@ void	execute_bin(char **args, char **envp)
 	if (str_ichr(args[0], '/') > -1)
 		path = args[0];
 	else
-		path = find_path(args[0], envp);
+		path = find_cmd_path(args[0], envp);
 	run_cmd(path, args, envp);
 }
