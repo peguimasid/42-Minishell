@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 17:53:36 by gmasid            #+#    #+#             */
-/*   Updated: 2022/05/17 16:46:11 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 15:46:09 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/25 16:06:24 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/minishell.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	pwd(void)
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	char	cwd[PATH_MAX];
+
+	printf("%s\n", getcwd(cwd, sizeof(cwd)));
 }
