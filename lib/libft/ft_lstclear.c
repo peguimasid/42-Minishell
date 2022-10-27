@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/09/16 09:28:46 by lucafern          #+#    #+#             */
+/*   Updated: 2022/09/16 09:43:40 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_data	data;
+	t_list	*aux;
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	while (*lst)
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = aux;
 	}
-	return (0);
+	*lst = NULL;
 }

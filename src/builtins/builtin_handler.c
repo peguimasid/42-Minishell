@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 15:54:10 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/25 16:47:02 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../include/minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	builtin_handler(char *line, char *argv[])
 {
-	t_data	data;
+	char	**command;
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	command = ft_split(line, ' ');
+	if (strcmp(command[0], "test") == 0)
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		if (fork() == 0)
+			execve("a.out", argv, NULL);
+		wait(0);
 	}
-	return (0);
+	else if (strcmp(command[0], "pwd") == 0)
+		pwd();
+	else if (strcmp(command[0], "cd") == 0)
+		cd(command);
+	else
+		printf("Command not found\n");
 }

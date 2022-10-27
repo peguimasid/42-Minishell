@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 18:50:07 by gmasid            #+#    #+#             */
-/*   Updated: 2022/05/18 15:41:05 by gmasid           ###   ########.fr       */
+/*   Created: 2022/09/16 09:49:57 by lucafern          #+#    #+#             */
+/*   Updated: 2022/09/16 12:21:34 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,19 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*tail;
+	t_list	*new_lst;
+	t_list	*temp_node;
 
-	if (!lst || !f)
-		return (0);
-	head = ft_lstnew(f(lst->content));
-	if (!head)
+	if (!lst)
 		return (NULL);
-	tail = head;
-	lst = lst->next;
+	new_lst = NULL;
 	while (lst)
 	{
-		tail->next = ft_lstnew(f(lst->content));
-		if (!tail->next)
-		{
-			ft_lstclear(&head, del);
-			return (0);
-		}
-		tail = tail->next;
+		temp_node = ft_lstnew(f(lst->content));
+		if (!temp_node)
+			ft_lstclear(&new_lst, del);
+		ft_lstadd_back(&new_lst, temp_node);
 		lst = lst->next;
 	}
-	tail->next = NULL;
-	return (head);
+	return (new_lst);
 }
