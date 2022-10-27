@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   handle_prompt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 21:54:48 by gmasid            #+#    #+#             */
-/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/27 16:03:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	handle_prompt(t_data *data, char **envp)
 {
-	char	*result;
+	char	**args;
 
-	if (!s)
-		return (NULL);
-	if ((size_t)start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) - start >= len)
-		result = malloc(len + 1);
-	else
-		result = malloc(ft_strlen(s) - start + 1);
-	if (!result)
-		return (NULL);
-	ft_strlcpy(result, s + start, len + 1);
-	return (result);
+	if (ft_strcmp(data->command, "") == 0)
+		return ;
+	args = parse_command(data);
+	if (ft_strcmp(args[0], "exit") == 0)
+	{
+		data->running = false;
+		return ;
+	}
+	if (is_builtin(args))
+	{
+		execute_builtin(args, envp);
+		return ;
+	}
+	execute_bin(args, envp);
 }

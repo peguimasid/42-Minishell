@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 21:54:48 by gmasid            #+#    #+#             */
-/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 19:52:34 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/26 12:46:28 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	execute_builtin(char **args, char **envp)
 {
-	char	*result;
-
-	if (!s)
-		return (NULL);
-	if ((size_t)start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) - start >= len)
-		result = malloc(len + 1);
-	else
-		result = malloc(ft_strlen(s) - start + 1);
-	if (!result)
-		return (NULL);
-	ft_strlcpy(result, s + start, len + 1);
-	return (result);
+	if (ft_strcmp(args[0], "cd") == 0)
+		change_directory(args, envp);
 }

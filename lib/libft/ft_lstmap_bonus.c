@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 21:54:48 by gmasid            #+#    #+#             */
-/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/16 18:50:07 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/18 15:41:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*result;
+	t_list	*head;
+	t_list	*tail;
 
-	if (!s)
+	if (!lst || !f)
+		return (0);
+	head = ft_lstnew(f(lst->content));
+	if (!head)
 		return (NULL);
-	if ((size_t)start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (ft_strlen(s) - start >= len)
-		result = malloc(len + 1);
-	else
-		result = malloc(ft_strlen(s) - start + 1);
-	if (!result)
-		return (NULL);
-	ft_strlcpy(result, s + start, len + 1);
-	return (result);
+	tail = head;
+	lst = lst->next;
+	while (lst)
+	{
+		tail->next = ft_lstnew(f(lst->content));
+		if (!tail->next)
+		{
+			ft_lstclear(&head, del);
+			return (0);
+		}
+		tail = tail->next;
+		lst = lst->next;
+	}
+	tail->next = NULL;
+	return (head);
 }

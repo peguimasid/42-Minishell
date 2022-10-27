@@ -3,40 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 11:34:21 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/05 11:34:21 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/04 14:43:20 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dest_count;
-	size_t	src_count;
-	size_t	dest_pos;
-	size_t	src_pos;
-	char	*src_i;
+	size_t	i;
+	size_t	j;
+	size_t	src_len;
+	size_t	dst_len;
 
-	dest_count = 0;
-	src_count = 0;
-	src_i = (char *)src;
-	while (dest[dest_count] != '\0')
-		dest_count++;
-	while (src_i[src_count] != '\0')
-		src_count++;
-	if (size == 0)
-		return (src_count);
-	if (size <= dest_count)
-		return (src_count += size);
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	i = 0;
+	j = dst_len;
+	if (dstsize == 0)
+		return (src_len);
+	if (dstsize < dst_len)
+		return (src_len + dstsize);
+	while (src[i] && (dst_len + i) < dstsize)
+		dst[j++] = src[i++];
+	if ((dst_len + i) == dstsize && dst_len < dstsize)
+		dst[--j] = '\0';
 	else
-		src_count += dest_count;
-	dest_pos = dest_count;
-	src_pos = 0;
-	while (src_i[src_pos] && dest_pos < size - 1)
-		dest[dest_pos++] = src_i[src_pos++];
-	dest[dest_pos] = '\0';
-	return (src_count);
+		dst[j] = '\0';
+	return (src_len + dst_len);
 }

@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 21:58:12 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/10 21:58:12 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/07 18:59:10 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*result;
 	size_t	s1_len;
 	size_t	s2_len;
-	size_t	join_len;
-	char	*join;
+	size_t	result_len;
 
-	if (!s1)
-		return (NULL);
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	join_len = s1_len + s2_len;
-	join = malloc(join_len + 1);
-	if (join == NULL)
-		return (join);
-	ft_memcpy(join, s1, s1_len);
-	ft_memcpy(join + s1_len, s2, s2_len);
-	join[join_len] = '\0';
-	return (join);
+	result_len = s1_len + s2_len + 1;
+	result = malloc(result_len * sizeof(char));
+	if (!result)
+		return (0);
+	ft_memmove(result, s1, s1_len);
+	ft_memmove(result + s1_len, s2, s2_len);
+	result[result_len - 1] = '\0';
+	return (result);
 }

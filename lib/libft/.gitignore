@@ -1,6 +1,4 @@
-*.out
-main.c
+*.swp
+.DS_Store
 *.o
 *.a
-*.gch
-*.so

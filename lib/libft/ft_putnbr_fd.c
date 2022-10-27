@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/15 11:19:09 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/15 11:19:09 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/11 14:45:05 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	new_nb;
-	char			digit;
+	unsigned int	nb;
 
 	if (n < 0)
 	{
-		write(fd, "-", 1);
-		new_nb = n * -1;
+		ft_putchar_fd('-', fd);
+		nb = (unsigned int)(n * -1);
 	}
 	else
-		new_nb = n;
-	if (new_nb >= 10)
-		ft_putnbr_fd(new_nb / 10, fd);
-	digit = new_nb % 10 + '0';
-	write (fd, &digit, 1);
+		nb = (unsigned int)n;
+	if (nb >= 10)
+		ft_putnbr_fd(nb / 10, fd);
+	ft_putchar_fd((char)(nb % 10 + 48), fd);
 }

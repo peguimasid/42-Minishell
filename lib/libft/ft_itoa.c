@@ -3,58 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/14 16:16:15 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/14 16:16:15 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/10 15:51:45 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 16:46:20 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	measure_to_str(int n)
+static int	get_len(long n)
 {
-	size_t		char_len;
-	long int	temp;
+	size_t	result;
 
-	char_len = 1;
-	temp = n;
+	result = 0;
 	if (n < 0)
 	{
-		temp *= -1;
-		char_len++;
+		result++;
+		n = -n;
 	}
-	while (temp >= 10)
+	while (n)
 	{
-		temp /= 10;
-		char_len++;
+		result++;
+		n /= 10;
 	}
-	return (char_len);
+	return (result);
+}
+
+static char	*generate(char *result, long nbr, int len, int isneg)
+{
+	if (nbr == 0)
+		return (result = ft_strdup("0"));
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (0);
+	isneg = 0;
+	if (nbr < 0)
+	{
+		isneg = 1;
+		nbr = -nbr;
+	}
+	result[len] = '\0';
+	while (--len)
+	{
+		result[len] = (nbr % 10) + '0';
+		nbr /= 10;
+	}
+	if (isneg == 1)
+		result[0] = '-';
+	else
+		result[0] = (nbr % 10) + '0';
+	return (result);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t		char_len;
-	char		*str;
-	long int	temp;
-	int			i;
+	int		len;
+	char	*result;
+	long	nbr;
+	int		isneg;
 
-	char_len = measure_to_str(n);
-	str = malloc(char_len + 1);
-	if (!str)
-		return (NULL);
-	i = 1;
-	temp = n;
-	if (n < 0)
-		temp *= -1;
-	while ((int)char_len - i >= 0)
-	{
-		str[char_len - i] = temp % 10 + '0';
-		temp /= 10;
-		i++;
-	}
-	if (n < 0)
-		str[0] = '-';
-	str[char_len] = '\0';
-	return (str);
+	nbr = n;
+	len = get_len(nbr);
+	result = 0;
+	isneg = 0;
+	result = generate(result, nbr, len, isneg);
+	if (!result)
+		return (0);
+	return (result);
 }

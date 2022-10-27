@@ -1,51 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utoa.c                                             :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/25 13:54:22 by lucafern          #+#    #+#             */
-/*   Updated: 2022/06/25 13:54:22 by lucafern         ###   ########.fr       */
+/*   Created: 2022/06/08 13:44:56 by gmasid            #+#    #+#             */
+/*   Updated: 2022/06/08 20:50:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	measure_u_to_str(unsigned int n)
+static int	get_len(unsigned int n)
 {
-	size_t		char_len;
-	long int	temp;
+	size_t	result;
 
-	char_len = 1;
-	temp = n;
-	while (temp >= 10)
+	result = 0;
+	while (n)
 	{
-		temp /= 10;
-		char_len++;
+		result++;
+		n /= 10;
 	}
-	return (char_len);
+	return (result);
+}
+
+static char	*generate(char *result, long n, int len)
+{
+	if (n == 0)
+		return (result = ft_strdup("0"));
+	result[len] = '\0';
+	while (len)
+	{
+		result[len - 1] = (n % 10) + '0';
+		n /= 10;
+		len--;
+	}
+	return (result);
 }
 
 char	*ft_utoa(unsigned int n)
 {
-	size_t		char_len;
-	char		*str;
-	long int	temp;
-	int			i;
+	int		len;
+	char	*result;
 
-	char_len = measure_u_to_str(n);
-	str = malloc(char_len + 1);
-	if (!str)
-		return (NULL);
-	i = 1;
-	temp = n;
-	while ((int)char_len - i >= 0)
-	{
-		str[char_len - i] = temp % 10 + '0';
-		temp /= 10;
-		i++;
-	}
-	str[char_len] = '\0';
-	return (str);
+	len = get_len(n);
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (0);
+	result = generate(result, n, len);
+	if (!result)
+		return (0);
+	return (result);
 }

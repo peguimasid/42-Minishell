@@ -3,45 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 11:47:46 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/05 11:47:46 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/06 15:13:25 by gmasid            #+#    #+#             */
+/*   Updated: 2022/06/04 13:27:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	return_overflow(int minus_count)
+#include "libft.h"
+
+static int	is_space(char c)
 {
-	if (minus_count == 0)
-		return (-1);
-	return (0);
+	return (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+		|| c == ' ');
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
-	int		count;
-	int		minus_count;
-	long	num;
-	long	long_num;
+	int					sign;
+	unsigned long int	result;
+	size_t				i;
 
-	count = 0;
-	minus_count = 0;
-	num = 0;
-	while (str[count] == ' ' || (str[count] >= 9 && str[count] <= 15))
-		count++;
-	if (str[count] == '-' || str[count] == '+')
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] != '\0' && is_space(str[i]))
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] != '\0' && ft_isdigit(str[i]))
 	{
-		if (str[count++] == '-')
-			minus_count++;
+		if (result >= 9223372036854775807 && sign == 1)
+			return (-1);
+		if (result > 9223372036854775807 && sign == -1)
+			return (0);
+		result = (str[i] - '0') + (result * 10);
+		i++;
 	}
-	while (str[count] >= '0' && str[count] <= '9')
-	{
-		long_num = num;
-		num = (num * 10) + (str[count++] - 48);
-		if (long_num > num)
-			return (return_overflow(minus_count));
-	}
-	if (minus_count % 2 == 1)
-		num *= -1;
-	return (num);
+	return (result * sign);
 }

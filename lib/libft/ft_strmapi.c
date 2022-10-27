@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/14 17:27:52 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/14 17:27:52 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/10 17:55:28 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s);
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*str;
 	unsigned int	i;
+	char			*result;
 
-	if (!s)
-		return (NULL);
 	i = 0;
-	str = ft_strdup(s);
-	if (!str)
+	if (!s || (!s && !f))
+		return (ft_strdup(""));
+	if (!f)
+		return (ft_strdup(s));
+	result = ft_strdup(s);
+	if (!result)
 		return (NULL);
-	while (str[i])
+	while (s[i])
 	{
-		str[i] = f(i, s[i]);
+		result[i] = (*f)(i, s[i]);
 		i++;
 	}
-	return (str);
+	return (result);
 }

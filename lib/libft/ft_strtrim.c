@@ -3,35 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 10:03:22 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/12 10:03:22 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/09 18:04:56 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+static int	includes(const char *set, char c)
+{
+	while (*set)
+		if (*set++ == c)
+			return (0);
+	return (1);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	trimmed_n;
-	char	*trimmed;
+	size_t	start_index;
+	size_t	end_index;
+	char	*result;
 
-	if (!s1 || !set)
+	if (!s1)
 		return (NULL);
-	while (*s1)
+	if (!set)
+		return (ft_strdup(s1));
+	start_index = 0;
+	end_index = ft_strlen(s1);
+	while (includes(set, s1[start_index]) == 0)
+		start_index++;
+	if (start_index == ft_strlen(s1))
 	{
-		if (ft_strchr(set, *s1))
-			s1++;
+		result = ft_strdup("");
+		if (!result)
+			return (NULL);
 		else
-			break ;
+			return (result);
 	}
-	trimmed_n = ft_strlen((char *)s1);
-	while (ft_strchr(set, s1[trimmed_n]))
-		trimmed_n--;
-	trimmed = ft_substr((char *)s1, 0, trimmed_n + 1);
-	return (trimmed);
+	while (includes(set, s1[end_index - 1]) == 0)
+		end_index--;
+	result = ft_substr(s1, start_index, end_index - start_index);
+	return (result);
 }

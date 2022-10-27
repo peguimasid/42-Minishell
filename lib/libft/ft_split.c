@@ -3,77 +3,101 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 13:08:06 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/12 13:08:06 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/10 14:28:20 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/22 15:00:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strchr(const char *s, int c);
-
-static int	count_strings(char const *s, char c)
-{
-	int	array_n;
-	int	i;
-
-	array_n = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if ((s[i] != c && (i == 0 || s[i - 1] == c)))
-			array_n++;
-		i++;
-	}
-	return (array_n);
-}
-
-static char	**no_split(char const *s, char **array)
-{
-	array[0] = ft_substr(s, 0, ft_strlen((char *)s));
-	return (array);
-}
-
-static char	**multi_split(char const *s, char **array, char c)
-{
-	int		pos;
-	size_t	str_len;
-
-	pos = 0;
-	while (*s)
-	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
-		{
-			str_len = 0;
-			while (s[str_len] != c && s[str_len] != '\0')
-				str_len++;
-			array[pos++] = ft_substr(s, 0, str_len);
-			s += str_len;
-		}
-	}
-	return (array);
-}
+static int	count_words(const char *str, char c);
+static char	*dup_word(const char *str, int start, int finish);
+static void	free_result(char **result, size_t j);
+static char	**fill_result(char **result, const char *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
-	int		array_n;
-	char	**array;
+	char	**result;
 
 	if (!s)
-		return (NULL);
-	array_n = count_strings((char *)s, c);
-	array = (char **)malloc(sizeof(char *) * (array_n + 1));
-	if (!array)
-		return (NULL);
-	array[array_n] = NULL;
-	if (array_n == 0)
-		return (array);
-	if (!c)
-		return (no_split(s, array));
-	return (multi_split(s, array, c));
+		return (0);
+	result = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!result)
+		return (0);
+	result = fill_result(result, s, c);
+	return (result);
+}
+
+static int	count_words(const char *str, char c)
+{
+	int	i;
+	int	trigger;
+
+	i = 0;
+	trigger = 0;
+	while (*str)
+	{
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
+	}
+	return (i);
+}
+
+static char	*dup_word(const char *str, int start, int finish)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = malloc((finish - start + 1) * sizeof(char));
+	while (start < finish)
+		word[i++] = str[start++];
+	word[i] = 0;
+	return (word);
+}
+
+static void	free_result(char **result, size_t j)
+{
+	while (j--)
+	{
+		free(result[j]);
+	}
+	free(result);
+}
+
+static char	**fill_result(char **result, const char *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	int		dup_start_index;
+
+	i = 0;
+	j = 0;
+	dup_start_index = -1;
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && dup_start_index < 0)
+			dup_start_index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && dup_start_index >= 0)
+		{
+			result[j] = dup_word(s, dup_start_index, i);
+			if (!result[j++])
+			{
+				free_result(result, j);
+				return (NULL);
+			}
+			dup_start_index = -1;
+		}
+		i++;
+	}
+	result[j] = 0;
+	return (result);
 }

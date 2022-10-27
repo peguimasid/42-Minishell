@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/07 17:43:46 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/07 17:43:46 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/04 18:52:01 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
 char	*ft_strchr(const char *s, int c)
 {
-	char			*p;
-	unsigned char	ch;
+	int	i;
 
-	p = (char *)s;
-	ch = c;
-	while (*p != ch)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if (*p == '\0')
-			return (NULL);
-		p++;
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	return (p);
+	if (s[i] == (unsigned char)c)
+		return ((char *)s + i);
+	return (0);
 }

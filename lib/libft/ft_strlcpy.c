@@ -3,34 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucasfads@gmail.com>             +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 11:30:33 by lucafern          #+#    #+#             */
-/*   Updated: 2022/05/05 11:30:33 by lucafern         ###   ########.fr       */
+/*   Created: 2022/05/04 14:43:20 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/18 15:22:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i_count;
-	size_t	i_pos;
-	char	*src_i;
+	size_t	i;
+	size_t	src_len;
+	char	*ptr;
 
-	i_count = 0;
-	src_i = (char *)src;
-	while (src_i[i_count] != '\0')
-		i_count++;
-	if (size != 0)
+	i = 0;
+	ptr = NULL;
+	if (!dst || !src)
+		return (*ptr);
+	src_len = ft_strlen(src);
+	if (!dstsize)
+		return (src_len);
+	while (src[i] != '\0' && i < dstsize - 1)
 	{
-		i_pos = 0;
-		while (src_i[i_pos] != '\0' && i_pos < size - 1)
-		{
-			dest[i_pos] = src_i[i_pos];
-			i_pos++;
-		}
-		dest[i_pos] = '\0';
+		dst[i] = src[i];
+		i++;
 	}
-	return (i_count);
+	if (dstsize < src_len)
+		dst[dstsize - 1] = '\0';
+	else if (dstsize != 0)
+		dst[i] = '\0';
+	return (src_len);
 }

@@ -1,8 +1,16 @@
 NAME=minishell
 
 SRCS	= src/main.c		\
-			src/builtins/builtin_handler.c \
-			src/builtins/pwd.c  src/builtins/cd.c \
+				src/init.c 	\
+				src/utils.c 	\
+				src/common.c 	\
+				src/parse.c 	\
+				src/handle_prompt.c 	\
+				src/run_cmd.c 	\
+				src/builtins/main.c 	\
+				src/builtins/utils.c 	\
+				src/builtins/env.c 	\
+				src/builtins/cd.c 	\
 
 LIBFT = lib/libft/libft.a
 

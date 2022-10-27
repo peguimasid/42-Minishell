@@ -6,19 +6,23 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/25 16:55:24 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../includes/minishell.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv, char **env)
 {
-	char	*line;
+	t_data	data;
 
-	while (1 || argc)
+	if (argc != 1 || argv[1] != NULL)
+		return (throw_error("This program accepts no arguments"));
+	init_data(&data);
+	while (data.running)
 	{
-		line = readline("Minishell ▸ ");
-		builtin_handler(line, argv);
+		data.command = readline("Minishell ▸ ");
+		handle_prompt(&data, env);
 	}
+	return (0);
 }

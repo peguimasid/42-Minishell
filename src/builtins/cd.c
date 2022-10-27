@@ -3,24 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:45:54 by lucafern          #+#    #+#             */
-/*   Updated: 2022/10/25 17:13:58 by lucafern         ###   ########.fr       */
+/*   Created: 2022/10/26 12:46:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/26 12:46:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../includes/minishell.h"
 
-void	cd(char **command)
+void	change_directory(char **args, char **env)
 {
-	if (!command[1])
-		printf("Error: CD needs a path\n");
-	else if (!command[2])
+	char	*path;
+	char	cwd[PATH_MAX];
+
+	getcwd(cwd, sizeof(cwd));
+	if (!args[1])
 	{
-		if (chdir(command[1]))
+		path = get_env(env, "HOME");
+		if (chdir(path) != 0)
 			perror("Error");
+		return ;
 	}
-	else
-		printf("Error: Too many arguments\n");
+	if (args[2])
+	{
+		printf("cd: string not in pwd: %s\n", args[1]);
+		return ;
+	}
+	if (chdir(args[1]) != 0)
+		printf("%s: %s\n", strerror(errno), args[1]);
 }
