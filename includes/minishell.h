@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 12:47:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:02:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <string.h>
 # include <sys/errno.h>
 
-# define TRUE 1
-# define FALSE 0
-
 typedef struct s_data
 {
-	int		running;
+	bool	running;
 	char	*command;
 }			t_data;
 
@@ -57,6 +55,6 @@ char		*get_env(char **env, const char *var);
 void		change_directory(char **args, char **env);
 
 // builtins/utils.c
-int			is_builtin(char **args);
+bool		is_builtin(char **args);
 
 #endif

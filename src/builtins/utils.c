@@ -6,15 +6,15 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:52:05 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 11:48:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:03:50 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_builtin(char **args)
+bool	is_builtin(char **args)
 {
 	if (ft_strcmp(args[0], "cd") == 0)
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }
