@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/27 18:19:16 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **env)
 	while (data.running)
 	{
 		data.command = readline("Minishell ▸ ");
+		add_history(data.command);
 		handle_prompt(&data, env);
 	}
 	return (0);
