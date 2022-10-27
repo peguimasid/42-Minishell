@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/10 17:55:28 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_data	data;
+	unsigned int	i;
+	char			*result;
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	i = 0;
+	if (!s || (!s && !f))
+		return (ft_strdup(""));
+	if (!f)
+		return (ft_strdup(s));
+	result = ft_strdup(s);
+	if (!result)
+		return (NULL);
+	while (s[i])
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		result[i] = (*f)(i, s[i]);
+		i++;
 	}
-	return (0);
+	return (result);
 }

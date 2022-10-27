@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/22 17:34:20 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 19:37:04 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/25 19:37:19 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../includes/minishell.h"
 
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <stdio.h>
-
-#endif
+char	**parse_command(t_data *data)
+{
+	return (ft_split(data->command, ' '));
+}

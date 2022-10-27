@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/04/28 17:52:15 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-
-int	main(int argc, char **argv, char **env)
+int	ft_isascii(int c)
 {
-	t_data	data;
-
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
-	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
-	}
-	return (0);
+	return (c >= 0 && c <= 127);
 }

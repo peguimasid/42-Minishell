@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/05/15 12:18:55 by gmasid            #+#    #+#             */
+/*   Updated: 2022/05/17 12:07:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_data	data;
+	t_list	*current_node;
+	t_list	*next_node;
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	current_node = *lst;
+	while (current_node)
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		next_node = current_node->next;
+		ft_lstdelone(current_node, del);
+		current_node = next_node;
 	}
-	return (0);
+	*lst = NULL;
 }

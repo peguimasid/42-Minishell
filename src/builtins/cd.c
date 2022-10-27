@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/26 12:46:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/26 12:46:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	change_directory(char **args, char **env)
 {
-	t_data	data;
+	char	*path;
+	char	cwd[PATH_MAX];
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	getcwd(cwd, sizeof(cwd));
+	if (!args[1])
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		path = get_env(env, "HOME");
+		if (chdir(path) != 0)
+			perror("Error");
+		return ;
 	}
-	return (0);
+	if (args[2])
+	{
+		printf("cd: string not in pwd: %s\n", args[1]);
+		return ;
+	}
+	if (chdir(args[1]) != 0)
+		printf("%s: %s\n", strerror(errno), args[1]);
 }

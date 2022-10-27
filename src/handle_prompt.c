@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_prompt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:47 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/27 16:03:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	handle_prompt(t_data *data, char **envp)
 {
-	t_data	data;
+	char	**args;
 
-	if (argc != 1 || argv[1] != NULL)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	while (data.running)
+	if (ft_strcmp(data->command, "") == 0)
+		return ;
+	args = parse_command(data);
+	if (ft_strcmp(args[0], "exit") == 0)
 	{
-		data.command = readline("Minishell ▸ ");
-		handle_prompt(&data, env);
+		data->running = false;
+		return ;
 	}
-	return (0);
+	if (is_builtin(args))
+	{
+		execute_builtin(args, envp);
+		return ;
+	}
+	execute_bin(args, envp);
 }
