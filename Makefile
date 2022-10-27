@@ -3,6 +3,7 @@ NAME=minishell
 SRCS	= src/main.c		\
 				src/init.c 	\
 				src/utils.c 	\
+				src/common.c 	\
 				src/parse.c 	\
 				src/handle_prompt.c 	\
 				src/run_cmd.c 	\
