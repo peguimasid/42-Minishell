@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_prompt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:57:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 17:20:34 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	handle_prompt(t_data *data, char **envp)
 	if (ft_strcmp(args[0], "exit") == 0)
 	{
 		data->running = false;
+		rl_clear_history();
 		return ;
 	}
 	if (is_builtin(args))
