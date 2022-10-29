@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 13:19:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 18:46:08 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	execute_bin(t_data *data, char **args, char **envp)
 	else
 		path = find_cmd_path(data, args[0]);
 	run_cmd(path, args, envp);
+	free(path);
 }
 
 void	execute_builtin(t_data *data, char **args, char **envp)

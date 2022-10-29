@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:19:52 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:58:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 18:45:39 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*find_cmd_path(t_data *data, char *cmd)
 	char	*cmd_path;
 	int		i;
 
-	// TODO: Change this function get value from "t_env" struct
 	paths = ft_split(get_env(data, "PATH"), ':');
 	i = 0;
 	while (paths[i])
@@ -42,6 +41,7 @@ char	*find_cmd_path(t_data *data, char *cmd)
 			free_pointer_and_contents(paths);
 			return (cmd_path);
 		}
+		free(cmd_path);
 		i++;
 	}
 	free_pointer_and_contents(paths);
