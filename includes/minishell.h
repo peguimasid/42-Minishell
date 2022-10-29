@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 17:24:58 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 08:29:04 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ typedef struct s_data
 	bool	running;
 	char	*command;
 }			t_data;
-
-// init.c
-void		init_data(t_data *data);
 
 // common.c
 int			throw_error(char *error);
