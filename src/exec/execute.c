@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:46:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:56:12 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 13:19:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	change_directory(t_data *data, char **args)
+void	execute_bin(t_data *data, char **args, char **envp)
 {
 	char	*path;
-	char	cwd[PATH_MAX];
 
-	getcwd(cwd, sizeof(cwd));
-	if (!args[1])
-	{
-		path = get_env(data, "HOME");
-		if (chdir(path) != 0)
-			perror("Error");
-		return ;
-	}
-	if (args[2])
-	{
-		printf("cd: string not in pwd: %s\n", args[1]);
-		return ;
-	}
-	if (chdir(args[1]) != 0)
-		printf("%s: %s\n", strerror(errno), args[1]);
+	if (str_ichr(args[0], '/') > -1)
+		path = args[0];
+	else
+		path = find_cmd_path(data, args[0]);
+	run_cmd(path, args, envp);
+}
+
+void	execute_builtin(t_data *data, char **args, char **envp)
+{
+	(void)envp;
+	if (ft_strcmp(args[0], "cd") == 0)
+		change_directory(data, args);
+	if (ft_strcmp(args[0], "env") == 0)
+		print_env(data);
 }

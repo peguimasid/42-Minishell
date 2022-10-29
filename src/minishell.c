@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_prompt.c                                    :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/27 16:03:05 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 12:58:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	handle_prompt(t_data *data, char **envp)
+void	launch(t_data *data, char **env)
 {
-	char	**args;
-
-	if (ft_strcmp(data->command, "") == 0)
-		return ;
-	args = parse_command(data);
-	if (ft_strcmp(args[0], "exit") == 0)
+	(void)env;
+	while (data->running)
 	{
-		data->running = false;
-		return ;
+		data->command = readline("Minishell ▸ ");
+		handle_prompt(data, env);
 	}
-	if (is_builtin(args))
-	{
-		execute_builtin(args, envp);
-		return ;
-	}
-	execute_bin(args, envp);
 }
