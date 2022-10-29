@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 09:25:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:57:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	handle_prompt(t_data *data, char **envp)
 	}
 	if (is_builtin(args))
 	{
-		execute_builtin(args, envp);
+		execute_builtin(data, args, envp);
 		return ;
 	}
-	execute_bin(args, envp);
+	execute_bin(data, args, envp);
 }

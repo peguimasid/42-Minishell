@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:19:52 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 09:21:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:58:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_pointer_and_contents(char **ptr)
 	free(ptr);
 }
 
-char	*find_cmd_path(char *cmd, char **envp)
+char	*find_cmd_path(t_data *data, char *cmd)
 {
 	char	**paths;
 	char	*part_path;
@@ -30,7 +30,7 @@ char	*find_cmd_path(char *cmd, char **envp)
 	int		i;
 
 	// TODO: Change this function get value from "t_env" struct
-	paths = ft_split(get_env(envp, "PATH"), ':');
+	paths = ft_split(get_env(data, "PATH"), ':');
 	i = 0;
 	while (paths[i])
 	{

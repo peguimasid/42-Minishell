@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:08:14 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:51:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:59:27 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	env_exists(t_data *data, char *key)
 	return (false);
 }
 
-char	*get_env_struct(t_data *data, char *key)
+char	*get_env(t_data *data, char *key)
 {
 	t_env	*curr;
 
