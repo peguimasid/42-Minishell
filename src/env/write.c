@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:08:14 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:06:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 13:19:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	change_env_value(t_data *data, char *key, char *value)
 	t_env	*curr;
 
 	curr = data->env;
-	while (curr->key != key)
+	while (ft_strcmp(curr->key, key) != 0)
 		curr = curr->next;
 	curr->value = value;
 }

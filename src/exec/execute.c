@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:56:56 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 13:19:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ void	execute_builtin(t_data *data, char **args, char **envp)
 	(void)envp;
 	if (ft_strcmp(args[0], "cd") == 0)
 		change_directory(data, args);
+	if (ft_strcmp(args[0], "env") == 0)
+		print_env(data);
 }
