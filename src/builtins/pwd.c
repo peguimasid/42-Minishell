@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:46:09 by lucafern          #+#    #+#             */
-/*   Updated: 2022/10/25 16:06:24 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/29 09:01:34 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../includes/minishell.h"
 
 void	pwd(void)
 {

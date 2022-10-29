@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_cmd.c                                          :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 13:18:31 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/29 09:19:52 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 12:58:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	free_pointer_and_contents(char **ptr)
 {
@@ -22,14 +22,15 @@ void	free_pointer_and_contents(char **ptr)
 	free(ptr);
 }
 
-char	*find_cmd_path(char *cmd, char **envp)
+char	*find_cmd_path(t_data *data, char *cmd)
 {
 	char	**paths;
 	char	*part_path;
 	char	*cmd_path;
 	int		i;
 
-	paths = ft_split(get_env(envp, "PATH"), ':');
+	// TODO: Change this function get value from "t_env" struct
+	paths = ft_split(get_env(data, "PATH"), ':');
 	i = 0;
 	while (paths[i])
 	{
@@ -45,29 +46,4 @@ char	*find_cmd_path(char *cmd, char **envp)
 	}
 	free_pointer_and_contents(paths);
 	return (cmd);
-}
-
-void	run_cmd(char *path, char **cmd, char **env)
-{
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		execve(path, cmd, env);
-		perror("Error");
-		exit(127);
-	}
-	waitpid(pid, NULL, 0);
-}
-
-void	execute_bin(char **args, char **envp)
-{
-	char	*path;
-
-	if (str_ichr(args[0], '/') > -1)
-		path = args[0];
-	else
-		path = find_cmd_path(args[0], envp);
-	run_cmd(path, args, envp);
 }

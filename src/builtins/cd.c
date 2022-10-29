@@ -6,13 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:46:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 12:46:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:56:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	change_directory(char **args, char **env)
+void	change_directory(t_data *data, char **args)
 {
 	char	*path;
 	char	cwd[PATH_MAX];
@@ -20,7 +20,7 @@ void	change_directory(char **args, char **env)
 	getcwd(cwd, sizeof(cwd));
 	if (!args[1])
 	{
-		path = get_env(env, "HOME");
+		path = get_env(data, "HOME");
 		if (chdir(path) != 0)
 			perror("Error");
 		return ;

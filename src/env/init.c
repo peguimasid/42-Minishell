@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 11:42:00 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 11:42:18 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/29 09:08:14 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 12:04:14 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*get_env(char **env, const char *var)
+void	init_env(t_data *data, char **env)
 {
 	int		i;
-	char	*path;
+	char	**line_split;
+	char	*key;
+	char	*value;
 
+	(void)data;
 	i = 0;
-	while (env[i] && ft_strncmp(env[i], var, ft_strlen(var)) != 0)
+	while (env[i])
+	{
+		line_split = ft_split(env[i], '=');
+		key = line_split[0];
+		value = line_split[1];
+		set_env(data, key, value);
+		free(line_split);
 		i++;
-	if (env[i] == NULL)
-		return (NULL);
-	path = env[i];
-	return (path + 5);
+	}
 }
