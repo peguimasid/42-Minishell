@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:58:57 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 17:10:58 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	launch(t_data *data, char **env)
 	{
 		data->command = readline("Minishell ▸ ");
 		handle_prompt(data, env);
+		free(data->command);
 	}
 }
