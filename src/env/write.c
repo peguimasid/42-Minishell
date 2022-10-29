@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:08:14 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 13:19:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 20:20:42 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	change_env_value(t_data *data, char *key, char *value)
 	curr = data->env;
 	while (ft_strcmp(curr->key, key) != 0)
 		curr = curr->next;
+	free(curr->value);
 	curr->value = value;
 }
 
