@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:29:21 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:51:49 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	launch(t_data *data, char **env)
 {
+	printf(">> %s", get_env_struct(data, "HOME"));
 	while (data->running)
 	{
 		data->command = readline("Minishell ▸ ");

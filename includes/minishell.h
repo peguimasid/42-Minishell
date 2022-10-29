@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 12:29:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:49:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				init_env(t_data *data, char **env);
 
 // env/read.c
 // Change
-// char				*get_env(t_data *data, char *key);
+char				*get_env_struct(t_data *data, char *key);
 char				*get_env(char **env, const char *var);
 void				print_env(t_data *data);
 bool				env_exists(t_data *data, char *key);
