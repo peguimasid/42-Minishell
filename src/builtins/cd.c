@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:46:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 20:26:51 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:46:16 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	update_pwd(t_data *data, char *new_path)
 {
-	set_env(data, "OLDPWD", ft_strdup(get_env(data, "PWD")));
+	set_env(data, ft_strdup("OLDPWD"), ft_strdup(get_env(data, "PWD")));
 	set_env(data, "PWD", ft_strdup(new_path));
 }
 
