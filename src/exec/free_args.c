@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_prompt.c                                    :+:      :+:    :+:   */
+/*   free_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 18:23:15 by lucafern         ###   ########.fr       */
+/*   Created: 2022/10/29 18:11:16 by lucafern          #+#    #+#             */
+/*   Updated: 2022/10/29 18:24:56 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	handle_prompt(t_data *data, char **envp)
+void	free_args(char **args)
 {
-	char	**args;
+	int	i;
 
-	if (ft_strcmp(data->command, "") == 0)
-		return ;
-	args = parse_command(data);
-	add_history(data->command);
-	if (ft_strcmp(args[0], "exit") == 0)
+	i = 0;
+	while (args[i])
 	{
-		data->running = false;
-		free_env(data);
-		rl_clear_history();
-		free_args(args);
-		return ;
+		free(args[i]);
+		i++;
 	}
-	if (is_builtin(args))
-	{
-		execute_builtin(data, args, envp);
-		free_args(args);
-		return ;
-	}
-	execute_bin(data, args, envp);
-	free_args(args);
+	free(args);
 }
