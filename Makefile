@@ -1,6 +1,7 @@
 NAME=minishell
 
 SRCS	= src/main.c		\
+				src/minishell.c 	\
 				src/utils.c 	\
 				src/common.c 	\
 				src/parse.c 	\
