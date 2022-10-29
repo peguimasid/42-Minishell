@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 08:53:20 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 08:58:03 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_data(t_data *data)
 {
 	data->running = true;
 	data->command = NULL;
+	data->env = NULL;
 }
 
 int	main(int argc, char **argv, char **env)

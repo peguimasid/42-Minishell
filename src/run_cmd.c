@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/26 13:18:31 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 09:02:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*find_cmd_path(char *cmd, char **envp)
 	char	*cmd_path;
 	int		i;
 
+	// TODO: Change this function get value from "t_env" struct
 	paths = ft_split(get_env(envp, "PATH"), ':');
 	i = 0;
 	while (paths[i])
