@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:08:14 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 09:11:11 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:04:14 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-// t_env	*create_env(char **tab)
-// {
-// 	t_env	*env;
-// 	int		i;
+void	init_env(t_data *data, char **env)
+{
+	int		i;
+	char	**line_split;
+	char	*key;
+	char	*value;
 
-// 	env = NULL;
-// 	env = init_env(env);
-// 	env->env = tab;
-// 	i = 0;
-// 	while (tab[i])
-// 		add_env_elem(env, new_env_elem(tab[i++]));
-// 	return (env);
-// }
+	(void)data;
+	i = 0;
+	while (env[i])
+	{
+		line_split = ft_split(env[i], '=');
+		key = line_split[0];
+		value = line_split[1];
+		set_env(data, key, value);
+		free(line_split);
+		i++;
+	}
+}

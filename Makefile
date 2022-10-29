@@ -10,8 +10,11 @@ SRCS	= src/main.c		\
 				src/exec/handle_prompt.c 	\
 				src/exec/run_cmd.c 	\
 				src/builtins/utils.c 	\
-				src/builtins/env.c 	\
 				src/builtins/cd.c 	\
+				src/builtins/env.c 	\
+				src/env/init.c 	\
+				src/env/write.c 	\
+				src/env/read.c 	\
 
 LIBFT = lib/libft/libft.a
 

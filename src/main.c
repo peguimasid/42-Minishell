@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 09:28:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 12:29:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	main(int argc, char **argv, char **env)
 	if (argc != 1)
 		return (throw_error("This program accepts no arguments"));
 	init_data(&data);
-	lounch(&data);
+	launch(&data, env);
 	return (0);
 }
