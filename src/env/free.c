@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 17:25:41 by lucafern          #+#    #+#             */
-/*   Updated: 2022/10/29 17:43:07 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:00:05 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	free_env(t_data *data)
 	{
 		to_free = curr;
 		curr = curr->next;
+		free(to_free->key);
+		free(to_free->value);
 		free(to_free);
 	}
 }
