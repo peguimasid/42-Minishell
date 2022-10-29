@@ -11,7 +11,6 @@ SRCS	= src/main.c		\
 				src/exec/run_cmd.c 	\
 				src/builtins/utils.c 	\
 				src/builtins/cd.c 	\
-				src/builtins/env.c 	\
 				src/env/init.c 	\
 				src/env/write.c 	\
 				src/env/read.c 	\
