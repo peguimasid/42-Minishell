@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 17:03:48 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/10/29 17:29:34 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ bool				env_exists(t_data *data, char *key);
 
 // env/write.c
 void				set_env(t_data *data, char *key, char *value);
+
+void				free_env(t_data *data);
 
 #endif

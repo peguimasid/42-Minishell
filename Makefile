@@ -14,6 +14,7 @@ SRCS	= src/main.c		\
 				src/env/init.c 	\
 				src/env/write.c 	\
 				src/env/read.c 	\
+				src/env/free.c 	\
 
 LIBFT = lib/libft/libft.a
 
