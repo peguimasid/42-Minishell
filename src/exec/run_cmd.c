@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_prompt.c                                    :+:      :+:    :+:   */
+/*   run_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 19:34:08 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/28 12:19:42 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/29 09:19:17 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 09:24:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	handle_prompt(t_data *data, char **envp)
+void	run_cmd(char *path, char **cmd, char **env)
 {
-	char	**args;
+	pid_t	pid;
 
-	if (ft_strcmp(data->command, "") == 0)
-		return ;
-	args = parse_command(data);
-	add_history(data->command);
-	if (ft_strcmp(args[0], "exit") == 0)
+	pid = fork();
+	if (pid == 0)
 	{
-		data->running = false;
-		return ;
+		execve(path, cmd, env);
+		perror("Error");
+		exit(127);
 	}
-	if (is_builtin(args))
-	{
-		execute_builtin(args, envp);
-		return ;
-	}
-	execute_bin(args, envp);
+	waitpid(pid, NULL, 0);
 }

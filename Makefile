@@ -5,9 +5,10 @@ SRCS	= src/main.c		\
 				src/utils.c 	\
 				src/common.c 	\
 				src/parse.c 	\
-				src/handle_prompt.c 	\
-				src/run_cmd.c 	\
-				src/builtins/main.c 	\
+				src/exec/execute.c 	\
+				src/exec/find_path.c 	\
+				src/exec/handle_prompt.c 	\
+				src/exec/run_cmd.c 	\
 				src/builtins/utils.c 	\
 				src/builtins/env.c 	\
 				src/builtins/cd.c 	\

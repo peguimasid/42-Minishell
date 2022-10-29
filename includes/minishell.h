@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 08:57:41 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/10/29 09:28:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void				lounch(t_data *data);
 // common.c
 int					throw_error(char *error);
 
-// run_cmd.c
-void				execute_bin(char **args, char **envp);
-
 // handle_prompt.c
 void				handle_prompt(t_data *data, char **envp);
 
@@ -57,9 +54,6 @@ char				**parse_command(t_data *data);
 int					str_ichr(char *str, char c);
 int					ft_strcmp(const char *s1, const char *s2);
 
-// builtins/main.c
-void				execute_builtin(char **args, char **envp);
-
 // builtins/env.c
 char				*get_env(char **env, const char *var);
 
@@ -68,5 +62,15 @@ void				change_directory(char **args, char **env);
 
 // builtins/utils.c
 bool				is_builtin(char **args);
+
+// exec/find_path.c
+char				*find_cmd_path(char *cmd, char **envp);
+
+// exec/run_cmd.c
+void				run_cmd(char *path, char **cmd, char **env);
+
+// exec/execute.c
+void				execute_bin(char **args, char **envp);
+void				execute_builtin(char **args, char **envp);
 
 #endif

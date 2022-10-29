@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/10/29 09:28:01 by gmasid           ###   ########.fr       */
+/*   Created: 2022/10/25 13:49:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/10/29 09:24:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	init_data(t_data *data)
+void	execute_bin(char **args, char **envp)
 {
-	data->running = true;
-	data->command = NULL;
-	data->env = NULL;
+	char	*path;
+
+	if (str_ichr(args[0], '/') > -1)
+		path = args[0];
+	else
+		path = find_cmd_path(args[0], envp);
+	run_cmd(path, args, envp);
 }
 
-int	main(int argc, char **argv, char **env)
+void	execute_builtin(char **args, char **envp)
 {
-	t_data	data;
-
-	(void)argv;
-	(void)env;
-	if (argc != 1)
-		return (throw_error("This program accepts no arguments"));
-	init_data(&data);
-	lounch(&data);
-	return (0);
+	if (ft_strcmp(args[0], "cd") == 0)
+		change_directory(args, envp);
 }
