@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:19:48 by lucafern          #+#    #+#             */
-/*   Updated: 2022/11/05 18:54:24 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:21:50 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,25 @@ t_list	*lexer(char *line_orig)
 		if (line_orig[i])
 		{
 			len = 0;
-			while (line_orig[i + len] != ' ' && line_orig[i + len] != '\0')
+			if (line_orig[i] == '\"')
+			{
 				len++;
+				while (line_orig[i + len] != '\"' && line_orig[i + len] != '\0')
+					len++;
+				len++;
+			}
+			else if (line_orig[i] == '\'')
+			{
+				len++;
+				while (line_orig[i + len] != '\'' && line_orig[i + len] != '\0')
+					len++;
+				len++;
+			}
+			else
+			{
+				while (line_orig[i + len] != ' ' && line_orig[i + len] != '\0')
+					len++;
+			}
 			ft_lstadd_back(&tokens, ft_lstnew(ft_substr(&line_orig[i], 0,
 							len)));
 			i += len;
