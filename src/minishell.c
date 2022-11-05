@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 15:13:29 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 20:33:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	input_loop(char **argv, char **envp)
 	data = init_data(argv, envp);
 	while (1)
 	{
-		str = readline("$");
+		str = readline("Minishell ▸ ");
 		printf("command was %s\n", str);
 		free(str);
 	}
