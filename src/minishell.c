@@ -6,11 +6,22 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 20:33:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 20:59:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+pid_t	get_pid(void)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		exit(1);
+	waitpid(pid, NULL, 0);
+	return (pid - 1);
+}
 
 t_data	init_data(char **argv, char **envp)
 {
@@ -19,8 +30,8 @@ t_data	init_data(char **argv, char **envp)
 	(void)argv;
 	result.cmds = NULL;
 	result.envp = dup_matrix(envp);
+	result.pid = get_pid();
 	g_status = 0;
-	// TODO: get pid
 	// TODO: init necessary vars if dont exits (PWD, SHLVL, PATH, _)
 	return (result);
 }
@@ -31,6 +42,7 @@ void	input_loop(char **argv, char **envp)
 	t_data	data;
 
 	data = init_data(argv, envp);
+	printf("pid = %d\n", data.pid);
 	while (1)
 	{
 		str = readline("Minishell ▸ ");
