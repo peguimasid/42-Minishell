@@ -1,16 +1,13 @@
 NAME=minishell
 
-SRCS	= src/main.c		\
-				src/init.c 	\
-				src/utils.c 	\
-				src/common.c 	\
-				src/parse.c 	\
-				src/handle_prompt.c 	\
-				src/run_cmd.c 	\
-				src/builtins/main.c 	\
-				src/builtins/utils.c 	\
-				src/builtins/env.c 	\
-				src/builtins/cd.c 	\
+INTERPRETERS_DIR = ./src/interpreters/
+
+INTERPRETERS_FILES = lexer.c
+
+INTERPRETERS_SRCS = $(addprefix $(INTERPRETERS_DIR), $(INTERPRETERS_FILES))
+
+SRCS	=	src/minishell.c \
+			$(INTERPRETERS_SRCS)
 
 LIBFT = lib/libft/libft.a
 
