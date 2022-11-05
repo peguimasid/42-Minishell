@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 12:58:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 13:58:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,12 @@ void		handle_sigint(int sig);
 
 // common.c
 int			throw_error(char *error);
+
+// ------------------- UTILS -------------------
+
+// matrix
+char		**dup_matrix(char **matrix);
+int			matrix_len(char **matrix);
+void		free_matrix(char **matrix);
 
 #endif

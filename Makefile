@@ -4,6 +4,9 @@ SRCS	= src/main.c		\
 				src/common.c	\
 				src/minishell.c	\
 				src/signal.c	\
+				src/utils/matrix/matrix_dup.c	\
+				src/utils/matrix/matrix_len.c	\
+				src/utils/matrix/matrix_free.c	\
 
 LIBFT = lib/libft/libft.a
 

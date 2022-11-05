@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 13:11:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 14:40:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 t_data	init_data(char **argv, char **envp)
 {
-	// Duplicate enviroment variables
-	// Set global status as 0
-	// Start "cmds" as null
-	// Get process id (echo $$)
+	t_data	result;
+
+	(void)argv;
+	result.cmds = NULL;
+	result.envp = dup_matrix(envp);
+	g_status = 0;
+	// get pid
+	return (result);
 }
 
 void	input_loop(char **argv, char **envp)
@@ -37,7 +41,7 @@ void	input_loop(char **argv, char **envp)
 void	minishell(int argc, char **argv, char **envp)
 {
 	if (argc != 1)
-		throw_error("Don't provider arguments");
+		throw_error("Don't provide arguments");
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 	input_loop(argv, envp);
