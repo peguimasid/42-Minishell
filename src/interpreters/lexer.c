@@ -6,13 +6,27 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:19:48 by lucafern          #+#    #+#             */
-/*   Updated: 2022/11/05 19:23:43 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:51:54 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_list	*lexer(char *line_orig)
+int	token_len(char *orig, char sep, const int i, const int len)
+{
+	int	tk_len;
+
+	tk_len = 0;
+	if (ft_strchr("\"\'", sep))
+		tk_len++;
+	while (orig[i + len + tk_len] != sep && orig[i + len + tk_len] != '\0')
+		tk_len++;
+	if (ft_strchr("\"\'", sep))
+		tk_len++;
+	return (tk_len);
+}
+
+t_list	*lexer(char *orig)
 {
 	t_list	*tokens;
 	int		i;
@@ -20,34 +34,20 @@ t_list	*lexer(char *line_orig)
 
 	tokens = NULL;
 	i = 0;
-	while (line_orig[i])
+	while (orig[i])
 	{
-		while (line_orig[i] == ' ' && line_orig[i])
+		while (orig[i] == ' ' && orig[i])
 			i++;
-		if (line_orig[i])
+		if (orig[i])
 		{
 			len = 0;
-			if (line_orig[i] == '\"')
-			{
-				len++;
-				while (line_orig[i + len] != '\"' && line_orig[i + len] != '\0')
-					len++;
-				len++;
-			}
-			else if (line_orig[i] == '\'')
-			{
-				len++;
-				while (line_orig[i + len] != '\'' && line_orig[i + len] != '\0')
-					len++;
-				len++;
-			}
+			if (orig[i] == '\"')
+				len += token_len(orig, '\"', i, len);
+			else if (orig[i] == '\'')
+				len += token_len(orig, '\'', i, len);
 			else
-			{
-				while (line_orig[i + len] != ' ' && line_orig[i + len] != '\0')
-					len++;
-			}
-			ft_lstadd_back(&tokens, ft_lstnew(ft_substr(&line_orig[i], 0,
-							len)));
+				len += token_len(orig, ' ', i, len);
+			ft_lstadd_back(&tokens, ft_lstnew(ft_substr(&orig[i], 0, len)));
 			i += len;
 		}
 	}
