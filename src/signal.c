@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 12:11:21 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/05 11:52:02 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/05 12:14:33 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	handle_sigint(int sig)
 {
-	minishell(argc, argv, envp);
+	if (sig == SIGINT)
+	{
+		g_status = 130;
+		ft_putchar_fd('\n', 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }

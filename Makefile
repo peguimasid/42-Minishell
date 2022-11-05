@@ -1,6 +1,9 @@
 NAME=minishell
 
 SRCS	= src/main.c		\
+				src/common.c	\
+				src/minishell.c	\
+				src/signal.c	\
 
 LIBFT = lib/libft/libft.a
 

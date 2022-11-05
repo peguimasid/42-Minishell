@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 12:11:21 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/05 12:21:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	minishell(int argc, char **argv, char **envp)
 {
-	minishell(argc, argv, envp);
+	(void)argv;
+	(void)envp;
+	if (argc != 1)
+		throw_error("Don't provider arguments");
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }

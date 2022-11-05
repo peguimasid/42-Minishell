@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   common.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 12:11:21 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/05 12:20:56 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/05 12:21:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	throw_error(char *error)
 {
-	minishell(argc, argv, envp);
+	printf("\033[0;31m\n");
+	printf("Error\n%s\n", error);
+	printf("\033[0m");
+	return (1);
 }
