@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 14:40:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 15:13:29 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_data	init_data(char **argv, char **envp)
 	result.cmds = NULL;
 	result.envp = dup_matrix(envp);
 	g_status = 0;
-	// get pid
+	// TODO: get pid
+	// TODO: init necessary vars if dont exits (PWD, SHLVL, PATH, _)
 	return (result);
 }
 
