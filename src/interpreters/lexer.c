@@ -6,20 +6,20 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:19:48 by lucafern          #+#    #+#             */
-/*   Updated: 2022/11/05 19:51:54 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:58:10 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	token_len(char *orig, char sep, const int i, const int len)
+int	token_len(char *orig, char sep, const int i)
 {
 	int	tk_len;
 
 	tk_len = 0;
 	if (ft_strchr("\"\'", sep))
 		tk_len++;
-	while (orig[i + len + tk_len] != sep && orig[i + len + tk_len] != '\0')
+	while (orig[i + tk_len] != sep && orig[i + tk_len] != '\0')
 		tk_len++;
 	if (ft_strchr("\"\'", sep))
 		tk_len++;
@@ -40,13 +40,12 @@ t_list	*lexer(char *orig)
 			i++;
 		if (orig[i])
 		{
-			len = 0;
 			if (orig[i] == '\"')
-				len += token_len(orig, '\"', i, len);
+				len = token_len(orig, '\"', i);
 			else if (orig[i] == '\'')
-				len += token_len(orig, '\'', i, len);
+				len = token_len(orig, '\'', i);
 			else
-				len += token_len(orig, ' ', i, len);
+				len = token_len(orig, ' ', i);
 			ft_lstadd_back(&tokens, ft_lstnew(ft_substr(&orig[i], 0, len)));
 			i += len;
 		}
