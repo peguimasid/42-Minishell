@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 17:06:05 by lucafern          #+#    #+#             */
-/*   Updated: 2022/11/05 17:56:04 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:53:58 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 void	prompt(void)
 {
 	char	*line_orig;
-	char	**tokens;
-	t_list	*token_list;
+	t_list	*tokens;
 
 	while (1)
 	{
+		tokens = NULL;
 		line_orig = readline("Minishell ⇢ ");
 		tokens = lexer(line_orig);
-		token_list = init_lst(tokens);
-		ft_print_lst(token_list);
+		ft_print_lst(tokens);
 		free(line_orig);
 	}
 }

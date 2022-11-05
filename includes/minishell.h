@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 17:56:13 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:17:44 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <sys/errno.h>
 # include <sys/wait.h>
 
-char	**lexer(char *line_orig);
+t_list	*lexer(char *line_orig);
 void	ft_print_lst(t_list *lst);
-t_list	*init_lst(char *arguments[]);
+void	ft_lst_split(char *line_orig, t_list *token_list);
 
 #endif
