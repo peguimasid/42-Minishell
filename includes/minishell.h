@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 22:24:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/06 12:51:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			throw_error(int err_type, int error_code, char *message);
 
 // matrix
 char		**dup_matrix(char **matrix);
+char		**matrix_push(char **matrix, char *new);
 int			matrix_len(char **matrix);
 void		free_matrix(char **matrix);
 

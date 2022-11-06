@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 22:23:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/06 12:55:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,19 @@ t_data	init_data(char **argv, char **envp)
 	return (result);
 }
 
+void	print_matrix(char **mat)
+{
+	int	i;
+
+	i = 0;
+	while (mat[i])
+		printf("%s\n", mat[i++]);
+}
+
 void	input_loop(char **argv, char **envp)
 {
-	char	*str;
 	t_data	data;
+	char	*str;
 
 	data = init_data(argv, envp);
 	(void)data;

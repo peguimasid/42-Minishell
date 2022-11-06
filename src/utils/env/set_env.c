@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_len.c                                       :+:      :+:    :+:   */
+/*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 13:46:02 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/06 12:48:18 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/06 11:49:11 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/06 12:12:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	matrix_len(char **matrix)
+void	set_env(char *key, char *value, char **env)
 {
-	int	i;
-
-	i = 0;
-	while (matrix && matrix[i])
-		i++;
-	return (i);
+	// TODO: add to to the end of matrix a key value pair (KEY=VALUE)
 }

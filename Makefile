@@ -6,6 +6,7 @@ SRCS	= src/main.c		\
 				src/signal.c	\
 				src/utils/matrix/matrix_dup.c	\
 				src/utils/matrix/matrix_len.c	\
+				src/utils/matrix/matrix_push.c	\
 				src/utils/matrix/matrix_free.c	\
 
 LIBFT = lib/libft/libft.a
