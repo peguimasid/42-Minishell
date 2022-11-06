@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 22:09:14 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 22:23:01 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	input_loop(char **argv, char **envp)
 	(void)data;
 	while (1)
 	{
+		set_default_signal_handlers();
 		str = readline("Minishell ▸ ");
 		printf("command was %s\n", str);
 		free(str);
@@ -67,8 +68,6 @@ void	input_loop(char **argv, char **envp)
 
 int	minishell(char **argv, char **envp)
 {
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
 	input_loop(argv, envp);
 	return (g_status);
 }

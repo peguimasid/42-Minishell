@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:52:02 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 12:14:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 22:21:49 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,10 @@ void	handle_sigint(int sig)
 		rl_on_new_line();
 		rl_redisplay();
 	}
+}
+
+void	set_default_signal_handlers(void)
+{
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }
