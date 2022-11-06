@@ -12,8 +12,8 @@ LIBFT = lib/libft/libft.a
 
 OBJ	= $(SRCS:.c=.o)
 
-CPPFLAGS = "-I/opt/homebrew/Cellar/readline/8.2.1/include"
-LDFLAGS = "-L/opt/homebrew/Cellar/readline/8.2.1/lib"
+CPPFLAGS = -I/opt/homebrew/Cellar/readline/8.2.1/include
+LDFLAGS = -L/opt/homebrew/Cellar/readline/8.2.1/lib
 
 $(NAME): $(OBJ)
 	make bonus -s -C lib/libft
