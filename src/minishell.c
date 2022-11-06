@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:18:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 21:20:59 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ void	input_loop(char **argv, char **envp)
 	t_data	data;
 
 	data = init_data(argv, envp);
-	printf("pid = %d\n", data.pid);
 	while (1)
 	{
 		str = readline("Minishell ▸ ");
 		printf("command was %s\n", str);
 		free(str);
-		break ;
 	}
 }
 
