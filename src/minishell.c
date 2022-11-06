@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 20:59:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 21:14:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ pid_t	get_pid(void)
 	pid_t	pid;
 
 	pid = fork();
+	if (pid < 0)
+	{
+		throw_error(FORKERR, 1, NULL);
+		exit(1);
+	}
 	if (pid == 0)
 		exit(1);
 	waitpid(pid, NULL, 0);
@@ -51,10 +56,8 @@ void	input_loop(char **argv, char **envp)
 	}
 }
 
-void	minishell(int argc, char **argv, char **envp)
+void	minishell(char **argv, char **envp)
 {
-	if (argc != 1)
-		throw_error("Don't provide arguments");
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 	input_loop(argv, envp);

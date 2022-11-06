@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 13:58:54 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 21:13:59 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,19 @@ typedef struct s_data
 
 int			g_status;
 
+enum		e_error_type
+{
+	FORKERR = 1,
+};
+
 // minishell.c
-void		minishell(int argc, char **argv, char **envp);
+void		minishell(char **argv, char **envp);
 
 // signal.c
 void		handle_sigint(int sig);
 
 // common.c
-int			throw_error(char *error);
+int			throw_error(int err_type, int error_code, char *message);
 
 // ------------------- UTILS -------------------
 
