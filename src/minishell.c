@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:14:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 21:18:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	input_loop(char **argv, char **envp)
 		str = readline("Minishell ▸ ");
 		printf("command was %s\n", str);
 		free(str);
+		break ;
 	}
 }
 
-void	minishell(char **argv, char **envp)
+int	minishell(char **argv, char **envp)
 {
 	signal(SIGINT, handle_sigint);
 	signal(SIGQUIT, SIG_IGN);
 	input_loop(argv, envp);
-	exit(g_status);
+	return (g_status);
 }
