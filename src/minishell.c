@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:55:31 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/05 22:09:14 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,25 @@ pid_t	get_pid(void)
 	return (pid - 1);
 }
 
+void	init_vars(t_data *data, char *program_name)
+{
+	(void)data;
+	(void)program_name;
+	// TODO: Set PWD var to be "getcwd" return
+	// TODO: Set SHLVL value if doesn't exists
+	// TODO: Set PATH value if doesn't exists
+	// TODO: Set _ value to be program_name var
+}
+
 t_data	init_data(char **argv, char **envp)
 {
 	t_data	result;
 
-	(void)argv;
 	result.cmds = NULL;
 	result.envp = dup_matrix(envp);
 	result.pid = get_pid();
 	g_status = 0;
-	// TODO: init necessary vars if dont exits (PWD, SHLVL, PATH, _)
+	init_vars(&result, argv[0]);
 	return (result);
 }
 
@@ -47,6 +56,7 @@ void	input_loop(char **argv, char **envp)
 	t_data	data;
 
 	data = init_data(argv, envp);
+	(void)data;
 	while (1)
 	{
 		str = readline("Minishell ▸ ");
