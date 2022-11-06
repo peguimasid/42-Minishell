@@ -1,7 +1,7 @@
 NAME=minishell
 
 SRCS	= src/main.c		\
-				src/common.c	\
+				src/error.c	\
 				src/minishell.c	\
 				src/signal.c	\
 				src/utils/matrix/matrix_dup.c	\
