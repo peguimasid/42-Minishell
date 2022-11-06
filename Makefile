@@ -8,6 +8,7 @@ SRCS	= src/main.c		\
 				src/utils/matrix/matrix_len.c	\
 				src/utils/matrix/matrix_push.c	\
 				src/utils/matrix/matrix_free.c	\
+				src/utils/env/set_env.c	\
 
 LIBFT = lib/libft/libft.a
 
