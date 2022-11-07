@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/06 13:15:36 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:30:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ int			throw_error(int err_type, int error_code, char *message);
 // matrix
 char		**dup_matrix(char **matrix);
 char		**matrix_push(char **matrix, char *new);
+char		**matrix_replace(char **matrix, int i, char *new_value);
 int			matrix_len(char **matrix);
 void		free_matrix(char **matrix);
 
 // env
 char		**set_env(char *key, char *value, char **envp);
+void		get_env(char *key, char **envp);
+int			get_env_index(char *key, char **envp);
 
 #endif

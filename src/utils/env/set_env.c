@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:49:11 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/06 13:32:21 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:39:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,49 @@ char	*ft_strcat(char *src, char *dest)
 	return (result);
 }
 
-// TODO:
-// Create function to return the index or -1 if env not exists
-// EXISTS: Free old var and store new in the place
-// NOT EXISTS: Call matrix push in new var
-char	**set_env(char *key, char *value, char **envp)
+char	*join_env(char *key, char *value)
 {
 	char	*aux1;
 	char	*aux2;
-	char	*new_var;
+	char	*result;
 
 	aux1 = ft_strdup(key);
 	aux2 = ft_strcat(aux1, "=");
-	new_var = ft_strcat(aux2, value);
-	envp = matrix_push(envp, new_var);
+	result = ft_strcat(aux2, value);
 	free(aux1);
 	free(aux2);
-	free(new_var);
-	return (envp);
+	return (result);
+}
+
+char	**change_env_value(int index, char *key, char *value, char **envp)
+{
+	char	*new_value;
+	char	**result;
+
+	new_value = join_env(key, value);
+	result = matrix_replace(envp, index, new_value);
+	free(new_value);
+	return (result);
+}
+
+char	**add_new_env(char *key, char *value, char **envp)
+{
+	char	*variable_joined;
+	char	**result;
+
+	variable_joined = join_env(key, value);
+	result = matrix_push(envp, variable_joined);
+	free(variable_joined);
+	return (result);
+}
+
+char	**set_env(char *key, char *value, char **envp)
+{
+	int	env_index;
+
+	env_index = get_env_index(key, envp);
+	printf("in => %d\n", env_index);
+	if (env_index > -1)
+		return (envp = change_env_value(env_index, key, value, envp));
+	return (envp = add_new_env(key, value, envp));
 }
