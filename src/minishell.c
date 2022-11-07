@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 18:42:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:43:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ pid_t	get_pid(void)
 
 void	init_vars(t_data *data, char *program_name)
 {
-	int	i;
-
 	(void)data;
 	(void)program_name;
 	data->envp = set_env("MYTEST", "123", data->envp);
