@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 18:54:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 19:16:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_data
 {
+	char	*input;
 	t_list	*cmds;
 	char	**envp;
 	pid_t	pid;
@@ -46,6 +47,9 @@ void		set_default_signal_handlers(void);
 
 // common.c
 int			throw_error(int err_type, int error_code, char *message);
+
+// free.c
+void		free_data(t_data *data);
 
 // ------------------- UTILS -------------------
 

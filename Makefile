@@ -4,6 +4,7 @@ SRCS	= src/main.c		\
 				src/error.c	\
 				src/minishell.c	\
 				src/signal.c	\
+				src/free.c	\
 				src/utils/matrix/matrix_dup.c	\
 				src/utils/matrix/matrix_len.c	\
 				src/utils/matrix/matrix_push.c	\
