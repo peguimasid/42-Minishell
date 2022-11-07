@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 18:30:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:54:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int			matrix_len(char **matrix);
 void		free_matrix(char **matrix);
 
 // env
-char		**set_env(char *key, char *value, char **envp);
-void		get_env(char *key, char **envp);
 int			get_env_index(char *key, char **envp);
+char		*get_env(char *key, char **envp);
+char		**set_env(char *key, char *value, char **envp);
 
 #endif

@@ -6,18 +6,26 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:49:11 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 18:17:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:55:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	get_env(char *key, char **envp)
+char	*get_env(char *key, char **envp)
 {
-	(void)key;
-	(void)envp;
-	// TODO: Receive envs and find by key
-	// Use ft_strncmp but make sure that envp[i][ft_strlen(key)] == '='
+	int	i;
+	int	key_len;
+
+	i = 0;
+	key_len = ft_strlen(key);
+	while (envp[i])
+	{
+		if (ft_strncmp(key, envp[i], key_len) == 0 && envp[i][key_len] == '=')
+			return (envp[i] + key_len + 1);
+		i++;
+	}
+	return (NULL);
 }
 
 int	get_env_index(char *key, char **envp)
