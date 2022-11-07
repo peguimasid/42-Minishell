@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/06 13:22:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/06 14:50:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_vars(t_data *data, char *program_name)
 	(void)data;
 	(void)program_name;
 	data->envp = set_env("MYTEST", "123", data->envp);
+	// TODO: Set PWD var to be "getcwd" return
 	// TODO: Set SHLVL value if doesn't exists
 	// TODO: Set PATH value if doesn't exists
 	// TODO: Set _ value to be program_name var

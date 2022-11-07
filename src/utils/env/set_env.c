@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:49:11 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/06 13:21:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/06 13:32:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ char	*ft_strcat(char *src, char *dest)
 	return (result);
 }
 
+// TODO:
+// Create function to return the index or -1 if env not exists
+// EXISTS: Free old var and store new in the place
+// NOT EXISTS: Call matrix push in new var
 char	**set_env(char *key, char *value, char **envp)
 {
 	char	*aux1;
