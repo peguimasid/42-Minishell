@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 19:17:20 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:09:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,27 @@ pid_t	get_pid(void)
 
 void	init_vars(t_data *data, char *program_name)
 {
-	(void)data;
-	(void)program_name;
-	// TODO: Set PWD var to be "getcwd" return
-	// TODO: Set SHLVL value if doesn't exists
-	// TODO: Set PATH value if doesn't exists
-	// TODO: Set _ value to be program_name var
+	char	*shlvl;
+	char	*aux;
+	char	*default_path;
+
+	aux = getcwd(NULL, 0);
+	data->envp = set_env("PWD", aux, data->envp);
+	free(aux);
+	aux = get_env("SHLVL", data->envp);
+	if (!aux || ft_atoi(aux) <= 0)
+		shlvl = ft_strdup("1");
+	else
+		shlvl = ft_itoa(ft_atoi(aux) + 1);
+	data->envp = set_env("SHLVL", shlvl, data->envp);
+	free(shlvl);
+	aux = get_env("PATH", data->envp);
+	default_path = "/usr/local/sbin:/usr/local/bin:/usr/bin:/bin";
+	if (!aux)
+		data->envp = set_env("PATH", default_path, data->envp);
+	aux = get_env("_", data->envp);
+	if (!aux)
+		data->envp = set_env("_", program_name, data->envp);
 }
 
 t_data	init_data(char **argv, char **envp)
