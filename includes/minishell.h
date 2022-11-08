@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/07 19:16:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:15:41 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>
 # include <sys/errno.h>
 # include <sys/wait.h>
+
+# define DEFAULT_PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
 
 typedef struct s_data
 {

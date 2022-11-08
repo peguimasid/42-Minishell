@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 15:09:21 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/08 17:43:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	init_vars(t_data *data, char *program_name)
 {
 	char	*shlvl;
 	char	*aux;
-	char	*default_path;
 
 	aux = getcwd(NULL, 0);
 	data->envp = set_env("PWD", aux, data->envp);
@@ -45,9 +44,8 @@ void	init_vars(t_data *data, char *program_name)
 	data->envp = set_env("SHLVL", shlvl, data->envp);
 	free(shlvl);
 	aux = get_env("PATH", data->envp);
-	default_path = "/usr/local/sbin:/usr/local/bin:/usr/bin:/bin";
 	if (!aux)
-		data->envp = set_env("PATH", default_path, data->envp);
+		data->envp = set_env("PATH", DEFAULT_PATH, data->envp);
 	aux = get_env("_", data->envp);
 	if (!aux)
 		data->envp = set_env("_", program_name, data->envp);
