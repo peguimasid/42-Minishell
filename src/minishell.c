@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 17:43:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:54:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,32 @@ t_data	init_data(char **argv, char **envp)
 
 	result.input = NULL;
 	result.cmds = NULL;
+	result.running = 1;
 	result.envp = dup_matrix(envp);
-	result.pid = get_pid();
+	// result.pid = get_pid();
 	g_status = 0;
 	init_vars(&result, argv[0]);
 	return (result);
 }
 
-void	input_loop(char **argv, char **envp)
+void	input_loop(t_data *data)
 {
-	t_data	data;
-
-	data = init_data(argv, envp);
-	while (1)
+	while (data->running)
 	{
 		set_default_signal_handlers();
-		data.input = readline("Minishell ▸ ");
-		printf("command was %s\n", data.input);
+		data->input = readline("Minishell ▸ ");
+		printf("command was %s\n", data->input);
+		free(data->input);
+		data->running = 0;
 	}
-	free_data(&data);
 }
 
 int	minishell(char **argv, char **envp)
 {
-	input_loop(argv, envp);
+	t_data	data;
+
+	data = init_data(argv, envp);
+	input_loop(&data);
+	free_data(&data);
 	return (g_status);
 }

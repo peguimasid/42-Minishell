@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 17:15:41 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:37:50 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 typedef struct s_data
 {
 	char	*input;
-	t_list	*cmds;
 	char	**envp;
+	int		running;
+	t_list	*cmds;
 	pid_t	pid;
 }			t_data;
 
