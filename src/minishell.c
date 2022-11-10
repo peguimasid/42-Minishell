@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/10 18:04:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/10 19:29:01 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,10 @@ pid_t	get_pid(void)
 
 void	init_vars(t_data *data, char *program_name)
 {
-	char	*shlvl;
-	char	*aux;
-
-	aux = getcwd(NULL, 0);
-	data->envp = set_env("PWD", aux, data->envp);
-	free(aux);
-	aux = get_env("SHLVL", data->envp);
-	if (!aux || ft_atoi(aux) <= 0)
-		shlvl = ft_strdup("1");
-	else
-		shlvl = ft_itoa(ft_atoi(aux) + 1);
-	data->envp = set_env("SHLVL", shlvl, data->envp);
-	free(shlvl);
-	aux = get_env("PATH", data->envp);
-	if (!aux)
-		data->envp = set_env("PATH", DEFAULT_PATH, data->envp);
-	aux = get_env("_", data->envp);
-	if (!aux)
-		data->envp = set_env("_", program_name, data->envp);
+	init_pwd(data);
+	init_shlvl(data);
+	init_path(data);
+	init_executable(data, program_name);
 }
 
 t_data	init_data(char **argv, char **envp)
