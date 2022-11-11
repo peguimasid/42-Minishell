@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/11 16:23:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:40:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdbool.h>
 # include <string.h>
 # include <sys/errno.h>
 # include <sys/wait.h>
@@ -50,6 +49,9 @@ void		set_default_signal_handlers(void);
 
 // common.c
 int			throw_error(int err_type, int error_code, char *message);
+
+// handle_input.c
+int			handle_input(t_data *data);
 
 // free.c
 void		free_data(t_data *data);

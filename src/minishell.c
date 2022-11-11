@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/11 16:24:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:44:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	input_loop(t_data *data)
 	{
 		set_default_signal_handlers();
 		data->input = readline("Minishell ▸ ");
-		printf("command was %s\n", data->input);
-		data->running = 0;
+		if (!handle_input(data))
+			data->running = 0;
 	}
 }
 
