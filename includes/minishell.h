@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/10 19:15:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:23:02 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ void		init_pwd(t_data *data);
 void		init_shlvl(t_data *data);
 void		init_path(t_data *data);
 void		init_executable(t_data *data, char *program_name);
+
+// clear_window
+void		clear_window(void);
 
 #endif
