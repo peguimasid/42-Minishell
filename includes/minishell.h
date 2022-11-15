@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/11 16:40:10 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/15 14:40:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int			throw_error(int err_type, int error_code, char *message);
 
 // handle_input.c
 int			handle_input(t_data *data);
+
+// split_quotes.c
+char		**split_quotes(char const *s, char *set);
 
 // free.c
 void		free_data(t_data *data);
