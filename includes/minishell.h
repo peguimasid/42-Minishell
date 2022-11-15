@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/15 14:40:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/15 14:48:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_data
 
 enum		e_error_type
 {
-	FORKERR = 1,
+	FORKERR = 10,
+	QUOTE = 11,
 };
 
 int			g_status;

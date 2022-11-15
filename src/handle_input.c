@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/15 14:40:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/15 14:55:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ void	print_lst(char **vec)
 
 int	handle_input(t_data *data)
 {
-	char	**list;
+	char	**args;
 
 	if (!data->input)
 		return (0);
 	add_history(data->input);
-	list = split_quotes(data->input, " ");
-	print_lst(list);
+	args = split_quotes(data->input, " ");
+	print_lst(args);
 	free(data->input);
+	if (!args)
+		return (throw_error(QUOTE, 1, NULL));
 	return (1);
 }
