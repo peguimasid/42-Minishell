@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/15 14:48:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/20 13:47:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "../lib/libft/libft.h"
+# include "constants.h"
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -21,8 +22,6 @@
 # include <string.h>
 # include <sys/errno.h>
 # include <sys/wait.h>
-
-# define DEFAULT_PATH "/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
 
 typedef struct s_data
 {

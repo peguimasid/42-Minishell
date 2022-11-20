@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:50:36 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/16 13:04:28 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/20 13:46:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_count_words(const char *s, char *set, int count)
 		{
 			while ((!ft_strchr(set, s[i]) || q[0] || q[1]) && s[i] != '\0')
 			{
-				q[0] = (q[0] + (!q[1] && s[i] == '\'')) % 2;
-				q[1] = (q[1] + (!q[0] && s[i] == '\"')) % 2;
+				q[0] = (q[0] + (!q[1] && s[i] == SINGLE_QUOTE)) % 2;
+				q[1] = (q[1] + (!q[0] && s[i] == DOUBLE_QUOTE)) % 2;
 				i++;
 			}
 			if (q[0] || q[1])
@@ -55,8 +55,8 @@ char	**ft_fill_array(char **aux, const char *s, char *set, int i[3])
 		{
 			while ((!ft_strchr(set, s[i[0]]) || q[0] || q[1]) && s[i[0]])
 			{
-				q[0] = (q[0] + (!q[1] && s[i[0]] == '\'')) % 2;
-				q[1] = (q[1] + (!q[0] && s[i[0]] == '\"')) % 2;
+				q[0] = (q[0] + (!q[1] && s[i[0]] == SINGLE_QUOTE)) % 2;
+				q[1] = (q[1] + (!q[0] && s[i[0]] == DOUBLE_QUOTE)) % 2;
 				i[0]++;
 			}
 		}
