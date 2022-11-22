@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/22 15:50:32 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/22 15:48:04 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/22 15:49:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	handle_input(t_data *data)
+void	save_history(char *input)
 {
-	char	**args;
-
-	if (!data->input)
-		return (0);
-	save_history(data->input);
-	args = split_quotes(data->input, " ");
-	free(data->input);
-	if (!args)
-		return (throw_error(QUOTE, 1, NULL));
-	return (1);
+	if (ft_strlen(input))
+		add_history(input);
 }

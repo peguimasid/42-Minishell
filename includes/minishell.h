@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/20 13:47:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/22 15:49:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ void		init_executable(t_data *data, char *program_name);
 
 // clear_window
 void		clear_window(void);
+
+// history
+void		save_history(char *input);
 
 #endif
