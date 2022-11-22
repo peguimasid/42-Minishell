@@ -6,13 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:50:36 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/20 13:46:26 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/22 15:32:04 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_count_words(const char *s, char *set, int count)
+static int	ft_count_words(const char *s, char *set, int count)
 {
 	int	q[2];
 	int	i;
@@ -40,7 +40,7 @@ int	ft_count_words(const char *s, char *set, int count)
 	return (count);
 }
 
-char	**ft_fill_array(char **aux, const char *s, char *set, int i[3])
+static char	**ft_fill_array(char **aux, const char *s, char *set, int i[3])
 {
 	int	q[2];
 
