@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:45:46 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/22 17:56:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/22 18:09:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	**matrix_append(char **dest, char **src, int start_index)
 	i = -1;
 	j = -1;
 	k = -1;
-	printf("%d [] %d\n", matrix_len(dest), start_index);
 	if (!dest || start_index < 0 || start_index >= matrix_len(dest))
 		return (dest);
 	result = ft_calloc(matrix_len(dest) + matrix_len(src), sizeof(char *));
