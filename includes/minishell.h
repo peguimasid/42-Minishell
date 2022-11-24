@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/22 17:36:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 12:19:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,8 @@ void		clear_window(void);
 
 // history
 void		save_history(char *input);
+
+// tools
+int			ft_strchars_i(const char *s, char *set);
 
 #endif

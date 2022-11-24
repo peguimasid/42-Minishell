@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   ft_strchar_i.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 11:49:11 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 12:23:32 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/24 12:18:18 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/24 12:18:39 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char	*get_env(char *key, char **envp)
+int	ft_strchars_i(const char *s, char *set)
 {
 	int	i;
-	int	key_len;
 
 	i = 0;
-	key_len = ft_strlen(key);
-	while (envp[i])
+	if (!s)
+		return (-1);
+	while (s[i] != '\0')
 	{
-		if (ft_strncmp(key, envp[i], key_len) == 0 && envp[i][key_len] == '=')
-			return (ft_strdup(envp[i] + key_len + 1));
-		i++;
-	}
-	return (NULL);
-}
-
-int	get_env_index(char *key, char **envp)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(key);
-	while (envp[i])
-	{
-		if (ft_strncmp(key, envp[i], len) == 0 && envp[i][len] == '=')
+		if (ft_strchr(set, s[i]))
 			return (i);
 		i++;
 	}

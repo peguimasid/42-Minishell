@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:36:42 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/10 19:28:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 12:24:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_shlvl(t_data *data)
 		current_shlvl = ft_itoa(ft_atoi(previous_shlvl) + 1);
 	data->envp = set_env("SHLVL", current_shlvl, data->envp);
 	free(current_shlvl);
+	free(previous_shlvl);
 }
 
 void	init_path(t_data *data)
