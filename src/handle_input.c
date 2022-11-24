@@ -6,11 +6,32 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 19:11:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:59:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void	expand_args(char **args, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		args[i] = expand_vars(args[i], data);
+		i++;
+	}
+}
+
+void	print_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		printf(">> %s\n", args[i++]);
+}
 
 int	handle_input(t_data *data)
 {
@@ -20,8 +41,8 @@ int	handle_input(t_data *data)
 		return (0);
 	save_history(data->input);
 	args = split_quotes(data->input, " ");
-	printf(">> %s\n", get_env(data->input, data->envp, ft_strlen(data->input)));
-	free(data->input);
+	expand_args(args, data);
+	print_args(args);
 	if (!args)
 		return (throw_error(QUOTE, 1, NULL));
 	return (1);
