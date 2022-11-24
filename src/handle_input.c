@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 12:50:38 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 12:53:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	handle_input(t_data *data)
 		return (0);
 	save_history(data->input);
 	args = split_quotes(data->input, " ");
+	printf(">> %s\n", expand_vars("Hello $NAME", data));
 	free(data->input);
 	if (!args)
 		return (throw_error(QUOTE, 1, NULL));
