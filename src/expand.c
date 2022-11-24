@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:16:57 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 19:56:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 20:12:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static char	*get_substr_var(char *str, int i, t_data *data)
 	char	*var;
 	int		find;
 
-	pos = ft_strchars_i(&str[i], "|\"\'$?>< ") + (ft_strchr("$?", str[i]) != 0);
+	pos = ft_strchars_i(str + i, "|\"\'$?>< ") + (ft_strchr("$?", str[i]) != 0);
 	if (pos == -1)
 		pos = ft_strlen(str) - 1;
 	aux = ft_substr(str, 0, i - 1);
-	find = ft_strchars_i(&str[i], "\"\'$|>< ");
+	find = ft_strchars_i(str + i, "\"\'$|>< ");
 	var = get_env(str + i, data->envp, find);
 	if (!var && str[i] == '$')
 		var = ft_itoa(data->pid);
@@ -32,7 +32,7 @@ static char	*get_substr_var(char *str, int i, t_data *data)
 		var = ft_itoa(g_status);
 	path = ft_strjoin(aux, var);
 	free(aux);
-	aux = ft_strjoin(path, &str[i + pos]);
+	aux = ft_strjoin(path, str + i + pos);
 	free(var);
 	free(path);
 	free(str);
@@ -44,8 +44,8 @@ int	satisfy(char *str, int i, int dq_open)
 	int	met_first_cond;
 	int	met_sec_cond;
 
-	met_first_cond = (ft_strchars_i(&str[i + 1], "/~%^{}:; ") && !dq_open);
-	met_sec_cond = (ft_strchars_i(&str[i + 1], "/~%^{}:;\"") && dq_open);
+	met_first_cond = (ft_strchars_i(str + i + 1, "/~%^{}:; ") && !dq_open);
+	met_sec_cond = (ft_strchars_i(str + i + 1, "/~%^{}:;\"") && dq_open);
 	return (met_first_cond || met_sec_cond);
 }
 
