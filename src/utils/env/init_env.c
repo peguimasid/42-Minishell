@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:36:42 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 12:24:55 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/24 12:26:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_path(t_data *data)
 	current_path = get_env("PATH", data->envp);
 	if (!current_path)
 		data->envp = set_env("PATH", DEFAULT_PATH, data->envp);
+	else
+		free(current_path);
 }
 
 void	init_executable(t_data *data, char *program_name)
