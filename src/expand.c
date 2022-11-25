@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:16:57 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/25 15:13:54 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:24:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@ static char	*get_substr_var(char *str, int i, t_data *data)
 	return (aux);
 }
 
-// Not has prohibited char imediatly after $
-// Has a space or string finish if dq is not open
-// OR
-// Has a " if dq is open
 int	satisfy(char *str, int i, int dq_open)
 {
 	int	met_first_cond;
