@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:16:57 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 20:18:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:13:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,20 @@ static char	*get_substr_var(char *str, int i, t_data *data)
 	return (aux);
 }
 
+// Not has prohibited char imediatly after $
+// Has a space or string finish if dq is not open
+// OR
+// Has a " if dq is open
 int	satisfy(char *str, int i, int dq_open)
 {
 	int	met_first_cond;
 	int	met_sec_cond;
+	int	met_third_cond;
 
-	met_first_cond = (ft_strchars_i(str + i + 1, "/~%^{}:; ") && !dq_open);
-	met_sec_cond = (ft_strchars_i(str + i + 1, "/~%^{}:;\"") && dq_open);
-	return (met_first_cond || met_sec_cond);
+	met_first_cond = ft_strchars_i(str + i + 1, "/~%^{}:;");
+	met_sec_cond = (ft_strchars_i(str + i + 1, " ") && !dq_open);
+	met_third_cond = (ft_strchars_i(str + i + 1, "\"") && dq_open);
+	return (met_first_cond && (met_sec_cond || met_third_cond));
 }
 
 char	*expand_vars(char *str, t_data *data)
