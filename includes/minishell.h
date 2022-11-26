@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/24 19:26:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 10:59:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,24 @@ void		set_default_signal_handlers(void);
 // common.c
 int			throw_error(int err_type, int error_code, char *message);
 
+// free.c
+void		free_data(t_data *data);
+
 // handle_input.c
 int			handle_input(t_data *data);
+
+// ------------------- LEXER -------------------
 
 // split_quotes.c
 char		**split_quotes(char const *s, char *set);
 
-// expand.c
-char		*expand_vars(char *str, t_data *data);
+// ----------------- EXPANDER ------------------
 
-// free.c
-void		free_data(t_data *data);
+// main.c
+char		*expand_vars(char *str, t_data *data);
+char		*expand_path(char *str, t_data *data);
+char		*get_substr_var(char *str, int i, t_data *data);
+char		*get_substr_path(char *str, int i, t_data *data);
 
 // ------------------- UTILS -------------------
 

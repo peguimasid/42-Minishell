@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/25 14:45:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 10:42:38 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	expand_args(char **args, t_data *data)
 	while (args[i])
 	{
 		args[i] = expand_vars(args[i], data);
+		args[i] = expand_path(args[i], data);
 		i++;
 	}
 }
