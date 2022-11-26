@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 12:37:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 13:14:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char		*get_substr_path(char *str, int i, t_data *data);
 char		**dup_matrix(char **matrix);
 char		**matrix_push(char **matrix, char *new);
 char		**matrix_replace(char **matrix, int i, char *new_value);
-char		**matrix_append(char **dest, char **src, int start_index);
 int			matrix_len(char **matrix);
 void		print_matrix(char **matrix);
 void		free_matrix(char **matrix);
