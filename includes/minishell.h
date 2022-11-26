@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 13:14:45 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:19:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,11 @@ void		init_executable(t_data *data, char *program_name);
 // clear_window
 void		clear_window(void);
 
-// history
-void		save_history(char *input);
+// input
+int			is_empty(char *input);
+int			is_null(char *input);
+int			is_invalid_input(char *input);
+int			get_invalid_input_status(char *input);
 
 // tools
 int			ft_strchars_i(const char *s, char *set);
