@@ -1,22 +1,38 @@
 NAME=minishell
 
-SRCS	= src/main.c		\
-				src/minishell.c 	\
-				src/utils.c 	\
-				src/common.c 	\
-				src/parse.c 	\
-				src/exec/execute.c 	\
-				src/exec/find_path.c 	\
-				src/exec/handle_prompt.c 	\
-				src/exec/run_cmd.c 	\
-				src/builtins/utils.c 	\
-				src/builtins/cd.c 	\
-				src/env/init.c 	\
-				src/env/write.c 	\
-				src/env/read.c 	\
-				src/env/free.c 	\
-				src/env/export.c 	\
-				src/exec/free_args.c 	\
+EXEC_DIR = ./src/exec/
+
+EXEC_FILES = execute.c find_path.c handle_prompt.c run_cmd.c free_args.c
+
+EXEC_SRCS = $(addprefix $(EXEC_DIR), $(EXEC_FILES))
+
+BUILTINS_DIR = ./src/builtins/
+
+BUILTINS_FILES = utils.c cd.c
+
+BUILTINS_SRCS = $(addprefix $(BUILTINS_DIR), $(BUILTINS_FILES))
+
+ENV_DIR = ./src/env/
+
+ENV_FILES = init.c write.c read.c free.c export.c
+
+ENV_SRCS = $(addprefix $(ENV_DIR), $(ENV_FILES))
+
+INTERPRETERS_DIR = ./src/interpreters/
+
+INTERPRETERS_FILES = lexer.c
+
+INTERPRETERS_SRCS = $(addprefix $(INTERPRETERS_DIR), $(INTERPRETERS_FILES))
+
+SRCS	=	src/main.c		\
+			src/minishell.c 	\
+			src/utils.c 	\
+			src/common.c 	\
+			src/parse.c 	\
+			$(EXEC_SRCS)	\
+			$(BUILTINS_SRCS)	\
+			$(ENV_SRCS)	\
+			$(INTERPRETERS_SRCS)
 
 LIBFT = lib/libft/libft.a
 
