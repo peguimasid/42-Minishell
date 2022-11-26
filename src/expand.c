@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:16:57 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/25 15:24:45 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 10:29:59 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ static char	*get_substr_var(char *str, int i, t_data *data)
 	return (aux);
 }
 
-int	satisfy(char *str, int i, int dq_open)
+int	should_be_expanded(char *str, int i, int sq_open, int dq_open)
 {
-	int	met_first_cond;
-	int	met_sec_cond;
-	int	met_third_cond;
+	int	found_forbidden_char_after_dollar;
+	int	not_has_dq_case_trated;
+	int	has_dq_case_trated;
 
-	met_first_cond = ft_strchars_i(str + i + 1, "/~%^{}:;");
-	met_sec_cond = (ft_strchars_i(str + i + 1, " ") && !dq_open);
-	met_third_cond = (ft_strchars_i(str + i + 1, "\"") && dq_open);
-	return (met_first_cond && (met_sec_cond || met_third_cond));
+	if (sq_open || str[i] != '$' || !str[i + 1])
+		return (0);
+	found_forbidden_char_after_dollar = ft_strchars_i(str + i + 1, "/~%^{}:;");
+	if (found_forbidden_char_after_dollar == 0)
+		return (0);
+	not_has_dq_case_trated = (ft_strchars_i(str + i + 1, " ") && !dq_open);
+	has_dq_case_trated = (ft_strchars_i(str + i + 1, "\"") && dq_open);
+	return (not_has_dq_case_trated || has_dq_case_trated);
 }
 
 char	*expand_vars(char *str, t_data *data)
@@ -64,7 +68,7 @@ char	*expand_vars(char *str, t_data *data)
 	{
 		sq_open = (sq_open + (!dq_open && str[i] == SINGLE_QUOTE)) % 2;
 		dq_open = (dq_open + (!sq_open && str[i] == DOUBLE_QUOTE)) % 2;
-		if (!sq_open && str[i] == '$' && str[i + 1] && satisfy(str, i, dq_open))
+		if (should_be_expanded(str, i, sq_open, dq_open))
 			return (expand_vars(get_substr_var(str, ++i, data), data));
 		i++;
 	}
