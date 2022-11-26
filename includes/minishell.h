@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 11:38:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:56:50 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char		**split_quotes(char const *s, char *set);
 // ----------------- EXPANDER ------------------
 
 // main.c
+void		expand_args(char **args, t_data *data);
 char		*expand_vars(char *str, t_data *data);
 char		*expand_path(char *str, t_data *data);
 char		*get_substr_var(char *str, int i, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:16:57 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 10:59:26 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:56:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,17 @@ char	*expand_path(char *str, t_data *data)
 		i++;
 	}
 	return (str);
+}
+
+void	expand_args(char **args, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		args[i] = expand_vars(args[i], data);
+		args[i] = expand_path(args[i], data);
+		i++;
+	}
 }
