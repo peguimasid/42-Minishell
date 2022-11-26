@@ -1,27 +1,19 @@
 NAME=minishell
 
 EXEC_DIR = ./src/exec/
-
 EXEC_FILES = execute.c find_path.c handle_prompt.c run_cmd.c free_args.c
-
 EXEC_SRCS = $(addprefix $(EXEC_DIR), $(EXEC_FILES))
 
 BUILTINS_DIR = ./src/builtins/
-
 BUILTINS_FILES = utils.c cd.c
-
 BUILTINS_SRCS = $(addprefix $(BUILTINS_DIR), $(BUILTINS_FILES))
 
 ENV_DIR = ./src/env/
-
 ENV_FILES = init.c write.c read.c free.c export.c
-
 ENV_SRCS = $(addprefix $(ENV_DIR), $(ENV_FILES))
 
 INTERPRETERS_DIR = ./src/interpreters/
-
 INTERPRETERS_FILES = lexer.c
-
 INTERPRETERS_SRCS = $(addprefix $(INTERPRETERS_DIR), $(INTERPRETERS_FILES))
 
 SRCS	=	src/main.c		\
