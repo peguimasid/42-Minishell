@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:52:59 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 11:02:21 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:10:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ char	*get_substr_path(char *str, int i, t_data *data)
 	str = ft_strjoin(path, aux);
 	free(aux);
 	free(path);
+	free(var);
 	return (str);
 }
