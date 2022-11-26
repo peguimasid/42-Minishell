@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 11:17:14 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 11:38:12 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:54:32 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ char	**lexer(char **args, t_data *data)
 		return (NULL);
 	expand_args(args, data);
 	// TODO: Call cmd_subsplit
-
 	return (args);
 }
