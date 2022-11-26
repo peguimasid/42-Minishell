@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 11:56:50 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 12:37:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ int			handle_input(t_data *data);
 
 // ------------------- LEXER -------------------
 
-// main.c
 char		**lexer(char **args, t_data *data);
-
-// split_quotes.c
 char		**split_quotes(char const *s, char *set);
+char		**subsplit_pipes_and_redirections(char **args);
 
 // ----------------- EXPANDER ------------------
 
@@ -81,6 +79,7 @@ char		**matrix_push(char **matrix, char *new);
 char		**matrix_replace(char **matrix, int i, char *new_value);
 char		**matrix_append(char **dest, char **src, int start_index);
 int			matrix_len(char **matrix);
+void		print_matrix(char **matrix);
 void		free_matrix(char **matrix);
 
 // env

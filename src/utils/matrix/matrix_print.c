@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_input.c                                     :+:      :+:    :+:   */
+/*   matrix_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 12:50:00 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/26 12:35:44 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/26 12:47:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	handle_input(t_data *data)
+void	print_matrix(char **matrix)
 {
-	char	**args;
+	int	i;
 
-	args = NULL;
-	if (!data->input)
-		return (0);
-	save_history(data->input);
-	args = lexer(args, data);
-	if (!args)
-		return (throw_error(QUOTE, 1, NULL));
-	print_matrix(args);
-	return (1);
+	i = 0;
+	while (matrix && matrix[i])
+	{
+		printf(">> matrix[%d] = %s\n", i, matrix[i]);
+		i++;
+	}
 }
