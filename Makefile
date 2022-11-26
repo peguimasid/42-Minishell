@@ -2,7 +2,7 @@ NAME=minishell
 
 INTERPRETERS_DIR = ./src/interpreters/
 
-INTERPRETERS_FILES = lexer.c
+INTERPRETERS_FILES = pipe_separator.c
 
 INTERPRETERS_SRCS = $(addprefix $(INTERPRETERS_DIR), $(INTERPRETERS_FILES))
 
