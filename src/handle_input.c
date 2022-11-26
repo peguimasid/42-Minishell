@@ -6,24 +6,11 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 10:42:38 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:38:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	expand_args(char **args, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-	{
-		args[i] = expand_vars(args[i], data);
-		args[i] = expand_path(args[i], data);
-		i++;
-	}
-}
 
 void	print_args(char **args)
 {
@@ -38,13 +25,13 @@ int	handle_input(t_data *data)
 {
 	char	**args;
 
+	args = NULL;
 	if (!data->input)
 		return (0);
 	save_history(data->input);
-	args = split_quotes(data->input, " ");
+	args = lexer(args, data);
 	if (!args)
 		return (throw_error(QUOTE, 1, NULL));
-	expand_args(args, data);
 	print_args(args);
 	return (1);
 }

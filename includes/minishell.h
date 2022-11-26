@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 10:59:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/26 11:38:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void		free_data(t_data *data);
 int			handle_input(t_data *data);
 
 // ------------------- LEXER -------------------
+
+// main.c
+char		**lexer(char **args, t_data *data);
 
 // split_quotes.c
 char		**split_quotes(char const *s, char *set);
