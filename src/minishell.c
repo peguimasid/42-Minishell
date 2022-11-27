@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/27 18:02:12 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:12:55 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	launch(t_data *data, char **env)
 		i = 0;
 		all_cmds = NULL;
 		line_orig = readline("Minishell ⇢ ");
+		add_history(line_orig);
 		all_cmds = pipe_separator(line_orig);
 		current_cmd = all_cmds;
 		while (i < ft_lstsize(all_cmds))
