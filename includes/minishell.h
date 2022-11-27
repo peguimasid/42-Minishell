@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 16:13:44 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/27 11:37:59 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,71 @@
 # include <sys/errno.h>
 # include <sys/wait.h>
 
-t_list	*pipe_separator(char *line_orig);
-void	ft_print_lst(t_list *lst);
-void	ft_lst_split(char *line_orig, t_list *token_list);
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct s_data
+{
+	bool			running;
+	char			*command;
+	t_env			*env;
+}					t_data;
+
+// minishell.c
+void				launch(t_data *data, char **env);
+
+// common.c
+int					throw_error(char *error);
+
+// handle_prompt.c
+void				handle_prompt(t_data *data, char **envp);
+
+// parse.c
+char				**parse_command(t_data *data);
+
+// utils.c
+int					str_ichr(char *str, char c);
+int					ft_strcmp(const char *s1, const char *s2);
+
+// builtins/cd.c
+void				change_directory(t_data *data, char **args);
+
+// builtins/utils.c
+bool				is_builtin(char **args);
+
+// exec/find_path.c
+char				*find_cmd_path(t_data *data, char *cmd);
+
+// exec/run_cmd.c
+void				run_cmd(char *path, char **cmd, char **env);
+
+// exec/execute.c
+void				execute_bin(t_data *data, char **args, char **envp);
+void				execute_builtin(t_data *data, char **args, char **envp);
+
+// env/init.c
+void				init_env(t_data *data, char **env);
+
+// env/read.c
+// Change
+char				*get_env(t_data *data, char *key);
+void				print_env(t_data *data);
+bool				env_exists(t_data *data, char *key);
+
+// env/write.c
+void				set_env(t_data *data, char *key, char *value);
+
+void				free_env(t_data *data);
+void				free_args(char **args);
+
+void				export_env(t_data *data, char **args);
+
+t_list				*pipe_separator(char *line_orig);
+void				ft_print_lst(t_list *lst);
+void				ft_lst_split(char *line_orig, t_list *token_list);
 
 #endif

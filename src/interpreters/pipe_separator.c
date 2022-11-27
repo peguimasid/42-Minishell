@@ -92,7 +92,7 @@ void	ft_print_lst(t_list *lst)
 	{
 		ft_printf("%p | ", lst);
 		ft_printf("Node: %i | ", i);
-		ft_printf("Content (Index): %s | ", lst->content);
+		ft_printf("Content: %s | ", lst->content);
 		ft_printf("Next: %p\n", lst->next);
 		i++;
 		if (lst->next == NULL)

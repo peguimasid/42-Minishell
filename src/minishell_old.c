@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   minishell_old.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/27 12:41:25 by lucafern         ###   ########.fr       */
+/*   Created: 2022/11/05 17:06:05 by lucafern          #+#    #+#             */
+/*   Updated: 2022/11/27 11:40:49 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	launch(t_data *data, char **env)
+void	prompt(void)
 {
 	char	*line_orig;
 	t_list	*single_pipes;
-	t_list	*current_pipe;
-	int		i;
 
-	(void)env;
-	while (data->running)
+	while (1)
 	{
-		i = 0;
 		single_pipes = NULL;
 		line_orig = readline("Minishell ⇢ ");
 		single_pipes = pipe_separator(line_orig);
-		// ft_print_lst(single_pipes);
-		current_pipe = single_pipes;
-		while (i < ft_lstsize(single_pipes))
-		{
-			data->command = current_pipe->content;
-			// printf("o comando %i é: %s\n", i, (char *)current_pipe->content);
-			if (current_pipe->content)
-				handle_prompt(data, env);
-			current_pipe = single_pipes->next;
-			i++;
-		}
-		// ft_print_lst(single_pipes);
+		ft_print_lst(single_pipes);
 		free(line_orig);
-		// free(data->command);
 	}
+}
+
+int	main(void)
+{
+	prompt();
 }
