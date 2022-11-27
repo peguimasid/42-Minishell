@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 08:50:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/27 12:41:25 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:02:12 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,65 @@
 void	launch(t_data *data, char **env)
 {
 	char	*line_orig;
-	t_list	*single_pipes;
-	t_list	*current_pipe;
+	t_list	*all_cmds;
+	t_list	*current_cmd;
 	int		i;
+	int		fd[4096][2];
+	int		pid[4096];
 
 	(void)env;
 	while (data->running)
 	{
 		i = 0;
-		single_pipes = NULL;
+		all_cmds = NULL;
 		line_orig = readline("Minishell ⇢ ");
-		single_pipes = pipe_separator(line_orig);
-		// ft_print_lst(single_pipes);
-		current_pipe = single_pipes;
-		while (i < ft_lstsize(single_pipes))
+		all_cmds = pipe_separator(line_orig);
+		current_cmd = all_cmds;
+		while (i < ft_lstsize(all_cmds))
 		{
-			data->command = current_pipe->content;
-			// printf("o comando %i é: %s\n", i, (char *)current_pipe->content);
-			if (current_pipe->content)
-				handle_prompt(data, env);
-			current_pipe = single_pipes->next;
+			if (pipe(fd[i]) < 0)
+				return ;
+			pid[i] = fork();
+			if (pid[i] < 0)
+				return ;
+			if (pid[i] == 0)
+			{
+				if (i > 0)
+				{
+					dup2(fd[i - 1][0], STDIN_FILENO);
+					close(fd[i - 1][0]);
+					close(fd[i - 1][1]);
+					data->command = current_cmd->content;
+					if (current_cmd->content)
+						handle_prompt(data, env);
+				}
+				if (i < ft_lstsize(all_cmds))
+				{
+					if (ft_lstsize(all_cmds) > 1)
+					{
+						dup2(fd[i][1], STDOUT_FILENO);
+						close(fd[i][0]);
+						close(fd[i][1]);
+					}
+					data->command = current_cmd->content;
+					if (current_cmd->content)
+						handle_prompt(data, env);
+				}
+				return ;
+			}
+			current_cmd = all_cmds->next;
 			i++;
 		}
-		// ft_print_lst(single_pipes);
+		i = 0;
+		while (i < ft_lstsize(all_cmds))
+		{
+			close(fd[i][0]);
+			close(fd[i][1]);
+			i++;
+		}
+		i = 0;
+		while (i < ft_lstsize(all_cmds))
+			waitpid(pid[i++], NULL, 0);
 		free(line_orig);
 		// free(data->command);
 	}
