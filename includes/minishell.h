@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 14:19:35 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:51:53 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ char		*expand_vars(char *str, t_data *data);
 char		*expand_path(char *str, t_data *data);
 char		*get_substr_var(char *str, int i, t_data *data);
 char		*get_substr_path(char *str, int i, t_data *data);
+
+// ------------------ PARSER -------------------
+
+void		parse_args(char **args, t_data *data);
 
 // ------------------- UTILS -------------------
 
