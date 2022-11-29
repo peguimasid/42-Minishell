@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/29 14:50:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:03:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	handle_input(t_data *data)
 	if (!args)
 		return (throw_error(QUOTE, 1, NULL));
 	parse_args(args, data);
-	free_matrix(args);
-	free(data->input);
+	clean(args, data);
 	return (1);
 }

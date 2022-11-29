@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/10 17:47:45 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:03:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,26 @@
 void	free_data(t_data *data)
 {
 	free_matrix(data->envp);
+}
+
+void	free_node(void *node)
+{
+	t_cmd	*cmd;
+
+	cmd = node;
+	free_matrix(cmd->full_cmd);
+	free(cmd->cmd_path);
+	if (cmd->infile != STDIN_FILENO)
+		close(cmd->infile);
+	if (cmd->outfile != STDOUT_FILENO)
+		close(cmd->outfile);
+	free(cmd);
+}
+
+void	clean(char **args, t_data *data)
+{
+	free_matrix(args);
+	free(data->input);
+	if (data && data->cmds)
+		ft_lstclear(&data->cmds, free_node);
 }

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/29 14:51:53 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:02:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ typedef struct s_data
 	pid_t	pid;
 }			t_data;
 
+typedef struct s_cmd
+{
+	char	**full_cmd;
+	char	*cmd_path;
+	int		infile;
+	int		outfile;
+}			t_cmd;
+
 enum		e_error_type
 {
 	FORKERR = 10,
@@ -52,6 +60,7 @@ int			throw_error(int err_type, int error_code, char *message);
 
 // free.c
 void		free_data(t_data *data);
+void		clean(char **args, t_data *data);
 
 // handle_input.c
 int			handle_input(t_data *data);
