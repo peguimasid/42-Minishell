@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/29 15:02:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:10:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data
 	char	*input;
 	char	**envp;
 	int		running;
+	char	**args;
 	t_list	*cmds;
 	pid_t	pid;
 }			t_data;
@@ -60,14 +61,14 @@ int			throw_error(int err_type, int error_code, char *message);
 
 // free.c
 void		free_data(t_data *data);
-void		clean(char **args, t_data *data);
+void		clean(t_data *data);
 
 // handle_input.c
 int			handle_input(t_data *data);
 
 // ------------------- LEXER -------------------
 
-char		**lexer(char **args, t_data *data);
+int			lexer(t_data *data);
 char		**split_quotes(char const *s, char *set);
 char		**subsplit_pipes_and_redirections(char **args);
 
@@ -82,7 +83,7 @@ char		*get_substr_path(char *str, int i, t_data *data);
 
 // ------------------ PARSER -------------------
 
-void		parse_args(char **args, t_data *data);
+void		parse_args(t_data *data);
 
 // ------------------- UTILS -------------------
 
