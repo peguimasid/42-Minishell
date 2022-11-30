@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 18:54:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 18:56:02 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	should_create_node(t_data *data, int i)
 	int	has_args_after_pipe;
 
 	is_pipe = data->args[i][0] == '|';
-	has_args_after_pipe = data->args[i + 1] && data->args[i + 1][0];
+	has_args_after_pipe = (data->args[i + 1] && data->args[i + 1][0]);
 	if (i == 0)
 		return (1);
 	if (is_pipe && has_args_after_pipe)
