@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 20:03:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:04:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	should_create_node(t_data *data, int i)
 	return (0);
 }
 
+void	quit_parsing(t_data *data, char **trimmed_args)
+{
+	ft_lstclear(&data->cmds, free_node);
+	free_matrix(trimmed_args);
+}
+
 int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 {
 	int	argument_type;
@@ -42,12 +48,6 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 	if (argument_type != IS_PIPE)
 		node->full_cmd = matrix_push(node->full_cmd, trimmed_args[i]);
 	return (1);
-}
-
-void	quit_parsing(t_data *data, char **trimmed_args)
-{
-	ft_lstclear(&data->cmds, free_node);
-	free_matrix(trimmed_args);
 }
 
 void	fill_nodes(t_data *data)
