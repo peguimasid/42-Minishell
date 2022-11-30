@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 18:49:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 18:54:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 	char	*has_next_arg;
 	int		next_arg;
 
+	if (!data->args[i])
+		return (0);
 	curr_arg = data->args[i][0];
 	has_next_arg = data->args[i + 1];
 	next_arg = data->args[i + 1][0];
-	if (!data->args[i])
-		return (0);
 	if (curr_arg == '>' && has_next_arg && next_arg == '>')
 		return (3);
 	if (curr_arg == '<' && has_next_arg && next_arg == '<')
