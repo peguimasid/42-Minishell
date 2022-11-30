@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/29 15:10:44 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:03:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char		*get_substr_path(char *str, int i, t_data *data);
 // ------------------ PARSER -------------------
 
 void		parse_args(t_data *data);
+char		**trim_args(char **args);
 
 // ------------------- UTILS -------------------
 
