@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 17:56:56 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 19:57:00 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ enum		e_error_type
 {
 	FORKERR = 10,
 	QUOTE = 11,
+	PIPENDERR = 10,
+};
+
+enum		e_redirection_type
+{
+	REDIRECT_INPUT = 1000,
+	REDIRECT_OUTPUT = 1001,
+	APPEND_OUTPUT = 1002,
+	HEREDOC = 1003,
+	NO_ARG = 1404,
+	IS_PIPE = 1,
 };
 
 int			g_status;
@@ -61,6 +72,7 @@ int			throw_error(int err_type, int error_code, char *message);
 
 // free.c
 void		free_data(t_data *data);
+void		free_node(void *node);
 void		clean(t_data *data);
 
 // handle_input.c
@@ -87,6 +99,7 @@ void		parse_args(t_data *data);
 void		fill_nodes(t_data *data);
 char		**trim_args(char **args);
 t_cmd		*new_node(void);
+int			get_redirection_type(char **args, int i);
 
 // ------------------- UTILS -------------------
 

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 18:56:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:03:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,26 @@ int	should_create_node(t_data *data, int i)
 
 int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 {
-	int		curr_arg;
-	char	*has_next_arg;
-	int		next_arg;
+	int	argument_type;
 
-	if (!data->args[i])
-		return (0);
-	curr_arg = data->args[i][0];
-	has_next_arg = data->args[i + 1];
-	next_arg = data->args[i + 1][0];
-	if (curr_arg == '>' && has_next_arg && next_arg == '>')
+	argument_type = get_redirection_type(data->args, i);
+	if (argument_type == APPEND_OUTPUT)
 		return (3);
-	if (curr_arg == '<' && has_next_arg && next_arg == '<')
+	if (argument_type == HEREDOC)
 		return (3);
-	if (curr_arg == '>')
+	if (argument_type == REDIRECT_OUTPUT)
 		return (2);
-	if (curr_arg == '<')
+	if (argument_type == REDIRECT_INPUT)
 		return (2);
-	if (curr_arg != '|')
+	if (argument_type != IS_PIPE)
 		node->full_cmd = matrix_push(node->full_cmd, trimmed_args[i]);
 	return (1);
+}
+
+void	quit_parsing(t_data *data, char **trimmed_args)
+{
+	ft_lstclear(&data->cmds, free_node);
+	free_matrix(trimmed_args);
 }
 
 void	fill_nodes(t_data *data)
@@ -59,6 +59,7 @@ void	fill_nodes(t_data *data)
 
 	trimmed_args = trim_args(data->args);
 	i = 0;
+	offset = 0;
 	while (data->args[i])
 	{
 		curr_node = ft_lstlast(data->cmds);
@@ -69,6 +70,8 @@ void	fill_nodes(t_data *data)
 			curr_node = ft_lstlast(data->cmds);
 		}
 		offset = fill_current_node(curr_node->content, trimmed_args, data, i);
+		if (offset < 0)
+			return (quit_parsing(data, trimmed_args));
 		i += offset;
 	}
 	free_matrix(trimmed_args);
