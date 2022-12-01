@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:32:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:47:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int			empty_pipe_error(void);
 
 int			set_outfile_fd(t_cmd *node, char **trimmed_args, int i);
 int			set_append_outfile_fd(t_cmd *node, char **trimmed_args, int i);
+int			set_infile_fd(t_cmd *node, char **trimmed_args, int i);
 
 // ------------------- UTILS -------------------
 
