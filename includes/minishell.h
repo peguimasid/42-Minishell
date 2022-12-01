@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 11:29:43 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:13:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../lib/libft/libft.h"
 # include "constants.h"
+# include <fcntl.h>
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -46,6 +47,9 @@ enum		e_error_type
 	FORKERR = 10,
 	QUOTE = 11,
 	PIPENDERR = 12,
+	OPENFILEERR = 13,
+	NDIR = 14,
+	NPERM = 15,
 };
 
 enum		e_redirection_type
@@ -103,7 +107,7 @@ t_cmd		*new_node(void);
 int			get_argument_type(char **args, int i);
 void		quit_parsing(t_data *data, char **trimmed_args);
 int			empty_pipe_error(void);
-int			set_append_output_file_fd(t_data *data, char **trimmed_args, int i);
+int			set_append_outfile_fd(t_cmd *node, char **trimmed_args, int i);
 
 // ------------------- UTILS -------------------
 

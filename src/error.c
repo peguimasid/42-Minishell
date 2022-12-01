@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:20:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:45:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:09:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	throw_error(int err_type, int error_code, char *message)
 		print_error("minishell: not found matching quote\n");
 	if (err_type == PIPENDERR)
 		print_error("minishell: syntax error near unexpected token `|'\n");
+	if (err_type == OPENFILEERR)
+		print_error("minishell: syntax error near unexpected token `newline'\n");
+	if (err_type == NDIR)
+		print_error("minishell: No such file or directory: ");
+	if (err_type == NPERM)
+		print_error("minishell: permission denied: ");
 	print_error(message);
 	return (1);
 }
