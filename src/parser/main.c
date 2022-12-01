@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:49:42 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 18:14:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 13:01:04 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ void	print_nodes(t_data *data)
 {
 	int		i;
 	t_cmd	*curr;
+	t_list	*curr_node;
 
 	i = 1;
-	while (data->cmds)
+	curr_node = data->cmds;
+	while (curr_node)
 	{
-		curr = data->cmds->content;
+		curr = curr_node->content;
 		printf("------- Node %d -------\n", i);
 		printf("full_cmd:\n");
 		print_matrix(curr->full_cmd);
 		printf("infile => %d\n", curr->infile);
 		printf("outfile => %d\n", curr->outfile);
 		printf("-----------------------\n\n");
-		data->cmds = data->cmds->next;
+		curr_node = curr_node->next;
 		i++;
 	}
 }
