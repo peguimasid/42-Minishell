@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:53:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:55:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ int	should_create_node(t_data *data, int i)
 	if (is_pipe && has_args_after_pipe)
 		return (1);
 	return (0);
-}
-
-void	quit_parsing(t_data *data, char **trimmed_args)
-{
-	ft_lstclear(&data->cmds, free_node);
-	free_matrix(trimmed_args);
-}
-
-int	empty_pipe_error(void)
-{
-	throw_error(PIPENDERR, 2, NULL);
-	return (-1);
 }
 
 int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)

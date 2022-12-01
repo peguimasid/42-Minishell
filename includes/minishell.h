@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:53:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:55:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void		fill_nodes(t_data *data);
 char		**trim_args(char **args);
 t_cmd		*new_node(void);
 int			get_argument_type(char **args, int i);
+void		quit_parsing(t_data *data, char **trimmed_args);
+int			empty_pipe_error(void);
 
 // ------------------- UTILS -------------------
 
