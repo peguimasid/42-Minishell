@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:57:37 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 17:30:51 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:09:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ char	*trim_arg(char *str, int sq_open, int dq_open)
 	result = malloc(sizeof(char) * (ft_strlen(str) - to_remove + 1));
 	while (str[i])
 	{
-		sq_open = (sq_open + (!dq_open && str[i] == '\'')) % 2;
-		dq_open = (dq_open + (!sq_open && str[i] == '\"')) % 2;
+		sq_open = (sq_open + (!dq_open && str[i] == SINGLE_QUOTE)) % 2;
+		dq_open = (dq_open + (!sq_open && str[i] == DOUBLE_QUOTE)) % 2;
 		if (!should_remove(str, sq_open, dq_open, i))
 			result[j++] = str[i];
 		i++;
