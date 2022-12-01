@@ -15,6 +15,9 @@ $(NAME): $(OBJ)
 
 all: $(NAME)
 
+valgrind: all
+	valgrind --leak-check=full --show-reachable=yes --show-leak-kinds=all --error-limit=no --gen-suppressions=all --log-file=lib.log ./$(NAME)
+
 clean:
 	make clean -s -C lib/libft
 	rm -f $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 12:35:48 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:03:30 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,11 @@ int			get_argument_type(char **args, int i);
 void		quit_parsing(t_data *data, char **trimmed_args);
 int			empty_pipe_error(void);
 int			set_append_output_file_fd(t_data *data, char **trimmed_args, int i);
+
+// ------------------ EXECUTOR -------------------
+
+void		handle_cmds(t_data *data);
+char		*find_cmd_path(t_data *data, char *cmd);
 
 // ------------------- UTILS -------------------
 
