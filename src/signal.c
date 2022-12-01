@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:52:02 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 14:45:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 12:41:28 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	handle_sigint(int sig)
 {
+	extern int	g_status;
+
 	if (sig == SIGINT)
 	{
 		g_status = 130;

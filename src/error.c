@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:20:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:45:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 12:41:23 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	print_error(char *error)
 
 int	throw_error(int err_type, int error_code, char *message)
 {
+	extern int	g_status;
+
 	g_status = error_code;
 	if (err_type == FORKERR)
 		print_error("minishell: fork failed\n");
