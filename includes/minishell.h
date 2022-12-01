@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:13:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:32:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ t_cmd		*new_node(void);
 int			get_argument_type(char **args, int i);
 void		quit_parsing(t_data *data, char **trimmed_args);
 int			empty_pipe_error(void);
+
+int			set_outfile_fd(t_cmd *node, char **trimmed_args, int i);
 int			set_append_outfile_fd(t_cmd *node, char **trimmed_args, int i);
 
 // ------------------- UTILS -------------------
