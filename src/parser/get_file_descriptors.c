@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:47:38 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:57:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	open_file(char *path, t_cmd *node, int is_write, int is_append)
 		node->outfile = open(path, O_RDONLY);
 	else
 		node->outfile = node->outfile;
-	return (1);
+	return (node->outfile);
 }
 
 int	set_infile_fd(t_cmd *node, char **trimmed_args, int i)
