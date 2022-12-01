@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 19:57:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:44:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ enum		e_error_type
 {
 	FORKERR = 10,
 	QUOTE = 11,
-	PIPENDERR = 10,
+	PIPENDERR = 12,
 };
 
 enum		e_redirection_type

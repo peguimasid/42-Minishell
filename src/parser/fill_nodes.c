@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 20:04:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:46:18 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 	int	argument_type;
 
 	argument_type = get_redirection_type(data->args, i);
+	if (argument_type == IS_PIPE || argument_type == NO_ARG)
+	{
+		throw_error(PIPENDERR, 2, NULL);
+		return (-1);
+	}
 	if (argument_type == APPEND_OUTPUT)
 		return (3);
 	if (argument_type == HEREDOC)
