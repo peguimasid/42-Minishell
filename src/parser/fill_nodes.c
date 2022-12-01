@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:46:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:53:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ void	quit_parsing(t_data *data, char **trimmed_args)
 	free_matrix(trimmed_args);
 }
 
+int	empty_pipe_error(void)
+{
+	throw_error(PIPENDERR, 2, NULL);
+	return (-1);
+}
+
 int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 {
 	int	argument_type;
 
-	argument_type = get_redirection_type(data->args, i);
-	if (argument_type == IS_PIPE || argument_type == NO_ARG)
-	{
-		throw_error(PIPENDERR, 2, NULL);
-		return (-1);
-	}
+	argument_type = get_argument_type(data->args, i);
+	if (argument_type == PIPE || argument_type == NO_ARG)
+		return (empty_pipe_error());
 	if (argument_type == APPEND_OUTPUT)
 		return (3);
 	if (argument_type == HEREDOC)
@@ -50,7 +53,7 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 		return (2);
 	if (argument_type == REDIRECT_INPUT)
 		return (2);
-	if (argument_type != IS_PIPE)
+	if (argument_type == NORMAL_ARG)
 		node->full_cmd = matrix_push(node->full_cmd, trimmed_args[i]);
 	return (1);
 }

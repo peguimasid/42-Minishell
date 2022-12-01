@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:33:44 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/30 19:50:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:53:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*new_node(void)
 	return (node);
 }
 
-int	get_redirection_type(char **args, int i)
+int	get_argument_type(char **args, int i)
 {
 	int	curr_arg;
 	int	has_next_arg;
@@ -46,5 +46,7 @@ int	get_redirection_type(char **args, int i)
 		return (REDIRECT_OUTPUT);
 	if (curr_arg == '<')
 		return (REDIRECT_INPUT);
-	return (curr_arg == '|');
+	if (curr_arg == '|')
+		return (PIPE);
+	return (NORMAL_ARG);
 }
