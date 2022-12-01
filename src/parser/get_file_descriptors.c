@@ -6,16 +6,18 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:57:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 17:17:32 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	open_file(char *path, t_cmd *node, int is_write, int is_append)
+int	open_file(char *path, int oldfd, int is_write, int is_append)
 {
-	if (node->outfile > 2)
-		close(node->outfile);
+	int	fd;
+
+	if (oldfd > 2)
+		close(oldfd);
 	if (!path)
 		return (-1);
 	if (access(path, F_OK) == -1 && !is_write)
@@ -25,30 +27,29 @@ int	open_file(char *path, t_cmd *node, int is_write, int is_append)
 	else if (is_write && access(path, W_OK) == -1 && access(path, F_OK) == 0)
 		throw_error(NPERM, 126, path);
 	if (is_write && is_append)
-		node->outfile = open(path, O_CREAT | O_WRONLY | O_APPEND, 0666);
+		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	else if (is_write && !is_append)
-		node->outfile = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
-	else if (!is_write && node->outfile != -1)
-		node->outfile = open(path, O_RDONLY);
+		fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	else if (!is_write && oldfd != -1)
+		fd = open(path, O_RDONLY);
 	else
-		node->outfile = node->outfile;
-	return (node->outfile);
+		fd = oldfd;
+	return (fd);
 }
 
-int	set_infile_fd(t_cmd *node, char **trimmed_args, int i)
+int	set_infile_fd(t_cmd *node, char **args, int i)
 {
-	int	status;
 	int	file_position;
 
 	file_position = i + 1;
-	if (trimmed_args[file_position])
-		status = open_file(trimmed_args[file_position], node, 0, 0);
-	if (!trimmed_args[file_position])
+	if (args[file_position])
+		node->infile = open_file(args[file_position], node->infile, 0, 0);
+	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
-	if (status == -1)
+	if (node->infile == -1)
 	{
 		g_status = 1;
 		return (-1);
@@ -56,20 +57,19 @@ int	set_infile_fd(t_cmd *node, char **trimmed_args, int i)
 	return (2);
 }
 
-int	set_outfile_fd(t_cmd *node, char **trimmed_args, int i)
+int	set_outfile_fd(t_cmd *node, char **args, int i)
 {
-	int	status;
 	int	file_position;
 
 	file_position = i + 1;
-	if (trimmed_args[file_position])
-		status = open_file(trimmed_args[file_position], node, 1, 0);
-	if (!trimmed_args[file_position])
+	if (args[file_position])
+		node->outfile = open_file(args[file_position], node->outfile, 1, 0);
+	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
-	if (status == -1)
+	if (node->outfile == -1)
 	{
 		g_status = 1;
 		return (-1);
@@ -77,20 +77,19 @@ int	set_outfile_fd(t_cmd *node, char **trimmed_args, int i)
 	return (2);
 }
 
-int	set_append_outfile_fd(t_cmd *node, char **trimmed_args, int i)
+int	set_append_outfile_fd(t_cmd *node, char **args, int i)
 {
-	int	status;
 	int	file_position;
 
 	file_position = i + 2;
-	if (trimmed_args[file_position])
-		status = open_file(trimmed_args[file_position], node, 1, 1);
-	if (!trimmed_args[file_position])
+	if (args[file_position])
+		node->outfile = open_file(args[file_position], node->outfile, 1, 1);
+	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
-	if (status == -1)
+	if (node->outfile == -1)
 	{
 		g_status = 1;
 		return (-1);
