@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:17:29 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:30:15 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int	set_append_outfile_fd(t_cmd *node, char **trimmed_args, int i)
 		return (-1);
 	}
 	if (status == -1)
+	{
+		g_status = 1;
 		return (-1);
+	}
 	return (3);
 }
