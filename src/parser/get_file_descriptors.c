@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 17:17:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 14:25:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ int	set_infile_fd(t_cmd *node, char **args, int i)
 		return (-1);
 	}
 	return (2);
+}
+
+int	set_heredoc_fd(t_cmd *node, char **args, int i)
+{
+	int	delimiter_position;
+
+	delimiter_position = i + 2;
+	if (args[delimiter_position])
+		node->infile = get_heredoc(args[delimiter_position]);
+	if (!args[delimiter_position])
+	{
+		throw_error(OPENFILEERR, 2, NULL);
+		return (-1);
+	}
+	if (node->infile == -1)
+	{
+		g_status = 1;
+		return (-1);
+	}
+	return (3);
 }
 
 int	set_outfile_fd(t_cmd *node, char **args, int i)

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 16:47:50 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 14:03:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 	if (argument_type == APPEND_OUTPUT)
 		return (set_append_outfile_fd(node, trimmed_args, i));
 	if (argument_type == HEREDOC)
-		return (3);
+		return (set_heredoc_fd(node, trimmed_args, i));
 	if (argument_type == REDIRECT_OUTPUT)
 		return (set_outfile_fd(node, trimmed_args, i));
 	if (argument_type == REDIRECT_INPUT)

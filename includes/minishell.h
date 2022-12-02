@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 17:16:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 14:49:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ enum		e_error_type
 	OPENFILEERR = 13,
 	NDIR = 14,
 	NPERM = 15,
+	PIPERR = 16,
 };
 
 enum		e_redirection_type
@@ -111,6 +112,9 @@ int			empty_pipe_error(void);
 int			set_outfile_fd(t_cmd *node, char **args, int i);
 int			set_append_outfile_fd(t_cmd *node, char **args, int i);
 int			set_infile_fd(t_cmd *node, char **args, int i);
+int			set_heredoc_fd(t_cmd *node, char **args, int i);
+
+int			get_heredoc(char *delimiter);
 
 // ------------------- UTILS -------------------
 
