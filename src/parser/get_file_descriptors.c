@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 15:33:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 16:33:04 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ int	set_infile_fd(t_cmd *node, char **args, int i)
 	int	file_position;
 
 	file_position = i + 1;
-	if (args[file_position])
-		node->infile = open_file(args[file_position], node->infile, 0, 0);
 	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
+	node->infile = open_file(args[file_position], node->infile, 0, 0);
 	if (node->infile == -1)
 	{
 		g_status = 1;
@@ -62,13 +61,12 @@ int	set_heredoc_fd(t_cmd *node, char **args, int i)
 	int	delimiter_position;
 
 	delimiter_position = i + 2;
-	if (args[delimiter_position])
-		node->infile = get_heredoc(args[delimiter_position]);
 	if (!args[delimiter_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
+	node->infile = get_heredoc(args[delimiter_position]);
 	if (node->infile == -1)
 	{
 		g_status = 1;
@@ -82,13 +80,12 @@ int	set_outfile_fd(t_cmd *node, char **args, int i)
 	int	file_position;
 
 	file_position = i + 1;
-	if (args[file_position])
-		node->outfile = open_file(args[file_position], node->outfile, 1, 0);
 	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
+	node->outfile = open_file(args[file_position], node->outfile, 1, 0);
 	if (node->outfile == -1)
 	{
 		g_status = 1;
@@ -102,13 +99,12 @@ int	set_append_outfile_fd(t_cmd *node, char **args, int i)
 	int	file_position;
 
 	file_position = i + 2;
-	if (args[file_position])
-		node->outfile = open_file(args[file_position], node->outfile, 1, 1);
 	if (!args[file_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
 		return (-1);
 	}
+	node->outfile = open_file(args[file_position], node->outfile, 1, 1);
 	if (node->outfile == -1)
 	{
 		g_status = 1;
