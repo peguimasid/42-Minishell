@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:22:59 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/02 15:25:25 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 23:33:16 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,25 @@ char	*get_string(char *delimiter)
 {
 	char	*result;
 	char	*input;
+	char	*tmp;
 
 	result = NULL;
 	input = NULL;
 	while (!input_is_delimiter_or_user_quit(input, delimiter))
 	{
+		tmp = result;
 		result = ft_strjoin(result, input);
+		free(tmp);
+		free(input);
 		input = readline("▸ ");
 		if (!input)
 		{
 			printf("%s (wanted `%s\')\n", HDOC_WARN, delimiter);
 			break ;
 		}
+		tmp = input;
 		input = ft_strjoin(input, "\n");
+		free(tmp);
 	}
 	free(input);
 	return (result);
@@ -55,19 +61,18 @@ char	*get_string(char *delimiter)
 int	get_heredoc(char *delimiter)
 {
 	int		fd[2];
-	char	*result;
+	char	*input_str;
 
-	result = NULL;
+	input_str = NULL;
 	g_status = 0;
 	if (pipe(fd) == -1)
 	{
 		throw_error(PIPERR, 1, NULL);
 		return (-1);
 	}
-	result = get_string(delimiter);
-	printf("res>> %s", result);
-	write(fd[WRITE_END], result, ft_strlen(result));
-	free(result);
+	input_str = get_string(delimiter);
+	write(fd[WRITE_END], input_str, ft_strlen(input_str));
+	free(input_str);
 	close(fd[WRITE_END]);
 	if (g_status == 130)
 	{
