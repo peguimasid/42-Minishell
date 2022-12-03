@@ -1,6 +1,6 @@
 NAME=minishell
 
-SRCS = $(shell find src -name '*.c')
+SRCS = $(shell find src lib/gnl -name '*.c')
 
 LIBFT = lib/libft/libft.a
 

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/02 14:25:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 15:31:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ int	set_heredoc_fd(t_cmd *node, char **args, int i)
 	delimiter_position = i + 2;
 	if (args[delimiter_position])
 		node->infile = get_heredoc(args[delimiter_position]);
+	printf("%s", get_next_line(node->infile));
+	printf("%s", get_next_line(node->infile));
+	printf("%s", get_next_line(node->infile));
+	printf("%s", get_next_line(node->infile));
+	printf("%s", get_next_line(node->infile));
 	if (!args[delimiter_position])
 	{
 		throw_error(OPENFILEERR, 2, NULL);
