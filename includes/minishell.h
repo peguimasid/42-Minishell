@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 17:38:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 17:40:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,6 @@ void		init_shlvl(t_data *data);
 void		init_path(t_data *data);
 void		init_executable(t_data *data, char *program_name);
 
-// clear_window
-void		clear_window(void);
-
 // input
 int			is_empty(char *input);
 int			is_null(char *input);
@@ -150,5 +147,6 @@ int			get_invalid_input_status(char *input);
 // tools
 int			ft_strchars_i(const char *s, char *set);
 char		*ft_strcat(char *src, char *dest);
+void		clear_window(void);
 
 #endif
