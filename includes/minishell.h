@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 17:40:44 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 18:06:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,6 @@ typedef struct s_cmd
 	int		infile;
 	int		outfile;
 }			t_cmd;
-
-enum		e_error_type
-{
-	FORKERR = 10,
-	QUOTE = 11,
-	PIPENDERR = 12,
-	OPENFILEERR = 13,
-	NDIR = 14,
-	NPERM = 15,
-	PIPERR = 16,
-};
-
-enum		e_redirection_type
-{
-	REDIRECT_INPUT = 1000,
-	REDIRECT_OUTPUT = 1001,
-	APPEND_OUTPUT = 1002,
-	HEREDOC = 1003,
-	PIPE = 1004,
-	NORMAL_ARG = 1005,
-	NO_ARG = 1404,
-};
 
 int			g_status;
 
