@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/02 14:49:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 22:52:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <string.h>
 # include <sys/errno.h>
+# include <sys/ioctl.h>
 # include <sys/wait.h>
 
 typedef struct s_data

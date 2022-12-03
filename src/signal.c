@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 11:52:02 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 14:45:22 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/02 23:02:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ void	handle_sigint(int sig)
 	if (sig == SIGINT)
 	{
 		g_status = 130;
-		ft_putchar_fd('\n', 1);
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
-		rl_redisplay();
 	}
 }
 
