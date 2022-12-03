@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 14:22:59 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/02 23:33:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 13:52:22 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_string(char *delimiter)
 		result = ft_strjoin(result, input);
 		free(tmp);
 		free(input);
-		input = readline("▸ ");
+		input = readline("➜ ");
 		if (!input)
 		{
 			printf("%s (wanted `%s\')\n", HDOC_WARN, delimiter);
