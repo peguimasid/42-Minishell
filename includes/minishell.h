@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 15:26:00 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 17:38:37 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,6 @@ int			get_invalid_input_status(char *input);
 
 // tools
 int			ft_strchars_i(const char *s, char *set);
+char		*ft_strcat(char *src, char *dest);
 
 #endif
