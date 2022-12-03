@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 18:06:26 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/03 18:25:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,25 +76,36 @@ char		**subsplit_pipes_and_redirections(char **args);
 void		expand_args(char **args, t_data *data);
 char		*expand_vars(char *str, t_data *data);
 char		*expand_path(char *str, t_data *data);
+
+// utils.c
 char		*get_substr_var(char *str, int i, t_data *data);
 char		*get_substr_path(char *str, int i, t_data *data);
 
 // ------------------ PARSER -------------------
 
+// main.c
 void		parse_args(t_data *data);
-void		fill_nodes(t_data *data);
-char		**trim_args(char **args);
-t_cmd		*new_node(void);
-int			get_argument_type(char **args, int i);
-void		quit_parsing(t_data *data, char **trimmed_args);
-int			empty_pipe_error(void);
 
+// trim_args.c
+char		**trim_args(char **args);
+
+// fill_nodes.c
+void		fill_nodes(t_data *data);
+
+// get_file_descriptors.c
 int			set_outfile_fd(t_cmd *node, char **args, int i);
 int			set_append_outfile_fd(t_cmd *node, char **args, int i);
 int			set_infile_fd(t_cmd *node, char **args, int i);
 int			set_heredoc_fd(t_cmd *node, char **args, int i);
 
+// heredoc.c
 int			get_heredoc(char *delimiter);
+
+// utils.c
+int			get_argument_type(char **args, int i);
+int			empty_pipe_error(void);
+void		quit_parsing(t_data *data, char **trimmed_args);
+t_cmd		*new_node(void);
 
 // ------------------- UTILS -------------------
 
