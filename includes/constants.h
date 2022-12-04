@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:44:40 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 12:11:40 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 15:45:58 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ enum	e_redirection_type
 	PIPE = 1004,
 	NORMAL_ARG = 1005,
 	NO_ARG = 1404,
-};
-
-enum	e_command_type
-{
-	BUILTIN = 2000,
-	OTHER = 2001,
 };
 
 #endif

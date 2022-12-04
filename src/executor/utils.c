@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:35:55 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 12:54:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 15:44:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ int	is_builtin(t_cmd *node)
 	if (ft_strncmp(cmd, "exit", ft_strlen(cmd)) == 0 && ft_strlen(cmd) == 4)
 		return (1);
 	return (0);
-}
-
-int	get_command_type(t_cmd *cmd)
-{
-	if (is_builtin(cmd))
-		return (BUILTIN);
-	return (OTHER);
 }
 
 void	wait_child_processes_exit(t_data *data)
