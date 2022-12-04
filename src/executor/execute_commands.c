@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 13:08:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 13:13:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	handle_builtin(t_cmd *cmd)
 {
 	printf("BUILTIN\n");
 	printf("command => %s\n\n", *cmd->full_cmd);
-	if (ft_strncmp(*cmd->full_cmd, "exit", 4) == 0)
-		return (0);
 	return (1);
 }
 
