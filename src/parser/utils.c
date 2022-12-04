@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:33:44 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 10:55:50 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 00:49:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,11 @@ void	quit_parsing(t_data *data, char **trimmed_args)
 int	empty_pipe_error(void)
 {
 	throw_error(PIPENDERR, 2, NULL);
+	return (-1);
+}
+
+int	empty_redirection_error(void)
+{
+	throw_error(OPENFILEERR, 2, NULL);
 	return (-1);
 }
