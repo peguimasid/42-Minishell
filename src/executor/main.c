@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:21:49 by lucafern          #+#    #+#             */
-/*   Updated: 2022/12/04 14:14:25 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:19:23 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,12 @@ void	end_cmds(t_data *data, int (*fd)[2], int *pid)
 		waitpid(pid[i++], NULL, 0);
 }
 
-void	handle_cmds(t_data *data)
+void	loop_cmds(t_list *curr_node, int (*fd)[2], int *pid, t_data *data)
 {
 	int		i;
 	t_cmd	*curr;
-	t_list	*curr_node;
-	int		fd[4096][2];
-	int		pid[4096];
 
 	i = 0;
-	curr_node = data->cmds;
 	while (i < ft_lstsize(data->cmds))
 	{
 		if (pipe(fd[i]) < 0)
@@ -66,5 +62,15 @@ void	handle_cmds(t_data *data)
 		curr_node = curr_node->next;
 		i++;
 	}
+}
+
+void	handle_cmds(t_data *data)
+{
+	t_list	*curr_node;
+	int		fd[4096][2];
+	int		pid[4096];
+
+	curr_node = data->cmds;
+	loop_cmds(curr_node, fd, pid, data);
 	end_cmds(data, fd, pid);
 }
