@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:21:49 by lucafern          #+#    #+#             */
-/*   Updated: 2022/12/04 15:23:18 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/04 15:27:04 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	end_cmds(t_data *data, int (*fd)[2], int *pid)
 		i++;
 	}
 	i = 0;
-	while (i < ft_lstsize(data->cmds) - 1)
+	while (i < ft_lstsize(data->cmds))
 		waitpid(pid[i++], NULL, 0);
 }
 
