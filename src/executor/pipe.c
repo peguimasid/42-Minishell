@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_descriptors.c                             :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 13:08:29 by lucafern         ###   ########.fr       */
+/*   Created: 2022/12/04 14:04:50 by lucafern          #+#    #+#             */
+/*   Updated: 2022/12/04 14:05:33 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	set_append_output_file_fd(t_data *data, char **trimmed_args, int i)
+void	read_from_prev_pipe(int fd[2])
 {
-	(void)data;
-	(void)trimmed_args;
-	(void)i;
-	return (3);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	close(fd[1]);
+}
+
+void	write_on_pipe_to_next_cmd(int fd[2], int lst_size)
+{
+	if (lst_size > 1)
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[0]);
+		close(fd[1]);
+	}
 }

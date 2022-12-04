@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:49:42 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 15:08:45 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/04 13:47:08 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	print_nodes(t_data *data)
 void	parse_args(t_data *data)
 {
 	fill_nodes(data);
-	print_nodes(data);
+	// print_nodes(data);
 }

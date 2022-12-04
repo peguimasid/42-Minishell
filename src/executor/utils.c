@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_file_descriptors.c                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 11:25:45 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 13:08:29 by lucafern         ###   ########.fr       */
+/*   Created: 2022/12/04 14:04:07 by lucafern          #+#    #+#             */
+/*   Updated: 2022/12/04 14:04:08 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-
-int	set_append_output_file_fd(t_data *data, char **trimmed_args, int i)
+int	str_ichr(char *str, char c)
 {
-	(void)data;
-	(void)trimmed_args;
-	(void)i;
-	return (3);
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		return (i);
+	return (-1);
 }

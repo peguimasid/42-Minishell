@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 09:19:52 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 14:05:21 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:02:59 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,12 @@ char	*find_cmd_path(t_data *data, char *cmd)
 	}
 	free_pointer_and_contents(paths);
 	return (cmd);
+}
+
+void	define_cmd_path(t_cmd *cmd, t_data *data)
+{
+	if (str_ichr(cmd->full_cmd[0], '/') > -1)
+		cmd->cmd_path = cmd->full_cmd[0];
+	else
+		cmd->cmd_path = find_cmd_path(data, cmd->full_cmd[0]);
 }

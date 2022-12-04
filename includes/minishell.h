@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/01 14:03:30 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/04 14:05:18 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,12 @@ int			set_append_output_file_fd(t_data *data, char **trimmed_args, int i);
 
 // ------------------ EXECUTOR -------------------
 
+int			str_ichr(char *str, char c);
+void		read_from_prev_pipe(int fd[2]);
+void		write_on_pipe_to_next_cmd(int fd[2], int lst_size);
 void		handle_cmds(t_data *data);
 char		*find_cmd_path(t_data *data, char *cmd);
+void		define_cmd_path(t_cmd *cmd, t_data *data);
 
 // ------------------- UTILS -------------------
 
