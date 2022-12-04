@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:44:40 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/03 18:06:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 12:11:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define READ_END 0
 # define WRITE_END 1
 
-enum		e_error_type
+enum	e_error_type
 {
 	FORKERR = 10,
 	QUOTE = 11,
@@ -31,7 +31,7 @@ enum		e_error_type
 	PIPERR = 16,
 };
 
-enum		e_redirection_type
+enum	e_redirection_type
 {
 	REDIRECT_INPUT = 1000,
 	REDIRECT_OUTPUT = 1001,
@@ -40,6 +40,12 @@ enum		e_redirection_type
 	PIPE = 1004,
 	NORMAL_ARG = 1005,
 	NO_ARG = 1404,
+};
+
+enum	e_command_type
+{
+	BUILTIN = 2000,
+	OTHER = 2001,
 };
 
 #endif

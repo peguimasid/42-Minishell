@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 12:08:59 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 12:15:04 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ t_cmd		*new_node(void);
 
 // main.c
 int			executor(t_data *data);
+
+// execute_commands.c
+int			execute_commands(t_data *data);
 
 // ------------------- UTILS -------------------
 
