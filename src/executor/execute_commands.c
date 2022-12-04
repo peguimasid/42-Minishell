@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 15:44:02 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 16:32:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	handle_builtin(t_cmd *cmd)
 	return (1);
 }
 
-int	handle_other(t_cmd *cmd)
+int	handle_extern(t_cmd *cmd)
 {
-	printf("OTHER\n");
+	printf("EXTERN\n");
 	printf("command => %s\n\n", *cmd->full_cmd);
 	return (1);
 }
@@ -30,7 +30,7 @@ int	handle_command(t_cmd *command)
 {
 	if (is_builtin(command))
 		return (handle_builtin(command));
-	return (handle_other(command));
+	return (handle_extern(command));
 }
 
 int	execute_commands(t_data *data)
