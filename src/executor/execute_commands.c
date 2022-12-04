@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 18:28:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 18:41:54 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	handle_others(t_cmd *cmd)
 
 int	handle_command(t_cmd *command)
 {
+	if (!command->full_cmd)
+		return (1);
 	if (is_config_builtin(command))
 		return (handle_config_builtin(command));
 	return (handle_others(command));
