@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 13:23:51 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 13:39:27 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ int	handle_command(t_cmd *command)
 int	execute_commands(t_data *data)
 {
 	t_list	*current_node;
-	t_cmd	*current_command;
+	t_cmd	*command;
 	int		status;
 
 	current_node = data->cmds;
 	status = 1;
 	while (current_node)
 	{
-		current_command = current_node->content;
-		status = handle_command(current_command);
+		command = current_node->content;
+		status = handle_command(command);
 		current_node = current_node->next;
 	}
 	wait_child_processes_exit(data);
