@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:35:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/29 15:14:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/04 11:36:31 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	handle_input(t_data *data)
 	if (!lexer(data))
 		return (throw_error(QUOTE, 1, NULL));
 	parse_args(data);
+	executor(data);
 	clean(data);
 	return (1);
 }
