@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/04 12:35:55 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 15:35:20 by gmasid           ###   ########.fr       */
+/*   Created: 2022/12/05 18:14:19 by gmasid            #+#    #+#             */
+/*   Updated: 2022/12/05 18:16:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	is_builtin(t_cmd *node)
 {
@@ -60,21 +60,4 @@ int	is_config_builtin(t_cmd *node)
 	if (ft_strncmp(cmd, "exit", ft_strlen(cmd)) == 0 && ft_strlen(cmd) == 4)
 		return (1);
 	return (0);
-}
-
-int	has_next(t_list *node)
-{
-	return (node->next != NULL);
-}
-
-void	wait_child_processes_exit(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < ft_lstsize(data->cmds))
-	{
-		waitpid(-1, &g_status, 0);
-		i++;
-	}
 }

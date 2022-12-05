@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 15:35:34 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/05 18:21:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,15 @@ int			executor(t_data *data);
 // execute_commands.c
 int			execute_commands(t_data *data);
 
-// utils.c
-int			has_next(t_list *node);
+// builtin/main.c
+int			handle_config_builtin(t_cmd *cmd);
+
+// utils/builtin.c
 int			is_builtin(t_cmd *node);
 int			is_config_builtin(t_cmd *node);
+
+// utils/command.c
+int			has_next(t_list *node);
 void		wait_child_processes_exit(t_data *data);
 
 // ------------------- UTILS -------------------

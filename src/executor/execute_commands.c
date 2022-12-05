@@ -6,25 +6,11 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 15:35:57 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/05 18:22:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	handle_config_builtin(t_cmd *cmd)
-{
-	printf("Change config\n");
-	printf("command => %s\n\n", *cmd->full_cmd);
-	return (1);
-}
-
-int	handle_generate_output(t_cmd *cmd)
-{
-	printf("Generate output\n");
-	printf("command => %s\n\n", *cmd->full_cmd);
-	return (1);
-}
 
 int	handle_command(t_cmd *command, int has_next)
 {
