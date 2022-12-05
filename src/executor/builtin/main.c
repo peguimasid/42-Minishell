@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 18:35:38 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/05 19:13:07 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	handle_config_builtin(t_cmd *cmd)
 {
-	// TODO: Execute: cd, exit, export, unset
+	// TODO: Execute: cd, export, unset
 	if (is_exit(cmd))
 		return (execute_exit(cmd));
 	printf("Change config\n");

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 18:34:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/05 18:46:52 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,6 @@ int			ft_strchars_i(const char *s, char *set);
 char		*ft_strcat(char *src, char *dest);
 void		clear_window(void);
 void		print_nodes(t_data *data);
+int			restrict_atoi(const char *str);
 
 #endif
