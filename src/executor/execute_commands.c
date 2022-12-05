@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 18:44:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/05 15:35:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	handle_generate_output(t_cmd *cmd)
 	return (1);
 }
 
-int	handle_command(t_cmd *command)
+int	handle_command(t_cmd *command, int has_next)
 {
 	if (!command->full_cmd)
 		return (1);
-	if (is_config_builtin(command))
+	if (is_config_builtin(command) && !has_next)
 		return (handle_config_builtin(command));
 	return (handle_generate_output(command));
 }
@@ -46,7 +46,7 @@ int	execute_commands(t_data *data)
 	while (current_node)
 	{
 		command = current_node->content;
-		status = handle_command(command);
+		status = handle_command(command, has_next(current_node));
 		current_node = current_node->next;
 	}
 	wait_child_processes_exit(data);
