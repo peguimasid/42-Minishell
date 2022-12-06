@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:24:43 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 16:24:45 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:58:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_builtin(t_cmd *node)
 
 int	is_config_builtin(t_cmd *node)
 {
-	char *cmd;
+	char	*cmd;
 
 	cmd = node->full_cmd[0];
 	if (!cmd)
