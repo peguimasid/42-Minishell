@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 13:44:40 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 15:45:58 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 14:07:58 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ enum	e_error_type
 	NDIR = 14,
 	NPERM = 15,
 	PIPERR = 16,
+	IS_DIR = 17,
+	NOTFOUNDCMD = 18,
 };
 
 enum	e_redirection_type

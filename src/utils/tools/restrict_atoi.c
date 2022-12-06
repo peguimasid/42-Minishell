@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:42:07 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 19:09:09 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 14:24:36 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	is_space(char c)
 
 int	restrict_atoi(const char *str)
 {
-	int sign;
-	long result;
-	size_t i;
+	int		sign;
+	long	result;
+	size_t	i;
 
 	result = 0;
 	sign = 1;
