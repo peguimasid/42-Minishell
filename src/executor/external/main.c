@@ -6,20 +6,20 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 16:56:04 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 17:16:59 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static void	clean_up(DIR *current_folder_dir, char **path_splited)
+void	clean_up(DIR *current_folder_dir, char **path_splited)
 {
 	if (current_folder_dir)
 		closedir(current_folder_dir);
 	free_matrix(path_splited);
 }
 
-static char	*find_command(char **env_path, char *cmd, char *cmd_path)
+char	*find_command(char **env_path, char *cmd, char *cmd_path)
 {
 	char	*temp;
 	int		i;
@@ -47,42 +47,38 @@ static char	*find_command(char **env_path, char *cmd, char *cmd_path)
 	return (cmd_path);
 }
 
-static DIR	*cmd_checks(t_data *data, t_list *cmd, char **s, char *path)
+int	set_path(t_data *data, t_list *node, char **s, char *path)
 {
-	t_cmd	*n;
-	DIR		*current_folder_dir;
+	t_cmd	*cmd;
+	DIR		*is_current_folder_dir;
 
-	current_folder_dir = NULL;
-	n = cmd->content;
-	if (n && n->full_cmd)
-		current_folder_dir = opendir(*n->full_cmd);
-	if (n && n->full_cmd && ft_strchr(*n->full_cmd, '/') && !current_folder_dir)
+	is_current_folder_dir = NULL;
+	cmd = node->content;
+	if (cmd && cmd->full_cmd)
+		is_current_folder_dir = opendir(*cmd->full_cmd);
+	if (is_current_folder_dir)
+		return (1);
+	if (cmd && cmd->full_cmd && ft_strchr(*cmd->full_cmd, '/'))
 	{
-		s = ft_split(*n->full_cmd, '/');
-		n->cmd_path = ft_strdup(*n->full_cmd);
-		free(n->full_cmd[0]);
-		n->full_cmd[0] = ft_strdup(s[matrix_len(s) - 1]);
+		s = ft_split(*cmd->full_cmd, '/');
+		cmd->cmd_path = ft_strdup(*cmd->full_cmd);
+		free(cmd->full_cmd[0]);
+		cmd->full_cmd[0] = ft_strdup(s[matrix_len(s) - 1]);
 	}
-	else if (!is_builtin(n) && n && n->full_cmd && !current_folder_dir)
+	else if (!is_builtin(cmd) && cmd && cmd->full_cmd)
 	{
 		path = get_env("PATH", data->envp, 4);
 		s = ft_split(path, ':');
 		free(path);
-		n->cmd_path = find_command(s, *n->full_cmd, n->cmd_path);
+		cmd->cmd_path = find_command(s, *cmd->full_cmd, cmd->cmd_path);
 	}
-	return (current_folder_dir);
+	clean_up(is_current_folder_dir, s);
+	return (0);
 }
 
-void	set_cmd_path(t_data *data, t_list *node, char **s, char *path)
+void	check_for_errors(t_cmd *cmd, int is_current_folder_dir)
 {
-	t_cmd	*cmd;
-	DIR		*current_folder_dir;
-
-	cmd = node->content;
-	current_folder_dir = cmd_checks(data, node, s, path);
-	if (is_builtin(cmd))
-		clean_up(current_folder_dir, s);
-	if (cmd && cmd->full_cmd && current_folder_dir)
+	if (cmd && cmd->full_cmd && is_current_folder_dir)
 		throw_error(IS_DIR, 126, *cmd->full_cmd);
 	else if (cmd && cmd->cmd_path && access(cmd->cmd_path, F_OK) == -1)
 		throw_error(NDIR, 127, cmd->cmd_path);
@@ -90,7 +86,18 @@ void	set_cmd_path(t_data *data, t_list *node, char **s, char *path)
 		throw_error(NPERM, 126, cmd->cmd_path);
 	else if (!cmd->cmd_path || !cmd->full_cmd[0] || !cmd->full_cmd[0][0])
 		throw_error(NOTFOUNDCMD, 127, *cmd->full_cmd);
-	clean_up(current_folder_dir, s);
+}
+
+void	handle_cmd_path(t_data *data, t_list *node, char *path)
+{
+	t_cmd	*cmd;
+	int		is_current_folder_dir;
+	char	**s;
+
+	s = NULL;
+	cmd = node->content;
+	is_current_folder_dir = set_path(data, node, s, path);
+	check_for_errors(cmd, is_current_folder_dir);
 }
 
 int	handle_generate_output(t_list *node, t_data *data)
@@ -102,7 +109,7 @@ int	handle_generate_output(t_list *node, t_data *data)
 
 	command = node->content;
 	next_node = node->next;
-	set_cmd_path(data, node, NULL, NULL);
+	handle_cmd_path(data, node, NULL);
 	if (pipe(fd) == -1)
 		return (throw_error(PIPERR, 1, NULL));
 	close(fd[WRITE_END]);
