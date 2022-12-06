@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 12:45:30 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 12:48:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	handle_command(t_list *node, t_data *data)
 	if (!command->full_cmd)
 		return (1);
 	if (is_config_builtin(command) && !has_next(node))
-		return (handle_config_builtin(command, data));
-	return (handle_generate_output(command, data));
+		return (handle_config_builtin(node, data));
+	return (handle_generate_output(node, data));
 }
 
 int	execute_commands(t_data *data)
