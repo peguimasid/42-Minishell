@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/05 18:46:52 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 12:24:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ int			executor(t_data *data);
 int			execute_commands(t_data *data);
 
 // builtin/main.c
-int			handle_config_builtin(t_cmd *cmd);
+int			handle_config_builtin(t_cmd *cmd, t_data *data);
 
 // external/main.c
-int			handle_generate_output(t_cmd *cmd);
+int			handle_generate_output(t_cmd *cmd, t_data *data);
 
 // builtin/exit.c
 int			execute_exit(t_cmd *cmd);
