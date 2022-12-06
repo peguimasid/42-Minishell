@@ -6,17 +6,18 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 17:16:59 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/06 17:20:26 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	clean_up(DIR *current_folder_dir, char **path_splited)
+int	clean_up(DIR *current_folder_dir, char **path_splited)
 {
 	if (current_folder_dir)
 		closedir(current_folder_dir);
 	free_matrix(path_splited);
+	return (1);
 }
 
 char	*find_command(char **env_path, char *cmd, char *cmd_path)
@@ -57,7 +58,7 @@ int	set_path(t_data *data, t_list *node, char **s, char *path)
 	if (cmd && cmd->full_cmd)
 		is_current_folder_dir = opendir(*cmd->full_cmd);
 	if (is_current_folder_dir)
-		return (1);
+		return (clean_up(is_current_folder_dir, s));
 	if (cmd && cmd->full_cmd && ft_strchr(*cmd->full_cmd, '/'))
 	{
 		s = ft_split(*cmd->full_cmd, '/');
