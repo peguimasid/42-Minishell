@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 13:26:07 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:48:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	set_path(t_data *data, t_list *node)
 	t_cmd	*cmd;
 	DIR		*is_current_folder_dir;
 	char	**s;
-	char	*path;
 
 	is_current_folder_dir = NULL;
 	s = NULL;
@@ -62,11 +61,7 @@ int	set_path(t_data *data, t_list *node)
 	}
 	if (send_relative_path_to_command(cmd))
 	{
-		path = get_env("PATH", data->envp, 4);
-		s = ft_split(path, ':');
-		free(path);
-		cmd->cmd_path = find_command(s, *cmd->full_cmd, cmd->cmd_path);
-		free_matrix(s);
+		cmd->cmd_path = find_command_path(*cmd->full_cmd, data);
 		return (0);
 	}
 	return (0);

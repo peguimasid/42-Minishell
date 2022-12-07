@@ -6,38 +6,41 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:52:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 13:26:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:47:24 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char	*find_command(char **env_path, char *cmd, char *cmd_path)
+char	*find_command_path(char *cmd, t_data *data)
 {
 	char	*temp;
+	char	*result;
+	char	**env_splited;
 	int		i;
 
+	temp = get_env("PATH", data->envp, 4);
+	env_splited = ft_split(temp, ':');
+	free(temp);
 	i = -1;
-	cmd_path = NULL;
-	while (env_path && env_path[++i])
+	result = NULL;
+	while (env_splited && env_splited[++i])
 	{
-		free(cmd_path);
-		temp = ft_strjoin(env_path[i], "/");
+		free(result);
+		temp = ft_strjoin(env_splited[i], "/");
 		if (!temp)
 			return (NULL);
-		cmd_path = ft_strjoin(temp, cmd);
+		result = ft_strjoin(temp, cmd);
 		free(temp);
-		if (!cmd_path)
+		if (!result)
 			return (NULL);
-		if (access(cmd_path, F_OK) == 0)
-			break ;
+		if (access(result, F_OK) == 0)
+		{
+			free_matrix(env_splited);
+			return (result);
+		}
 	}
-	if (!env_path || !env_path[i])
-	{
-		free(cmd_path);
-		return (NULL);
-	}
-	return (cmd_path);
+	return (NULL);
 }
 
 int	send_absolute_path_to_command(t_cmd *cmd)
