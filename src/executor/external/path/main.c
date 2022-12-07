@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_cmd_path.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:10 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 17:19:27 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 18:36:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ void	handle_set_relative_path(t_cmd *cmd, t_data *data)
 	cmd->cmd_path = find_command_path(*cmd->full_cmd, data);
 }
 
-void	set_path(t_data *data, t_list *node)
+void	set_path(t_data *data, t_cmd *cmd)
 {
-	t_cmd	*cmd;
-
-	cmd = node->content;
 	if (is_current_folder_dir(cmd))
 		return ;
 	if (send_absolute_path_to_command(cmd))
@@ -40,6 +37,6 @@ void	handle_cmd_path(t_data *data, t_list *node)
 	t_cmd	*cmd;
 
 	cmd = node->content;
-	set_path(data, node);
+	set_path(data, cmd);
 	check_for_errors(cmd);
 }
