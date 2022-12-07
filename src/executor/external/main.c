@@ -6,47 +6,11 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 17:53:58 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 12:53:27 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
-int	clean_up(DIR *current_folder_dir, char **path_splited)
-{
-	if (current_folder_dir)
-		closedir(current_folder_dir);
-	free_matrix(path_splited);
-	return (1);
-}
-
-char	*find_command(char **env_path, char *cmd, char *cmd_path)
-{
-	char	*temp;
-	int		i;
-
-	i = -1;
-	cmd_path = NULL;
-	while (env_path && env_path[++i])
-	{
-		free(cmd_path);
-		temp = ft_strjoin(env_path[i], "/");
-		if (!temp)
-			return (NULL);
-		cmd_path = ft_strjoin(temp, cmd);
-		free(temp);
-		if (!cmd_path)
-			return (NULL);
-		if (access(cmd_path, F_OK) == 0)
-			break ;
-	}
-	if (!env_path || !env_path[i])
-	{
-		free(cmd_path);
-		return (NULL);
-	}
-	return (cmd_path);
-}
 
 int	set_path(t_data *data, t_list *node, char **s, char *path)
 {
@@ -59,21 +23,24 @@ int	set_path(t_data *data, t_list *node, char **s, char *path)
 		is_current_folder_dir = opendir(*cmd->full_cmd);
 	if (is_current_folder_dir)
 		return (clean_up(is_current_folder_dir, s));
-	if (cmd && cmd->full_cmd && ft_strchr(*cmd->full_cmd, '/'))
+	if (cmd && cmd->full_cmd && ft_strchr(*cmd->full_cmd, '/')) // Absolute path
 	{
 		s = ft_split(*cmd->full_cmd, '/');
 		cmd->cmd_path = ft_strdup(*cmd->full_cmd);
 		free(cmd->full_cmd[0]);
 		cmd->full_cmd[0] = ft_strdup(s[matrix_len(s) - 1]);
+		clean_up(is_current_folder_dir, s);
+		return (0);
 	}
-	else if (!is_builtin(cmd) && cmd && cmd->full_cmd)
+	if (!is_builtin(cmd) && cmd && cmd->full_cmd) // Relative path
 	{
 		path = get_env("PATH", data->envp, 4);
 		s = ft_split(path, ':');
 		free(path);
 		cmd->cmd_path = find_command(s, *cmd->full_cmd, cmd->cmd_path);
+		clean_up(is_current_folder_dir, s);
+		return (0);
 	}
-	clean_up(is_current_folder_dir, s);
 	return (0);
 }
 
