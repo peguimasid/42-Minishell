@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 14:12:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 14:22:02 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int			is_config_builtin(t_cmd *node);
 
 // #### EXTERNAL ####
 int			handle_generate_output(t_list *node, t_data *data);
+void		handle_cmd_path(t_data *data, t_list *node);
 char		*find_command_path(char *cmd, t_data *data);
 char		*set_absolute_path(t_cmd *cmd);
 int			send_absolute_path_to_command(t_cmd *cmd);
