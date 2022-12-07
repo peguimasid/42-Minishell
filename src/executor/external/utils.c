@@ -6,19 +6,11 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:52:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 13:01:57 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:26:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
-int	clean_up(DIR *current_folder_dir, char **path_splited)
-{
-	if (current_folder_dir)
-		closedir(current_folder_dir);
-	free_matrix(path_splited);
-	return (1);
-}
 
 char	*find_command(char **env_path, char *cmd, char *cmd_path)
 {
