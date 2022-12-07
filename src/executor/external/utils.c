@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:52:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 13:55:17 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 14:02:38 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*find_command_path(char *cmd, t_data *data)
 			return (result);
 		}
 	}
+	free(result);
 	free_matrix(env_splited);
 	return (NULL);
 }
