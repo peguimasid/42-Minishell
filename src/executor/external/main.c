@@ -6,24 +6,20 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 14:21:08 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 17:48:13 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	handle_generate_output(t_list *node, t_data *data)
+void	handle_file_descriptors(int fd[2], t_list *node)
 {
 	t_cmd	*command;
 	t_cmd	*next_command;
 	t_list	*next_node;
-	int		fd[2];
 
 	command = node->content;
 	next_node = node->next;
-	handle_cmd_path(data, node);
-	if (pipe(fd) == -1)
-		return (throw_error(PIPERR, 1, NULL));
 	close(fd[WRITE_END]);
 	if (next_node)
 	{
@@ -37,5 +33,15 @@ int	handle_generate_output(t_list *node, t_data *data)
 		close(command->infile);
 	if (command->outfile > 2)
 		close(command->outfile);
+}
+
+int	handle_generate_output(t_list *node, t_data *data)
+{
+	int	fd[2];
+
+	handle_cmd_path(data, node);
+	if (pipe(fd) == -1)
+		return (throw_error(PIPERR, 1, NULL));
+	handle_file_descriptors(fd, node);
 	return (1);
 }
