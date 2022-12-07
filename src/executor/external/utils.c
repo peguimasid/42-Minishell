@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:52:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 13:47:24 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:55:17 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,15 @@ char	*find_command_path(char *cmd, t_data *data)
 	{
 		free(result);
 		temp = ft_strjoin(env_splited[i], "/");
-		if (!temp)
-			return (NULL);
 		result = ft_strjoin(temp, cmd);
 		free(temp);
-		if (!result)
-			return (NULL);
 		if (access(result, F_OK) == 0)
 		{
 			free_matrix(env_splited);
 			return (result);
 		}
 	}
+	free_matrix(env_splited);
 	return (NULL);
 }
 
