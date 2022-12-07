@@ -6,66 +6,40 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:10 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 17:14:31 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 17:19:27 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-int	check_for_errors(t_cmd *cmd, int is_current_folder_dir)
-{
-	int	is_current_dir_folder;
-	int	no_such_dir;
-	int	perm_denied;
-	int	not_found;
-
-	is_current_dir_folder = (cmd && cmd->full_cmd && is_current_folder_dir);
-	no_such_dir = (cmd && cmd->cmd_path && access(cmd->cmd_path, F_OK) == -1);
-	perm_denied = (cmd && cmd->cmd_path && access(cmd->cmd_path, X_OK) == -1);
-	not_found = (!cmd->cmd_path || !cmd->full_cmd[0] || !cmd->full_cmd[0][0]);
-	if (is_current_dir_folder && !is_builtin(cmd))
-		return (throw_error(IS_DIR, 126, *cmd->full_cmd));
-	if (no_such_dir && !is_builtin(cmd))
-		return (throw_error(NDIR, 127, cmd->cmd_path));
-	if (perm_denied && !is_builtin(cmd))
-		return (throw_error(NPERM, 126, cmd->cmd_path));
-	if (not_found && !is_builtin(cmd))
-		return (throw_error(NOTFOUNDCMD, 127, *cmd->full_cmd));
-	return (0);
-}
-
-int	handle_set_absolute_path(t_cmd *cmd)
+void	handle_set_absolute_path(t_cmd *cmd)
 {
 	cmd->cmd_path = set_absolute_path(cmd);
-	return (0);
 }
 
-int	handle_set_relative_path(t_cmd *cmd, t_data *data)
+void	handle_set_relative_path(t_cmd *cmd, t_data *data)
 {
 	cmd->cmd_path = find_command_path(*cmd->full_cmd, data);
-	return (0);
 }
 
-int	set_path(t_data *data, t_list *node)
+void	set_path(t_data *data, t_list *node)
 {
 	t_cmd	*cmd;
 
 	cmd = node->content;
 	if (is_current_folder_dir(cmd))
-		return (1);
+		return ;
 	if (send_absolute_path_to_command(cmd))
 		return (handle_set_absolute_path(cmd));
 	if (send_relative_path_to_command(cmd))
 		return (handle_set_relative_path(cmd, data));
-	return (0);
 }
 
 void	handle_cmd_path(t_data *data, t_list *node)
 {
 	t_cmd	*cmd;
-	int		is_current_folder_dir;
 
 	cmd = node->content;
-	is_current_folder_dir = set_path(data, node);
-	check_for_errors(cmd, is_current_folder_dir);
+	set_path(data, node);
+	check_for_errors(cmd);
 }
