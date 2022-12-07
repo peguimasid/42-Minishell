@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:52:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 12:54:01 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:01:57 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ char	*find_command(char **env_path, char *cmd, char *cmd_path)
 		return (NULL);
 	}
 	return (cmd_path);
+}
+
+int	send_absolute_path_to_command(t_cmd *cmd)
+{
+	return (cmd && cmd->full_cmd && ft_strchr(*cmd->full_cmd, '/'));
+}
+
+int	send_relative_path_to_command(t_cmd *cmd)
+{
+	return (!is_builtin(cmd) && cmd && cmd->full_cmd);
 }
