@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:10 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 17:09:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/07 17:11:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ int	check_for_errors(t_cmd *cmd, int is_current_folder_dir)
 	if (not_found && !is_builtin(cmd))
 		return (throw_error(NOTFOUNDCMD, 127, *cmd->full_cmd));
 	return (0);
-}
-
-int	is_current_folder_dir(t_cmd *cmd)
-{
-	DIR	*dir;
-
-	dir = NULL;
-	if (!cmd || !cmd->full_cmd)
-		return (0);
-	dir = opendir(cmd->full_cmd[0]);
-	if (!dir)
-		return (0);
-	closedir(dir);
-	return (1);
 }
 
 int	set_path(t_data *data, t_list *node)
