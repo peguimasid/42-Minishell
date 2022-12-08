@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:22:26 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:44:15 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int			execute_exit(t_cmd *cmd);
 int			is_exit(t_cmd *node);
 int			is_builtin(t_cmd *node);
 int			is_config_builtin(t_cmd *node);
+int			is_generate_output_builtin(t_cmd *node);
 
 // #### EXTERNAL ####
 

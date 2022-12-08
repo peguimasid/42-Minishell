@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:27:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:23:11 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:43:32 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	execute_command_in_child_process(t_list *node, t_data *data)
 
 	cmd = node->content;
 	set_child_process_signal_handlers();
-	if (is_builtin(cmd))
+	if (is_generate_output_builtin(cmd))
 		return (handle_generate_output_builtin(node, data));
 	execve(cmd->cmd_path, cmd->full_cmd, data->envp);
 	return (1);
