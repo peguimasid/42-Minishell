@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:44:15 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:52:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,17 @@ void		wait_child_processes_exit(t_data *data);
 // #### BUILTIN ####
 int			handle_config_builtin(t_list *node, t_data *data);
 int			handle_generate_output_builtin(t_list *node, t_data *data);
-int			execute_exit(t_cmd *cmd);
-int			is_exit(t_cmd *node);
 int			is_builtin(t_cmd *node);
 int			is_config_builtin(t_cmd *node);
 int			is_generate_output_builtin(t_cmd *node);
+
+// exit.c
+int			is_exit(t_cmd *node);
+int			execute_exit(t_cmd *cmd);
+
+// cd.c
+int			is_cd(t_cmd *cmd);
+int			execute_cd(t_cmd *cmd, t_data *data);
 
 // #### EXTERNAL ####
 
