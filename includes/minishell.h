@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 17:21:15 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:01:41 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			minishell(char **argv, char **envp);
 // signal.c
 void		handle_sigint(int sig);
 void		set_default_signal_handlers(void);
+void		set_child_process_signal_handlers(void);
 
 // common.c
 int			throw_error(int err_type, int error_code, char *message);
@@ -121,12 +122,15 @@ void		wait_child_processes_exit(t_data *data);
 
 // #### BUILTIN ####
 int			handle_config_builtin(t_list *node, t_data *data);
+int			handle_generate_output_builtin(t_list *node, t_data *data);
 int			execute_exit(t_cmd *cmd);
 int			is_exit(t_cmd *node);
 int			is_builtin(t_cmd *node);
 int			is_config_builtin(t_cmd *node);
 
 // #### EXTERNAL ####
+
+// path
 int			handle_generate_output(t_list *node, t_data *data);
 void		handle_cmd_path(t_data *data, t_list *node);
 char		*find_command_path(char *cmd, t_data *data);
@@ -135,6 +139,8 @@ int			check_for_errors(t_cmd *cmd);
 int			is_current_folder_dir(t_cmd *cmd);
 int			send_absolute_path_to_command(t_cmd *cmd);
 int			send_relative_path_to_command(t_cmd *cmd);
+// execute
+int			execute(t_list *node, t_data *data, int fd[2]);
 
 // ------------------- UTILS -------------------
 

@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:22:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 17:48:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 15:38:23 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	handle_generate_output(t_list *node, t_data *data)
 	handle_cmd_path(data, node);
 	if (pipe(fd) == -1)
 		return (throw_error(PIPERR, 1, NULL));
+	execute(node, data, fd);
 	handle_file_descriptors(fd, node);
 	return (1);
 }
