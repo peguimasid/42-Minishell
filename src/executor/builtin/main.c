@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:34:06 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:47:58 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	handle_generate_output_builtin(t_list *node, t_data *data)
 
 	command = node->content;
 	(void)data;
-	if (is_exit(command))
-		return (execute_exit(command));
 	printf("Generate output\n");
 	printf("command => %s\n\n", *command->full_cmd);
 	return (1);
