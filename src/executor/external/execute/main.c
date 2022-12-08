@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:27:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:09:42 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:23:11 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void	handle_execution(t_list *node, t_data *data, int fd[2])
 	}
 }
 
-int	execute(t_list *node, t_data *data, int fd[2])
+void	execute(t_list *node, t_data *data, int fd[2])
 {
 	t_cmd	*cmd;
 
 	cmd = node->content;
 	if (cmd->infile == -1 || cmd->outfile == -1)
-		return (1);
+		return ;
 	if (can_execute_in_child_process(cmd))
 		handle_execution(node, data, fd);
-	return (1);
 }
