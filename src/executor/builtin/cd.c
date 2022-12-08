@@ -6,12 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:50:58 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 17:30:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:54:12 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
+// TODO: This is temporary, we still need to set PWD and OLDPWD vars
 int	execute_cd(t_cmd *cmd, t_data *data)
 {
 	char	*path;
