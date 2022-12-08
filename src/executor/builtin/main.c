@@ -6,12 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:01:31 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:34:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
+// TODO: cd, export, unset
 int	handle_config_builtin(t_list *node, t_data *data)
 {
 	t_cmd	*command;
@@ -25,6 +26,7 @@ int	handle_config_builtin(t_list *node, t_data *data)
 	return (1);
 }
 
+// TODO: echo, pwd, env
 int	handle_generate_output_builtin(t_list *node, t_data *data)
 {
 	t_cmd	*command;
