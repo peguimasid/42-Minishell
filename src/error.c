@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:20:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/06 14:10:04 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 15:53:21 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	throw_error(int err_type, int error_code, char *message)
 		print_error("minishell: Is a directory: ");
 	if (err_type == NOTFOUNDCMD)
 		print_error("minishell: command not found: ");
+	if (err_type == DUPERR)
+		print_error("minishell: dup2 failed");
 	print_error(message);
 	ft_putstr_fd("\n", 2);
 	return (1);
