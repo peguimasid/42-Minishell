@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/07 14:03:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 20:53:07 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-pid_t	get_pid(void)
+int		g_status;
+
+pid_t	get_pid(t_data *result)
 {
 	pid_t	pid;
 
@@ -23,7 +25,10 @@ pid_t	get_pid(void)
 		exit(1);
 	}
 	if (pid == 0)
+	{
+		free_data(result);
 		exit(1);
+	}
 	waitpid(pid, NULL, 0);
 	return (pid - 1);
 }
@@ -40,11 +45,12 @@ t_data	init_data(char **argv, char **envp)
 {
 	t_data	result;
 
+	(void)envp;
 	result.input = NULL;
 	result.cmds = NULL;
 	result.running = 1;
 	result.envp = dup_matrix(envp);
-	result.pid = get_pid();
+	result.pid = get_pid(&result);
 	g_status = 0;
 	init_vars(&result, argv[0]);
 	return (result);

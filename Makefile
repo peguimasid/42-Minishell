@@ -26,3 +26,6 @@ fclean: clean
 re:	fclean all
 
 .PHONY:	all clean fclean re norminette
+
+valgrind: all
+	valgrind --leak-check=full --show-reachable=yes --show-leak-kinds=all --error-limit=no --gen-suppressions=all --log-file=lib.log ./minishell
