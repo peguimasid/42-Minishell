@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:01:41 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:09:34 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,11 @@ int			check_for_errors(t_cmd *cmd);
 int			is_current_folder_dir(t_cmd *cmd);
 int			send_absolute_path_to_command(t_cmd *cmd);
 int			send_relative_path_to_command(t_cmd *cmd);
+
 // execute
 int			execute(t_list *node, t_data *data, int fd[2]);
+int			can_execute_in_child_process(t_cmd *cmd);
+int			handle_redirections(t_list *node, int fd[2]);
 
 // ------------------- UTILS -------------------
 
