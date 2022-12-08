@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 17:45:33 by gmasid           ###   ########.fr       */
+/*   Created: 2022/12/08 17:43:43 by gmasid            #+#    #+#             */
+/*   Updated: 2022/12/08 17:45:15 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-// TODO: cd, export, unset
-int	handle_config_builtin(t_list *node, t_data *data)
+int	execute_env(t_data *data)
 {
-	t_cmd	*command;
-
-	command = node->content;
-	if (is_exit(command))
-		return (execute_exit(command));
-	if (is_cd(command))
-		return (execute_cd(command, data));
+	print_matrix(data->envp);
 	return (1);
 }
 
-// TODO: echo, pwd
-int	handle_generate_output_builtin(t_list *node, t_data *data)
+int	is_env(t_cmd *node)
 {
-	t_cmd	*command;
+	char *cmd;
 
-	command = node->content;
-	if (is_env(command))
-		return (execute_env(data));
-	return (1);
+	cmd = node->full_cmd[0];
+	if (!cmd)
+		return (0);
+	if (ft_strncmp(cmd, "env", ft_strlen(cmd)) == 0 && ft_strlen(cmd) == 3)
+		return (1);
+	return (0);
 }

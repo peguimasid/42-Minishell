@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:52:47 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:44:43 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ int			execute_exit(t_cmd *cmd);
 // cd.c
 int			is_cd(t_cmd *cmd);
 int			execute_cd(t_cmd *cmd, t_data *data);
+
+// env.c
+int			is_env(t_cmd *cmd);
+int			execute_env(t_data *data);
 
 // #### EXTERNAL ####
 
