@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 11:16:56 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 11:21:46 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int			execute_env(t_data *data);
 
 // echo.c
 int			is_echo(t_cmd *node);
-int			execute_echo(t_data *data);
+int			execute_echo(t_cmd *cmd);
 
 // #### EXTERNAL ####
 

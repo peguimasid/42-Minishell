@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:43:43 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 17:45:15 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 11:29:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	execute_env(t_data *data)
 
 int	is_env(t_cmd *node)
 {
-	char *cmd;
+	char	*cmd;
 
 	cmd = node->full_cmd[0];
 	if (!cmd)
