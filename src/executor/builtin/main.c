@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 17:45:33 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 11:17:35 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	handle_generate_output_builtin(t_list *node, t_data *data)
 	command = node->content;
 	if (is_env(command))
 		return (execute_env(data));
+	if (is_echo(command))
+		return (execute_echo(data));
 	return (1);
 }

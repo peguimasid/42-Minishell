@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 20:07:30 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:16:56 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,10 @@ int			execute_cd(t_cmd *cmd, t_data *data);
 // env.c
 int			is_env(t_cmd *cmd);
 int			execute_env(t_data *data);
+
+// echo.c
+int			is_echo(t_cmd *node);
+int			execute_echo(t_data *data);
 
 // #### EXTERNAL ####
 
