@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 11:21:46 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 19:19:08 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ int			handle_redirections(t_list *node, int fd[2]);
 char		**dup_matrix(char **matrix);
 char		**matrix_push(char **matrix, char *new);
 char		**matrix_replace(char **matrix, int i, char *new_value);
+char		**matrix_remove(char **matrix, int to_remove);
 int			matrix_len(char **matrix);
 void		print_matrix(char **matrix);
 void		free_matrix(char **matrix);
