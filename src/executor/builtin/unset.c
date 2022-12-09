@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 19:47:54 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 19:59:39 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:47:02 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	execute_unset(t_cmd *cmd, t_data *data)
 
 int	is_unset(t_cmd *node)
 {
-	char *cmd;
+	char	*cmd;
 
 	cmd = node->full_cmd[0];
 	if (!cmd)
