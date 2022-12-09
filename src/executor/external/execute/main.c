@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 15:27:56 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 16:43:32 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:18:06 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	handle_child_process(t_list *node, t_data *data, int fd[2])
 	close(fd[READ_END]);
 	execute_command_in_child_process(node, data);
 	ft_lstclear(&data->cmds, free_node);
+	free_matrix(data->args);
+	free_matrix(data->envp);
 	exit(g_status);
 }
 

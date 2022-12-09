@@ -6,7 +6,7 @@
 /*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 19:37:43 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/09 19:54:34 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	handle_generate_output_builtin(t_list *node, t_data *data)
 		execute_env(data);
 	if (is_echo(command))
 		execute_echo(command);
-	free_matrix(data->envp);
 	return (1);
 }
