@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 20:13:51 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:48:54 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int	handle_generate_output_builtin(t_list *node, t_data *data)
 		execute_echo(command);
 	if (is_pwd(command))
 		execute_pwd();
-	free_matrix(data->envp);
 	return (1);
 }
