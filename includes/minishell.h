@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 19:48:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:13:47 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,12 @@ int			is_echo(t_cmd *node);
 int			execute_echo(t_cmd *cmd);
 
 // unset.c
-int			execute_unset(t_cmd *cmd, t_data *data);
 int			is_unset(t_cmd *node);
+int			execute_unset(t_cmd *cmd, t_data *data);
+
+// pwd.c
+int			is_pwd(t_cmd *node);
+int			execute_pwd(void);
 
 // #### EXTERNAL ####
 

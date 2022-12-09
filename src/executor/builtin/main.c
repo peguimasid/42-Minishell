@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 20:10:55 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 20:13:51 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	handle_config_builtin(t_list *node, t_data *data)
 	return (1);
 }
 
-// TODO: pwd
 int	handle_generate_output_builtin(t_list *node, t_data *data)
 {
 	t_cmd	*command;
@@ -37,6 +36,8 @@ int	handle_generate_output_builtin(t_list *node, t_data *data)
 		execute_env(data);
 	if (is_echo(command))
 		execute_echo(command);
+	if (is_pwd(command))
+		execute_pwd();
 	free_matrix(data->envp);
 	return (1);
 }
