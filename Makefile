@@ -11,7 +11,7 @@ LDFLAGS = -L/opt/homebrew/Cellar/readline/8.2.1/lib
 
 $(NAME): $(OBJ)
 	make bonus -s -C lib/libft
-	cc -Wall -Wextra -Werror $(SRCS) -o $(NAME) $(LIBFT) -lreadline $(CPPFLAGS) $(LDFLAGS)
+	cc -g -Wall -Wextra -Werror $(SRCS) -o $(NAME) $(LIBFT) -lreadline $(CPPFLAGS) $(LDFLAGS)
 
 all: $(NAME)
 
@@ -28,4 +28,4 @@ re:	fclean all
 .PHONY:	all clean fclean re norminette
 
 valgrind: all
-	valgrind --leak-check=full --show-reachable=yes --show-leak-kinds=all --error-limit=no --gen-suppressions=all --log-file=lib.log ./minishell
+	valgrind --leak-check=full --show-reachable=yes --show-leak-kinds=all --error-limit=no --gen-suppressions=all --track-origins=yes  --log-file=lib.log ./minishell

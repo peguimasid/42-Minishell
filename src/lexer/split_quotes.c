@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
+/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:50:36 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/22 15:32:04 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 18:46:19 by lucafern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**split_quotes(const char *s, char *set)
 	nwords = ft_count_words(s, set, 0);
 	if (nwords == -1)
 		return (NULL);
-	result = malloc((nwords + 1) * sizeof(char *));
+	result = ft_calloc(sizeof(char *), (nwords + 1));
 	if (result == NULL)
 		return (NULL);
 	result = ft_fill_array(result, s, set, i);
