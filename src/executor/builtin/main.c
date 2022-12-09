@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 19:37:43 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/09 19:49:10 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-// TODO: cd, export, unset
+// TODO: export, unset
 int	handle_config_builtin(t_list *node, t_data *data)
 {
 	t_cmd	*command;
@@ -22,6 +22,8 @@ int	handle_config_builtin(t_list *node, t_data *data)
 		return (execute_exit(command));
 	if (is_cd(command))
 		return (execute_cd(command, data));
+	if (is_unset(command))
+		return (execute_unset(command, data));
 	return (1);
 }
 
