@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 21:48:12 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 22:24:16 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 22:29:49 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	execute_export(t_cmd *cmd, t_data *data)
 	variable_joined = cmd->full_cmd[1];
 	equal_sign_index = ft_strchars_i(variable_joined, "=");
 	if (equal_sign_index == -1)
-		return (-1);
+		return (1);
 	if (equal_sign_index == 0)
 		return (export_error(variable_joined));
 	to_copy = ft_strlen(variable_joined) - equal_sign_index;
