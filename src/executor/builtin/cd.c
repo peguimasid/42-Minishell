@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 16:50:58 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 19:04:48 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 16:10:09 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	handle_set_pwd_vars(t_data *data)
 
 	cwd = getcwd(NULL, 0);
 	current_pwd = get_env("PWD", data->envp, 3);
-	set_env("OLDPWD", current_pwd, data->envp);
-	set_env("PWD", cwd, data->envp);
+	data->envp = set_env("OLDPWD", current_pwd, data->envp);
+	data->envp = set_env("PWD", cwd, data->envp);
 	free(current_pwd);
 	free(cwd);
 }
