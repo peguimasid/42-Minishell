@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:02:30 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 20:53:07 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:08:02 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_data	init_data(char **argv, char **envp)
 {
 	t_data	result;
 
-	(void)envp;
 	result.input = NULL;
 	result.cmds = NULL;
 	result.running = 1;
