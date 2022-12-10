@@ -6,13 +6,12 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 21:49:05 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 22:26:48 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-// TODO: export
 int	handle_config_builtin(t_list *node, t_data *data)
 {
 	t_cmd	*command;
