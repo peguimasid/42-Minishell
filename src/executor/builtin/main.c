@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:18:27 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 20:48:54 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:49:05 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	handle_config_builtin(t_list *node, t_data *data)
 		return (execute_cd(command, data));
 	if (is_unset(command))
 		return (execute_unset(command, data));
+	if (is_export(command))
+		return (execute_export(command, data));
 	return (1);
 }
 
