@@ -6,14 +6,13 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:16:25 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/09 21:49:03 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 14:44:14 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../lib/gnl/get_next_line_bonus.h"
 # include "../lib/libft/libft.h"
 # include "constants.h"
 # include <dirent.h>
