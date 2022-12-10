@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 13:46:02 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/08 17:44:49 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 15:50:14 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**dup_matrix(char **matrix)
 	result = malloc(sizeof(char *) * (matrix_len(matrix) + 1));
 	if (!result)
 		return (NULL);
-	while (matrix[i])
+	while (matrix && matrix[i])
 	{
 		result[i] = ft_strdup(matrix[i]);
 		if (!result[i])

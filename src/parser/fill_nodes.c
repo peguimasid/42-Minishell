@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/02 14:03:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 15:49:51 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	fill_nodes(t_data *data)
 	trimmed_args = trim_args(data->args);
 	i = 0;
 	offset = 0;
-	while (data->args[i])
+	while (data->args && data->args[i])
 	{
 		curr_node = ft_lstlast(data->cmds);
 		if (should_create_node(data, i))
