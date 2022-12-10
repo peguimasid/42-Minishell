@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 14:49:42 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 11:34:26 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/09 22:46:55 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	parse_args(t_data *data)
 {
+	if (!data->args)
+		return ;
 	fill_nodes(data);
 }
