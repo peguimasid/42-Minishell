@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/10 21:43:40 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 22:38:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	populate_command_nodes(t_data *data, char **trimmed_args)
 		curr_node = ft_lstlast(data->cmds);
 		offset = fill_current_node(curr_node->content, trimmed_args, data, i);
 		if (offset < 0)
-			return (quit_parsing(data, trimmed_args));
+			return (quit_parsing(data));
 		i += offset;
 	}
 }

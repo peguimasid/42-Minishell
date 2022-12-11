@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:33:44 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/04 00:49:13 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 22:38:42 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ int	get_argument_type(char **args, int i)
 	return (NORMAL_ARG);
 }
 
-void	quit_parsing(t_data *data, char **trimmed_args)
+void	quit_parsing(t_data *data)
 {
 	ft_lstclear(&data->cmds, free_node);
-	free_matrix(trimmed_args);
 }
 
 int	empty_pipe_error(void)
