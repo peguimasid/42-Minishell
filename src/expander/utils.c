@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:52:59 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/26 11:10:18 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 23:19:44 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_substr_var(char *str, int i, t_data *data)
 	if (pos == -1)
 		pos = ft_strlen(str) - 1;
 	aux = ft_substr(str, 0, i - 1);
-	var_len = ft_strchars_i(str + i, "\"\'$|>< ");
+	var_len = ft_strchars_i(str + i, "|\"\'$?>< ");
 	var = get_env(str + i, data->envp, var_len);
 	if (!var && str[i] == '$')
 		var = ft_itoa(data->pid);
