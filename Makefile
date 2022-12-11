@@ -27,8 +27,5 @@ re:	fclean all
 
 .PHONY:	all clean fclean re norminette
 
-test: all
-	@cd tests && ./test.sh && cd ..
-
 valgrind: all
 	valgrind --leak-check=full --show-reachable=yes --show-leak-kinds=all --error-limit=no --gen-suppressions=all --track-origins=yes  --log-file=lib.log ./minishell

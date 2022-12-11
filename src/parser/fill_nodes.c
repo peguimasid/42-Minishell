@@ -6,7 +6,7 @@
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:56:26 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/10 21:32:37 by gmasid           ###   ########.fr       */
+/*   Updated: 2022/12/10 21:43:40 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ int	fill_current_node(t_cmd *node, char **trimmed_args, t_data *data, int i)
 	return (1);
 }
 
-void	fill_nodes(t_data *data)
+void	populate_command_nodes(t_data *data, char **trimmed_args)
 {
-	char	**trimmed_args;
 	t_list	*curr_node;
 	int		offset;
 	int		i;
 
-	trimmed_args = trim_args(data->args);
 	i = 0;
 	offset = 0;
 	while (data->args && data->args[i])
@@ -69,5 +67,13 @@ void	fill_nodes(t_data *data)
 			return (quit_parsing(data, trimmed_args));
 		i += offset;
 	}
+}
+
+void	fill_nodes(t_data *data)
+{
+	char	**trimmed_args;
+
+	trimmed_args = trim_args(data->args);
+	populate_command_nodes(data, trimmed_args);
 	free_matrix(trimmed_args);
 }
