@@ -5,16 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:16:23 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/26 11:17:14 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/29 15:14:45 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	lexer(t_data *data)
 {
-	if (argc != 1)
-		return (throw_error(0, 1, "No arguments in this program"));
-	return (minishell(argv, envp));
+	data->args = split_quotes(data->input, " ");
+	if (!data->args)
+	{
+		free(data->input);
+		return (0);
+	}
+	expand_args(data->args, data);
+	data->args = subsplit_pipes_and_redirections(data->args);
+	return (1);
 }

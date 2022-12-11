@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:16:23 by gmasid           ###   ########.fr       */
+/*   Created: 2022/12/08 17:43:43 by gmasid            #+#    #+#             */
+/*   Updated: 2022/12/09 11:29:06 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	execute_env(t_data *data)
 {
-	if (argc != 1)
-		return (throw_error(0, 1, "No arguments in this program"));
-	return (minishell(argv, envp));
+	print_matrix(data->envp);
+	return (1);
+}
+
+int	is_env(t_cmd *node)
+{
+	char	*cmd;
+
+	cmd = node->full_cmd[0];
+	if (!cmd)
+		return (0);
+	if (ft_strncmp(cmd, "env", ft_strlen(cmd)) == 0 && ft_strlen(cmd) == 3)
+		return (1);
+	return (0);
 }

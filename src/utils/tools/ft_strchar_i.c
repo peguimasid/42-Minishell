@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchar_i.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:16:23 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/24 12:18:18 by gmasid            #+#    #+#             */
+/*   Updated: 2022/11/24 12:18:39 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_strchars_i(const char *s, char *set)
 {
-	if (argc != 1)
-		return (throw_error(0, 1, "No arguments in this program"));
-	return (minishell(argv, envp));
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i] != '\0')
+	{
+		if (ft_strchr(set, s[i]))
+			return (i);
+		i++;
+	}
+	return (-1);
 }

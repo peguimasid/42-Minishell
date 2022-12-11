@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/11/05 21:16:23 by gmasid           ###   ########.fr       */
+/*   Created: 2022/11/26 12:35:44 by gmasid            #+#    #+#             */
+/*   Updated: 2022/12/08 17:46:19 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	print_matrix(char **matrix)
 {
-	if (argc != 1)
-		return (throw_error(0, 1, "No arguments in this program"));
-	return (minishell(argv, envp));
+	int	i;
+
+	i = 0;
+	while (matrix && matrix[i])
+	{
+		printf("%s\n", matrix[i]);
+		i++;
+	}
 }
