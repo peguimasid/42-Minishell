@@ -26,7 +26,7 @@ OBJ	= $(SRCS:.c=.o)
 
 $(NAME): $(OBJ)
 	make -s -C lib/libft
-	cc $(OBJ) -lreadline -o $(NAME) $(LIBFT)
+	cc $(OBJ) -lreadline -o $(NAME) $(LIBFT) -I /System/Volumes/Data/Users/lucafern/.brew/Cellar/readline/8.2.1/lib/libreadline.a
 
 all: $(NAME)
 
