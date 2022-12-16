@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucafern <lucafern@student.42.rio>         +#+  +:+       +#+        */
+/*   By: gmasid <gmasid@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:31:19 by gmasid            #+#    #+#             */
-/*   Updated: 2022/12/08 20:36:58 by lucafern         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:56:25 by gmasid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	free_node(void *node)
 
 void	clean(t_data *data)
 {
-	free_matrix(data->args);
-	free(data->input);
+	if (data && data->args)
+		free_matrix(data->args);
+	if (data && data->cmds)
+		free(data->input);
 	if (data && data->cmds)
 		ft_lstclear(&data->cmds, free_node);
 }
