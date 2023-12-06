@@ -20,12 +20,17 @@ git clone https://github.com/peguimasid/42-Minishell minishell
 
 2. Run the program: `./minishell`
 
-## Author
+## Authors
 
 👤 **Guilhermo Masid**
 
 - Github: [@peguimasid](https://github.com/peguimasid)
 - LinkedIn: [@guilhermo-masid](https://linkedin.com/in/guilhermo-masid-494677b8)
+
+👤 **Lucas Fads**
+
+- Github: [@lucasfads](https://github.com/lucasfads)
+- LinkedIn: [@lucas-fads](https://www.linkedin.com/in/lucasfads/)
 
 ## Show your support
 
